@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* additions here*/
   height: 100vh;
-  background: #fff;
+  background: rgb(255, 255, 255);
 }
 code {
   font-family: "Courier New",
@@ -17,4 +17,11 @@ code {
 .flex {
   display: flex;
 }
+
+.display {
+  position: sticky;
+  top: 0;
+}
+
+
 
