@@ -1,8 +1,9 @@
 .feed {
+    position: relative;
     flex: 0.68;
     border-right: 1px solid rgba(235, 235, 235, 0.9);
     min-width: fit-content;
-    overflow-y: scroll;
+    overflow-y:visible;
     font-family: sans-serif;
   }
   
@@ -17,14 +18,20 @@
     scrollbar-width: none; /* Firefox */
   }
   
-  .feed_header {
+  .header {
+    position: sticky;
+    top: 0;
     background-color: white;
     z-index: 100;
     border: 1px solid rgba(235, 235, 235, 0.9);
     padding: 15px 20px;
   }
   
-  .feed_header > h3 {
+  .header > h3 {
     font-size: 20px;
     font-weight: 800;
+  }
+
+  .flip {
+    position: relative;
   }

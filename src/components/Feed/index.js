@@ -19,13 +19,13 @@ function Feed( {title}  ) {
   }, []);
 
   return (
+    <>
     <div className="feed">
-      <div className="feed_header">
+      <div className="header">
         <h3>{title}</h3>
       </div>
-
-
-      <FlipMove>
+    <div className="flip">
+      <FlipMove typeName={null}>
       {articles.map((article) => (
           <Article
             key={article.title}
@@ -34,7 +34,9 @@ function Feed( {title}  ) {
           />
         ))}
       </FlipMove>
-    </div>
+      </div>
+      </div>
+    </>
   );
 }
 

@@ -18,3 +18,10 @@ code {
   display: flex;
 }
 
+.display {
+  position: sticky;
+  top: 0;
+}
+
+
+

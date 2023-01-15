@@ -11,7 +11,11 @@ function Home() {
     <>
     <div className="flex">
     <ProSidebar/>
+    <div>
+    <div className='feed'>
     <Feed title={"Home"}/>
+    </div>
+    </div>
     </div>
     </>
   );

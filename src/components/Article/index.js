@@ -52,7 +52,7 @@ const Article = forwardRef(({ article }, ref) => {
               </Grid>
               <Grid item></Grid>
             </Grid>
-            <Grid xs={12} container spacing={10}>
+            <Grid container spacing={10}>
                 <Grid item>
                 <HomeOutlinedIcon/>
                 </Grid>
