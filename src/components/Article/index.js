@@ -6,6 +6,8 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
+import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 const Img = styled('img')({
     margin: 'auto',
@@ -55,10 +57,10 @@ const Article = forwardRef(({ article }, ref) => {
             </Grid>
             <Grid container spacing={10}>
                 <Grid item>
-                <HomeOutlinedIcon/>
+                <ShareOutlinedIcon/>
                 </Grid>
                 <Grid item>
-                <HomeOutlinedIcon/>
+                <FileDownloadOutlinedIcon/>
                 </Grid>
               </Grid>
           </Grid>
