@@ -1,8 +1,7 @@
 .feed {
     position: relative;
-    flex: 0.68;
+    flex: 0.5;
     border-right: 1px solid rgba(235, 235, 235, 0.9);
-    min-width: fit-content;
     overflow-y:visible;
     font-family: sans-serif;
   }

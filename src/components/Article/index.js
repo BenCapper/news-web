@@ -6,6 +6,8 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
+import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 const Img = styled('img')({
     margin: 'auto',
@@ -40,11 +42,12 @@ const Article = forwardRef(({ article }, ref) => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="subtitle1" component="div">
-                  {article.title}
-                </Typography><br/>
                 <Typography variant="body2" gutterBottom>
                   {article.date}
+                </Typography>
+                <br/>
+                <Typography gutterBottom variant="subtitle1" component="div">
+                  {article.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {article.outlet}
@@ -54,10 +57,10 @@ const Article = forwardRef(({ article }, ref) => {
             </Grid>
             <Grid container spacing={10}>
                 <Grid item>
-                <HomeOutlinedIcon/>
+                <ShareOutlinedIcon/>
                 </Grid>
                 <Grid item>
-                <HomeOutlinedIcon/>
+                <FileDownloadOutlinedIcon/>
                 </Grid>
               </Grid>
           </Grid>
