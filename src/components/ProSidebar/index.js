@@ -7,10 +7,16 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
+import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
+import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
+import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { Link } from 'react-router-dom';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import "./proSidebar.css";
 
 
 const menuItemStyles = {
@@ -47,27 +53,27 @@ const menuItemStyles = {
 const ProSidebar = () => {
     const { collapseSidebar } = useProSidebar();
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
     return (
         <>
         {isMobile ? (
             <>
         
-        <Sidebar width="80px" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0 }}>
+        <Sidebar width="80px" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, paddingLeft: "4em" }}>
         <Menu menuItemStyles={menuItemStyles}>
 
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}></MenuItem>
-          <MenuItem active={window.location.pathname === "/saved"} icon={<PeopleOutlinedIcon />} component={<Link to="/saved" />}></MenuItem>
-          <MenuItem icon={<ContactsOutlinedIcon />}></MenuItem>
+          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} component={<Link to="/saved" />}></MenuItem>
+          <MenuItem icon={<HistoryOutlinedIcon />}></MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<ReceiptOutlinedIcon />}> </MenuItem>
-          <MenuItem icon={<HelpOutlineOutlinedIcon />}> </MenuItem>
-          <MenuItem icon={<CalendarTodayOutlinedIcon />}>  </MenuItem>
+          <MenuItem icon={<KeyboardDoubleArrowLeftOutlinedIcon />}> </MenuItem>
+          <MenuItem icon={<KeyboardDoubleArrowRightOutlinedIcon />}> </MenuItem>
+          <MenuItem icon={<CompareArrowsOutlinedIcon />}>  </MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<HelpOutlineOutlinedIcon />}></MenuItem>
-          <MenuItem icon={<CalendarTodayOutlinedIcon />}></MenuItem>
+          <MenuItem icon={<DarkModeOutlinedIcon />}></MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />}></MenuItem>
         </Menu>
       </Sidebar>
       </>
@@ -78,15 +84,15 @@ const ProSidebar = () => {
 
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}>Home</MenuItem>
-          <MenuItem active={window.location.pathname === "/saved"} icon={<PeopleOutlinedIcon />} component={<Link to="/saved" />}>Saved</MenuItem>
-          <MenuItem icon={<ContactsOutlinedIcon />}>History</MenuItem>
+          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} component={<Link to="/saved" />}>Saved</MenuItem>
+          <MenuItem icon={<HistoryOutlinedIcon />}>History</MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<ReceiptOutlinedIcon />}>Leans Left</MenuItem>
-          <MenuItem icon={<HelpOutlineOutlinedIcon />}>Leans Right</MenuItem>
-          <MenuItem icon={<CalendarTodayOutlinedIcon />}>See Both Sides</MenuItem>
+          <MenuItem icon={<KeyboardDoubleArrowLeftOutlinedIcon />}>Leans Left</MenuItem>
+          <MenuItem icon={<KeyboardDoubleArrowRightOutlinedIcon />}>Leans Right</MenuItem>
+          <MenuItem icon={<CompareArrowsOutlinedIcon />}>See Both Sides</MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<HelpOutlineOutlinedIcon />}>Theme</MenuItem>
-          <MenuItem icon={<CalendarTodayOutlinedIcon />}>Logout</MenuItem>
+          <MenuItem icon={<DarkModeOutlinedIcon />}>Theme</MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />}>Logout</MenuItem>
         </Menu>
       </Sidebar>
         </>
