@@ -40,11 +40,12 @@ const Article = forwardRef(({ article }, ref) => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="subtitle1" component="div">
-                  {article.title}
-                </Typography><br/>
                 <Typography variant="body2" gutterBottom>
                   {article.date}
+                </Typography>
+                <br/>
+                <Typography gutterBottom variant="subtitle1" component="div">
+                  {article.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {article.outlet}
