@@ -8,7 +8,9 @@ body {
   /* additions here*/
   height: 100vh;
   background: rgb(255, 255, 255);
+  
 }
+
 code {
   font-family: "Courier New",
     monospace;
@@ -24,5 +26,7 @@ code {
   top: 0;
 }
 
-
+.right{
+  overflow: hidden;
+}
 

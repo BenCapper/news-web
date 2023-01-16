@@ -1,5 +1,6 @@
 import React from 'react';
 import ProSidebar from '../components/ProSidebar';
+import RightProsidebar from '../components/RightProsidebar';
 import "../App.css";
 import Feed from '../components/Feed';
 
@@ -16,7 +17,11 @@ function Home() {
     <Feed title={"Home"}/>
     </div>
     </div>
+    <div className='right'>
+    <RightProsidebar/>
     </div>
+    </div>
+
     </>
   );
 }

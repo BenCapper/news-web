@@ -54,7 +54,7 @@ const ProSidebar = () => {
         {isMobile ? (
             <>
         
-        <Sidebar width="80px" backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, paddingLeft: "4em" }}>
+        <Sidebar width="80px" backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0}}>
         <Menu menuItemStyles={menuItemStyles}>
 
           <MenuItem disabled></MenuItem>
