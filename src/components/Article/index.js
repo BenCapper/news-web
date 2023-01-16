@@ -29,14 +29,13 @@ const Article = forwardRef(({ article }, ref) => {
           maxWidth: 'auto',
           boxShadow: 'none',
           border: '1px solid #DEDEDE',
-          flexGrow: 1,
           backgroundColor: (theme) =>
             theme.palette.mode === 'dark' ? '#1A2027' : '#F6F6F6',
         }}
       >
         <Grid container spacing={5}>
           <Grid item>
-            <ButtonBase sx={{ width: 256, height: 158 }}>
+            <ButtonBase sx={{ width: 250, height: 158 }}>
               <Img alt="complex" src={article.storage_link}/>
             </ButtonBase>
           </Grid>
