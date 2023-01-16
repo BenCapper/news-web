@@ -43,15 +43,15 @@ const Article = forwardRef(({ article }, ref) => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography variant="body2" gutterBottom>
+                <Typography variant="body2" sx={{fontStyle: 'italic', fontFamily: 'Segoe UI'}} gutterBottom>
                   {article.date}
                 </Typography>
                 <br/>
-                <Typography gutterBottom variant="subtitle1" component="div">
+                <Typography gutterBottom variant="subtitle1" sx={{fontWeight: 750, fontFamily: "Segoe UI"}} component="div">
                   {article.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {article.outlet}
+                <Typography variant="body2" sx={{fontWeight: 700, fontFamily: 'Segoe UI', fontSize: '12px'}} color="text.secondary">
+                 <br/> {article.outlet}<br/>
                 </Typography>
               </Grid>
               <Grid item></Grid>
