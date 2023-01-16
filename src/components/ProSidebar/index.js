@@ -60,11 +60,11 @@ const ProSidebar = () => {
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}></MenuItem>
           <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} component={<Link to="/saved" />}></MenuItem>
-          <MenuItem icon={<HistoryOutlinedIcon />}></MenuItem>
+          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} component={<Link to="/history" />}></MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<KeyboardDoubleArrowLeftOutlinedIcon />}> </MenuItem>
-          <MenuItem icon={<KeyboardDoubleArrowRightOutlinedIcon />}> </MenuItem>
-          <MenuItem icon={<CompareArrowsOutlinedIcon />}>  </MenuItem>
+          <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />} component={<Link to="/left" />}> </MenuItem>
+          <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}> </MenuItem>
+          <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}>  </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem icon={<DarkModeOutlinedIcon />}></MenuItem>
           <MenuItem icon={<LogoutOutlinedIcon />}></MenuItem>
@@ -77,16 +77,16 @@ const ProSidebar = () => {
         <Menu menuItemStyles={menuItemStyles}>
 
           <MenuItem disabled></MenuItem>
-          <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}>Home</MenuItem>
-          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} component={<Link to="/saved" />}>Saved</MenuItem>
-          <MenuItem icon={<HistoryOutlinedIcon />}>History</MenuItem>
+          <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}></MenuItem>
+          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} component={<Link to="/saved" />}></MenuItem>
+          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />}></MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<KeyboardDoubleArrowLeftOutlinedIcon />}>Leans Left</MenuItem>
-          <MenuItem icon={<KeyboardDoubleArrowRightOutlinedIcon />}>Leans Right</MenuItem>
-          <MenuItem icon={<CompareArrowsOutlinedIcon />}>See Both Sides</MenuItem>
+          <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />}> </MenuItem>
+          <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />}> </MenuItem>
+          <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />}>  </MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<DarkModeOutlinedIcon />}>Theme</MenuItem>
-          <MenuItem icon={<LogoutOutlinedIcon />}>Logout</MenuItem>
+          <MenuItem icon={<DarkModeOutlinedIcon />}></MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />}></MenuItem>
         </Menu>
       </Sidebar>
         </>
