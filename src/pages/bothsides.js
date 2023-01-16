@@ -4,7 +4,7 @@ import "../App.css";
 import Feed from '../components/Feed';
 
 
-function Saved() {
+function Both() {
 
 
   return (
@@ -13,7 +13,7 @@ function Saved() {
     <ProSidebar/>
     <div>
     <div className='feed'>
-    <Feed title={"Saved"}/>
+    <Feed title={"See Both Sides"}/>
     </div>
     </div>
     </div>
@@ -21,4 +21,4 @@ function Saved() {
   );
 }
 
-export default Saved;
+export default Both;

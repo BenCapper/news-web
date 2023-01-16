@@ -1,7 +1,6 @@
 .feed {
     position: relative;
     flex: 0.5;
-    border-right: 1px solid rgba(235, 235, 235, 0.9);
     overflow-y:visible;
     font-family: sans-serif;
   }
@@ -33,4 +32,6 @@
 
   .flip {
     position: relative;
+    border-left: 1px solid rgba(235, 235, 235, 0);
+    border-right: 1px solid rgba(235, 235, 235, .9);
   }
