@@ -1,12 +1,6 @@
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
 import { menuClasses } from 'react-pro-sidebar';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
 import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
@@ -60,7 +54,7 @@ const ProSidebar = () => {
         {isMobile ? (
             <>
         
-        <Sidebar width="80px" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, paddingLeft: "4em" }}>
+        <Sidebar width="80px" backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, paddingLeft: "4em" }}>
         <Menu menuItemStyles={menuItemStyles}>
 
           <MenuItem disabled></MenuItem>

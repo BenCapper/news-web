@@ -1,6 +1,5 @@
 import React, { forwardRef } from "react";
 import "./article.css";
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -16,7 +15,7 @@ const Img = styled('img')({
     maxWidth: '100%',
     minHeight: '100%',
     maxHeight: '100%',
-    border: '1px solid #000',
+    border: '2px solid #DEDEDE',
   });
 
 
@@ -28,9 +27,11 @@ const Article = forwardRef(({ article }, ref) => {
           p: 2,
           margin: 'auto',
           maxWidth: 'auto',
+          boxShadow: 'none',
+          border: '1px solid #DEDEDE',
           flexGrow: 1,
           backgroundColor: (theme) =>
-            theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+            theme.palette.mode === 'dark' ? '#1A2027' : '#F6F6F6',
         }}
       >
         <Grid container spacing={5}>
@@ -65,12 +66,8 @@ const Article = forwardRef(({ article }, ref) => {
               </Grid>
           </Grid>
         </Grid>
-      </Paper>
+      </Paper><br/><br/>
       </>
-
-
-
-
     );
 }
 );
