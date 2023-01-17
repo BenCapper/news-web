@@ -5,6 +5,15 @@ import { Link } from 'react-router-dom';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import "./rightSidebar.css"
+import rte from '../../assets/rte.png';
+import gript from '../../assets/gript.png';
+import spiked from '../../assets/spiked.png';
+import gbn from '../../assets/gbn.png';
+import sky from '../../assets/sky.png';
+import dmail from '../../assets/dmail.png';
+import guard from '../../assets/guard.png';
+import sceptic from '../../assets/sceptic.png';
+
 
 const menuItemStyles = {
     root: {
@@ -46,19 +55,18 @@ const RightProsidebar = () => {
         <>
         {isMobile ? (
             <>
-        <div className='over'>
         <Sidebar width="80px" backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, borderRight: '0px'}}>
         <Menu menuItemStyles={menuItemStyles}>
 
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/" />}>  </MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/saved" />}></MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/history" />}></MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/left" />}> </MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/right" />}> </MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/bothsides" />}>  </MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />}></MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />}></MenuItem>
+          <MenuItem icon={<img className="image" src={gript} />} component={<Link to="/" />}>  </MenuItem>
+          <MenuItem icon={<img className="image" src={rte} />} component={<Link to="/saved" />}></MenuItem>
+          <MenuItem icon={<img className="image" src={spiked} />} component={<Link to="/history" />}></MenuItem>
+          <MenuItem icon={<img className="image" src={gbn} />} component={<Link to="/left" />}> </MenuItem>
+          <MenuItem icon={<img className="image" src={sky} />} component={<Link to="/right" />}> </MenuItem>
+          <MenuItem icon={<img className="image" src={guard} />} component={<Link to="/bothsides" />}>  </MenuItem>
+          <MenuItem icon={<img className="image" src={dmail} />}></MenuItem>
+          <MenuItem icon={<img className="image" src={sceptic} />}></MenuItem>
           <MenuItem icon={<HomeOutlinedIcon />}></MenuItem>
           <MenuItem icon={<HomeOutlinedIcon />}></MenuItem>
 
@@ -91,25 +99,22 @@ const RightProsidebar = () => {
 
         </Menu>
       </Sidebar>
-      </div>
       </>
     ) : (
         <>
-        <div className='over'>
-        <Sidebar style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, borderRight: '0px', paddingLeft: '3.5em'}}>
+        <Sidebar style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, borderRight: '0px'}}>
         <Menu menuItemStyles={menuItemStyles}>
 
         <MenuItem disabled></MenuItem>
-          <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Gript </MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/" />}> RTE </MenuItem>
+          <MenuItem active={window.location.pathname === "/"} icon={<img className="image" src={gript} />} component={<Link to="/" />}> Gript </MenuItem>
+          <MenuItem icon={<img className="image" src={rte} />} component={<Link to="/" />}> RTE </MenuItem>
+          <MenuItem icon={<img className="image" src={spiked} />} component={<Link to="/saved" />}> Spiked-Online </MenuItem>
+          <MenuItem icon={<img className="image" src={gbn} />} component={<Link to="/history" />}> GB News </MenuItem>
+          <MenuItem icon={<img className="image" src={sky} />} component={<Link to="/saved" />}> Sky News </MenuItem>
+          <MenuItem icon={<img className="image" src={guard} />} component={<Link to="/history" />}> The Guardian </MenuItem>
+          <MenuItem icon={<img className="image" src={dmail} />} component={<Link to="/left" />}> The Daily Mail </MenuItem>
 
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/saved" />}> Spiked-Online </MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/history" />}> GB News </MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/saved" />}> Sky News </MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/history" />}> The Guardian </MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/left" />}> The Daily Mail </MenuItem>
-
-          <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/left" />}> Daily Sceptic</MenuItem>
+          <MenuItem icon={<img className="image" src={sceptic} />} component={<Link to="/left" />}> Daily Sceptic</MenuItem>
           <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/right" />}> The Blaze </MenuItem>
           <MenuItem icon={<HomeOutlinedIcon />} component={<Link to="/bothsides" />}> Timcast </MenuItem>
           <MenuItem icon={<HomeOutlinedIcon />}> Breitbart </MenuItem>
@@ -140,7 +145,6 @@ const RightProsidebar = () => {
           <MenuItem icon={<HomeOutlinedIcon />}> Global News </MenuItem>
         </Menu>
       </Sidebar>
-      </div>
         </>
     )}
     </>
