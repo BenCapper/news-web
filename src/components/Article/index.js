@@ -36,7 +36,7 @@ const Article = forwardRef(({ article }, ref) => {
         <Grid container spacing={5}>
           <Grid item>
             <ButtonBase sx={{ width: 250, height: 158 }}>
-              <Img alt="complex" src={article.storage_link}/>
+              <Img alt="" src={article.storage_link}/>
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>

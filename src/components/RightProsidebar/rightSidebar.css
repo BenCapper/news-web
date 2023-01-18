@@ -6,3 +6,7 @@ div {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
+.image {
+    border-radius: 50%;
+}
