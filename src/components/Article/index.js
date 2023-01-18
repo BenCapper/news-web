@@ -20,15 +20,29 @@ const Img = styled('img')({
 
 
 const Article = forwardRef(({ article }, ref) => {
+
+  const linkClick = () => {
+    window.open('//' + article.link, '_blank', 'noreferrer');
+  };
+
+  const saveClick = () => {
+    //Save article to user faves
+    console.log('Saving');
+  };
+
+  const shareClick = () => {
+    //Copy link to clipboard
+    console.log('Sharing');
+  };
+
     return (
         <>
         <Paper
         sx={{
           p: 2,
           margin: 'auto',
-          maxWidth: 'auto',
           boxShadow: 'none',
-          border: '1px solid #DEDEDE',
+          maxWidth: '90%',
           backgroundColor: (theme) =>
             theme.palette.mode === 'dark' ? '#1A2027' : '#F6F6F6',
         }}
@@ -46,7 +60,7 @@ const Article = forwardRef(({ article }, ref) => {
                   {article.date}
                 </Typography>
                 <br/>
-                <Typography gutterBottom variant="subtitle1" sx={{fontWeight: 750, fontFamily: "Segoe UI"}} component="div">
+                <Typography gutterBottom variant="subtitle1" sx={{cursor: 'pointer', fontWeight: 750, fontFamily: "Segoe UI"}} component="div" onClick={() => linkClick()}>
                   {article.title}
                 </Typography>
                 <Typography variant="body2" sx={{fontWeight: 700, fontFamily: 'Segoe UI', fontSize: '12px'}} color="text.secondary">
@@ -55,11 +69,11 @@ const Article = forwardRef(({ article }, ref) => {
               </Grid>
               <Grid item></Grid>
             </Grid>
-            <Grid container spacing={10}>
-                <Grid item>
+            <Grid container spacing={6}>
+                <Grid item sx={{cursor: 'pointer'}} onClick={() => shareClick()}>
                 <ShareOutlinedIcon/>
                 </Grid>
-                <Grid item>
+                <Grid item sx={{cursor: 'pointer'}} onClick={() => saveClick()}>
                 <FileDownloadOutlinedIcon/>
                 </Grid>
               </Grid>

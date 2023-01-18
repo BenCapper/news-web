@@ -22,7 +22,7 @@
     top: 0;
     background-color: white;
     z-index: 100;
-    border: 1px solid rgba(235, 235, 235, 0.9);
+    border: 1px solid rgba(235, 235, 235, 0.0);
     padding: 15px 20px;
   }
   
