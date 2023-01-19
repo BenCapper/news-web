@@ -66,7 +66,7 @@ const Article = forwardRef(({ article }, ref) => {
                 </Typography>
                 <Typography variant="body2" sx={{cursor: 'pointer', fontWeight: 700, fontFamily: 'Segoe UI', fontSize: '12px'}} color="text.secondary">
                  <br/>
-                 <ExternalLink href={"https://" + `${article.outlet}`}>
+                 <ExternalLink href={article.link}>
                   <span className="outlet">{article.outlet}</span>
                 </ExternalLink>
                  <br/>
