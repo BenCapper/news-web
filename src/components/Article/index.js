@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import "./article.css";
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -8,6 +8,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import { ExternalLink } from 'react-external-link';
+import { deFormatTitle } from "../../util";
 
 const Img = styled('img')({
     margin: 'auto',
@@ -21,6 +22,7 @@ const Img = styled('img')({
 
 
 const Article = forwardRef(({ article }, ref) => {
+  const [title, setTitle] = useState(deFormatTitle(article.title));
 
 
 
@@ -61,7 +63,7 @@ const Article = forwardRef(({ article }, ref) => {
 
                 <Typography gutterBottom variant="subtitle1" sx={{cursor: 'pointer', fontWeight: 750, fontFamily: "Segoe UI"}} component="div">
                   <ExternalLink href={article.link}>
-                  <span>{article.title}</span>
+                  <span>{deFormatTitle(title)}</span>
                   </ExternalLink>
                 </Typography>
                 <Typography variant="body2" sx={{cursor: 'pointer', fontWeight: 700, fontFamily: 'Segoe UI', fontSize: '12px'}} color="text.secondary">
