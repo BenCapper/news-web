@@ -7,6 +7,8 @@ import { onValue, ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
 import { v4 as uuidv4 } from 'uuid';
 import { compare } from "../../util";
+import { LinearProgress } from "@mui/material";
+import Loader from "../Loader";
 
 function Feed( {title}  ) {
   const [articles, setArticles] = useState([]);
@@ -15,7 +17,9 @@ function Feed( {title}  ) {
 
 
   if (arts.isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Loader title={"Home"}/>
+    );
   }
 
   let titles = [];
