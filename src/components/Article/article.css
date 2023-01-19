@@ -35,4 +35,27 @@
     font-size: 12px;
     color: gray;
   }
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+.outlet {
+  color: gray !important;
+}
+
+.outlet:hover {
+  color:orange !important;
+}
+
+a:hover {
+  color: orange;
+}
+
+.options:hover {
+  color:orange;
+}
+
+
   

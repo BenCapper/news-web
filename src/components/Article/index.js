@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import "./article.css";
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
+import { ExternalLink } from 'react-external-link';
+import { deFormatTitle } from "../../util";
 
 const Img = styled('img')({
     margin: 'auto',
@@ -20,47 +22,66 @@ const Img = styled('img')({
 
 
 const Article = forwardRef(({ article }, ref) => {
+  const [title, setTitle] = useState(deFormatTitle(article.title));
+
+
+
+  const saveClick = () => {
+    //Save article to user faves
+    console.log('Saving');
+  };
+
+  const shareClick = () => {
+    //Copy link to clipboard
+    console.log('Sharing');
+  };
+
+
     return (
         <>
         <Paper
         sx={{
           p: 2,
           margin: 'auto',
-          maxWidth: 'auto',
           boxShadow: 'none',
-          border: '1px solid #DEDEDE',
+          maxWidth: '90%',
           backgroundColor: (theme) =>
             theme.palette.mode === 'dark' ? '#1A2027' : '#F6F6F6',
         }}
       >
         <Grid container spacing={5}>
           <Grid item>
+          <ExternalLink href={article.link}>
             <ButtonBase sx={{ width: 250, height: 158 }}>
-              <Img alt="" src={article.storage_link}/>
+              <Img alt="" color="orange" src={article.storage_link}/>
             </ButtonBase>
+          </ExternalLink>
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography variant="body2" sx={{fontStyle: 'italic', fontFamily: 'Segoe UI'}} gutterBottom>
-                  {article.date}
+              <Grid item>
+
+                <Typography gutterBottom variant="subtitle1" sx={{cursor: 'pointer', fontWeight: 750, fontFamily: "Segoe UI"}} component="div">
+                  <ExternalLink href={article.link}>
+                  <span>{deFormatTitle(title)}</span>
+                  </ExternalLink>
                 </Typography>
-                <br/>
-                <Typography gutterBottom variant="subtitle1" sx={{fontWeight: 750, fontFamily: "Segoe UI"}} component="div">
-                  {article.title}
-                </Typography>
-                <Typography variant="body2" sx={{fontWeight: 700, fontFamily: 'Segoe UI', fontSize: '12px'}} color="text.secondary">
-                 <br/> {article.outlet}<br/>
+                <Typography variant="body2" sx={{cursor: 'pointer', fontWeight: 700, fontFamily: 'Segoe UI', fontSize: '12px'}} color="text.secondary">
+                 <br/>
+                 <ExternalLink href={"//" + article.outlet}>
+                  <span className="outlet">{article.outlet}</span>
+                </ExternalLink>
+                 <br/>
                 </Typography>
               </Grid>
               <Grid item></Grid>
             </Grid>
-            <Grid container spacing={10}>
-                <Grid item>
-                <ShareOutlinedIcon/>
+            <Grid container>
+                <Grid item >
+                <ShareOutlinedIcon className="options" sx={{cursor: 'pointer', pr: '2em'}} onClick={() => shareClick()}/>
                 </Grid>
-                <Grid item>
-                <FileDownloadOutlinedIcon/>
+                <Grid item >
+                <FileDownloadOutlinedIcon className="options" sx={{cursor: 'pointer'}} onClick={() => saveClick()}/>
                 </Grid>
               </Grid>
           </Grid>
