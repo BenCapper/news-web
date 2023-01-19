@@ -8,3 +8,13 @@ export function deFormatTitle(title) {
     .replace("(comma)", ",")
     .replace("(USD)", "$")
 }
+
+export function compare( a, b ) {
+    if ( a.order < b.order ){
+      return -1;
+    }
+    if ( a.last_nom > b.last_nom ){
+      return 1;
+    }
+    return 0;
+  }

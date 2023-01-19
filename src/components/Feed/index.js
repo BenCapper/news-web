@@ -6,6 +6,7 @@ import { db } from "../../firebase-config";
 import { onValue, ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
 import { v4 as uuidv4 } from 'uuid';
+import { compare } from "../../util";
 
 function Feed( {title}  ) {
   const [articles, setArticles] = useState([]);
@@ -23,6 +24,7 @@ function Feed( {title}  ) {
   for (let a in arts.data) {
     titles.push(a);
     newList.push(arts.data[a]);
+    newList.sort(compare).reverse();
   }
 
 
