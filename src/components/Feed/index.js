@@ -5,7 +5,7 @@ import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
 import { compare, splitArray } from "../../util";
-import { LinearProgress } from "@mui/material";
+import { Grid, LinearProgress } from "@mui/material";
 import { Stack } from "@mui/material";
 import { Pagination } from "@mui/material";
 
@@ -60,9 +60,10 @@ function Feed( {title}  ) {
 
   return (
     <>
-    <div className="feed">
       <div className="header">
-        <h3>{title}</h3>
+        <div className="spans">
+          <span className="left">{title}</span><span className="right"> {newList.length} Articles</span>
+        </div>
       </div>
     <div className="flip">
       {articles.map((article) => (
@@ -74,7 +75,6 @@ function Feed( {title}  ) {
       <Stack alignItems="center">
       <Pagination color='primary' count={split.length - 1} defaultPage={0} page={pageNumber} onChange={handleChange} />
       </Stack>
-      </div>
       </div>
     </>
   );
