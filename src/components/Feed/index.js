@@ -8,6 +8,7 @@ import { compare, splitArray } from "../../util";
 import { Grid, LinearProgress } from "@mui/material";
 import { Stack } from "@mui/material";
 import { Pagination } from "@mui/material";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 function Feed( {title}  ) {
@@ -19,7 +20,7 @@ function Feed( {title}  ) {
   let newList = [];
   let split = [];
   let first = [];
-
+  let previous = [];
 
   if (arts.isLoading) {
     return (
@@ -42,8 +43,29 @@ function Feed( {title}  ) {
     handleArts(first)
   }
 
+  function getArraySegment(num, arr) {
+    const segment = [];
+    const length = num * 100;
+    for (let i = 0; i < length; i++) {
+      if (arr[i]) {
+        segment.push(arr[i]);
+      }
+    }
+    setArticles(segment);
+    setPageNumber(pageNumber + 1)
+    console.log(articles)
+    console.log(segment)
+    return segment
+  }
+
   const handleArts = (array) => {
     setArticles(array)
+  }
+
+  const hasMore = () => {
+    let len = newList.length / 100 
+    if (pageNumber <= len) return false 
+    return true
   }
 
   for (let a in arts.data) {
@@ -53,9 +75,12 @@ function Feed( {title}  ) {
   }
   split = splitArray(newList);
   first = split[pageNumber];
+
   if (articles.length == 0){
     handleArts(first);
   }
+
+
 
 
   return (
@@ -66,15 +91,19 @@ function Feed( {title}  ) {
         </div>
       </div>
     <div className="flip">
+    <InfiniteScroll
+      dataLength={pageNumber + 1} //This is important field to render the next data
+      next={() => getArraySegment(pageNumber, newList)}
+      hasMore={() => hasMore()}
+      loader={<h4>Loading...</h4>}
+      >
       {articles.map((article) => (
           <Article
             key={Math.floor(Math.random() * 10000000000)}   
             article={article}
           />
         ))}
-      <Stack alignItems="center">
-      <Pagination color='primary' count={split.length - 1} defaultPage={0} page={pageNumber} onChange={handleChange} />
-      </Stack>
+      </InfiniteScroll>
       </div>
     </>
   );
