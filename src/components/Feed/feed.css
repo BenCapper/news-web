@@ -4,6 +4,7 @@
     border-right: 1px solid rgba(235, 235, 235, 0.9);
     overflow-y:visible;
     font-family: sans-serif;
+    min-width: 18em;
   }
   
   /* Hide scrollbar for Chrome, Safari and Opera */
@@ -23,14 +24,47 @@
     background-color: white;
     z-index: 100;
     border: 1px solid rgba(235, 235, 235, 0.0);
-    padding: 15px 20px;
+    padding: 30px ;
   }
   
   .header > h3 {
     font-size: 20px;
     font-weight: 800;
   }
+  .spans{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .left{
+    font-size: 20px;
+    font-weight: 800;
+    margin-right: auto;
+  }
+
+  .right {
+    font-size: 14px;
+    font-weight: 800;
+    color: rgb(0, 0, 0);
+    font-family: 'Segoe UI';
+    margin-left: auto;
+  }
 
   .flip {
     position: relative;
+  }
+
+  .load {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .count {
+    font-weight: 750;
+    font-size: .75em;
+    color:rgb(156, 156, 156);
+    font-family: "Segoe UI";
   }
