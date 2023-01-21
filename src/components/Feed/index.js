@@ -52,9 +52,7 @@ function Feed( {title}  ) {
       }
     }
     setArticles(segment);
-    setPageNumber(pageNumber + 1)
-    console.log(articles)
-    console.log(segment)
+    setPageNumber(pageNumber + 1);
     return segment
   }
 
@@ -95,7 +93,13 @@ function Feed( {title}  ) {
       dataLength={pageNumber + 1} //This is important field to render the next data
       next={() => getArraySegment(pageNumber, newList)}
       hasMore={() => hasMore()}
-      loader={<h4>Loading...</h4>}
+      loader={
+        <>
+        <div className="load">
+          <LinearProgress/>
+        </div>
+        </>
+      }
       >
       {articles.map((article) => (
           <Article
