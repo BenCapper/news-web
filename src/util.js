@@ -33,3 +33,20 @@ export function splitArray(arr) {
     
     return splitArrays;
   }
+
+export function filterByTitle(arr, searchTerm) {
+    return arr.filter(function(obj) {
+      return obj.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  }
+
+export function getArraySegment(num, arr) {
+  const segment = [];
+  const length = num * 100;
+  for (let i = 0; i < length; i++) {
+    if (arr[i]) {
+      segment.push(arr[i]);
+    }
+  }
+  return segment
+}
