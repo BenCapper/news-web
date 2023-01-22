@@ -17,7 +17,7 @@ function Feed( {title}  ) {
   const arts = useDatabaseValue(["stories/01-21-23"], dbRef);
   const [pageNumber, setPageNumber] = useState(0);
   const [articles, setArticles] = useState([]);
-  const [more, setMore] = useState(false);
+  const [more, setMore] = useState(true);
   let titles = [];
   let newList = [];
   let split = [];
@@ -47,17 +47,23 @@ function Feed( {title}  ) {
   const handleFilterChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
     s = s + event.target.value
-      fil = filterByTitle(newList, s);
-
-      if (fil.length === 0){
-        console.log("Empty")
-        let empty = [{title: "No Results"}]
-        setArticles(empty);
-      }
-      else {
-        setArticles(fil);
-      }
+    fil = filterByTitle(newList, s);
+    if( s === ''){
+      setMore(true)
     }
+    if (s !== ''){
+      setMore(false)
+    }
+
+    if (fil.length === 0){
+      console.log("Empty")
+      let empty = [{title: "No Results"}]
+      setArticles(empty);
+    }
+    else {
+      setArticles(fil);
+    }
+  }
 
 
 
@@ -89,10 +95,15 @@ function Feed( {title}  ) {
 
 
   const hasMore = ( ) => {
-      let len = newList.length / 100 
-      if (pageNumber <= len) return false 
-      return true
+    let len = newList.length / 100 
+    if (pageNumber <= len){
+      setMore(false)
+    } 
+    else{
+      setMore(true)
+    }
   }
+
 
   for (let a in arts.data) {
     titles.push(a);
@@ -131,7 +142,7 @@ function Feed( {title}  ) {
     <InfiniteScroll
       dataLength={pageNumber + 1} //This is important field to render the next data
       next={() => getArraySegment(pageNumber, newList)}
-      hasMore={() => hasMore()}
+      hasMore={more}
       loader={
         <>
         <div className="load">
