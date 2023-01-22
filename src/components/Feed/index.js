@@ -5,22 +5,30 @@ import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
 import { compare, splitArray } from "../../util";
-import { Grid, LinearProgress } from "@mui/material";
+import { FormControl, Grid, LinearProgress, TextField } from "@mui/material";
 import { Stack } from "@mui/material";
 import { Pagination } from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { PropaneSharp } from "@mui/icons-material";
 
 
 function Feed( {title}  ) {
-  const dbRef = ref(db, "stories/01-19-23");
-  const arts = useDatabaseValue(["stories/01-19-23"], dbRef);
+  const dbRef = ref(db, "stories/01-21-23");
+  const arts = useDatabaseValue(["stories/01-21-23"], dbRef);
   const [pageNumber, setPageNumber] = useState(0);
   const [articles, setArticles] = useState([]);
+  const [more, setMore] = useState(false);
   let titles = [];
   let newList = [];
   let split = [];
   let first = [];
-  let previous = [];
+  let fil = [];
+  let s = ''
+  const [values, setValues] = React.useState({
+    searched: '',
+  });
+
+
 
   if (arts.isLoading) {
     return (
@@ -36,12 +44,36 @@ function Feed( {title}  ) {
     );
   }
 
+  const handleFilterChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+    s = s + event.target.value
+      fil = filterByTitle(newList, s);
+
+      if (fil.length === 0){
+        console.log("Empty")
+        let empty = [{title: "No Results"}]
+        setArticles(empty);
+      }
+      else {
+        setArticles(fil);
+      }
+    }
+
+
+
   const handleChange = (event, value) => {
     setPageNumber(value);
     window.scrollTo(0,0);
     first = split[value];
-    handleArts(first)
+    setArticles(first)
   }
+
+  function filterByTitle(arr, searchTerm) {
+    return arr.filter(function(obj) {
+      return obj.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  }
+
 
   function getArraySegment(num, arr) {
     const segment = [];
@@ -53,17 +85,13 @@ function Feed( {title}  ) {
     }
     setArticles(segment);
     setPageNumber(pageNumber + 1);
-    return segment
   }
 
-  const handleArts = (array) => {
-    setArticles(array)
-  }
 
-  const hasMore = () => {
-    let len = newList.length / 100 
-    if (pageNumber <= len) return false 
-    return true
+  const hasMore = ( ) => {
+      let len = newList.length / 100 
+      if (pageNumber <= len) return false 
+      return true
   }
 
   for (let a in arts.data) {
@@ -75,8 +103,10 @@ function Feed( {title}  ) {
   first = split[pageNumber];
 
   if (articles.length == 0){
-    handleArts(first);
+    setArticles(first);
   }
+
+  
 
 
 
@@ -86,6 +116,15 @@ function Feed( {title}  ) {
       <div className="header">
         <div className="spans">
           <span className="left">{title}</span><span className="right"> {newList.length} Articles</span>
+          <FormControl sx={{ m: 1, width: '25ch'}} variant="outlined">
+            <TextField
+                id="outlined"
+                label="Filter"
+                placeholder="Filter"
+                value={values.searched}
+                onChange={handleFilterChange('searched')}
+              />
+        </FormControl>
         </div>
       </div>
     <div className="flip">
