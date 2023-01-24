@@ -168,7 +168,7 @@ function Feed ( { title }  ) {
               onChange={handleFilterChange('searched')}
             />
       </FormControl>
-      <ButtonGroup sx={{ml: '1.85em', mt: '.6em'}}>
+      <ButtonGroup color="warning" sx={{ml: '1.85em', mt: '.6em'}}>
       <Button sx={{color: 'black'}}>
       <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
       </Button>
