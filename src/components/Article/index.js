@@ -17,7 +17,7 @@ const Img = styled('img')({
     maxWidth: '100%',
     minHeight: '100%',
     maxHeight: '100%',
-    border: '2px solid #DEDEDE',
+    border: '1px solid orange',
   });
 
 

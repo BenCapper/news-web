@@ -6,14 +6,16 @@ const Loader = ({title}) => {
 
     return (
         <>
-        <div className="feed">
         <div className="header">
           <h3>{title}</h3>
-  
+          <div>
         <div className="load"></div>
           <LinearProgress/>
           </div>
         </div>
+        <div className="flip">
+      </div>
+          
         </>
       );
 }
