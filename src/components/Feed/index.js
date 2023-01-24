@@ -4,20 +4,24 @@ import Article from "../Article";
 import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
-import { compare, splitArray } from "../../util";
+import { compare, getDate, splitArray } from "../../util";
 import { FormControl, Grid, LinearProgress, TextField } from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { filterByTitle } from "../../util";
 import { getArraySegment } from "../../util";
 import Loader from "../Loader";
 import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
+import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
 
 function Feed ( { title }  ) {
-
-  const dbRef = ref(db, "stories/01-21-23");
-  const arts = useDatabaseValue(["stories/01-21-23"], dbRef);
-
+  const [count, setCount] = useState(0);
+  const today = getDate(0);
+  const d = getDate(count);
+  const dbRef = ref(db, `stories/${d}`);
+  const arts = useDatabaseValue([`stories/${d}`], dbRef);
+  
   const [pageNumber, setPageNumber] = useState(0);
   const [articles, setArticles] = useState([]);
   const [more, setMore] = useState(true);
@@ -48,6 +52,7 @@ function Feed ( { title }  ) {
   }
   splitArr = splitArray(newList);
   firstSegment = splitArr[pageNumber];
+  console.log(firstSegment)
 
   if (articles.length == 0){
     setArticles(firstSegment);
@@ -77,6 +82,7 @@ function Feed ( { title }  ) {
   }
 
   const shuffleArticles = () => {
+    console.log("shuffle")
     let shuffled = articles.slice().sort(() => Math.random() - 0.5);
     setArticles(shuffled);
   }
@@ -87,24 +93,51 @@ function Feed ( { title }  ) {
     setPageNumber(pageNumber + 1);
   }
 
+  function back(){
+    if (count > -14) {
+      setCount(count - 1)
+      let segment = getArraySegment(pageNumber, newList);
+      setArticles(segment);
+    }
+    else {
+      //Snack Error?
+    }
+
+  }
+
+  function forward(){
+    if (count < 0){
+      setCount(count + 1)
+      let segment = getArraySegment(pageNumber, newList);
+      setArticles(segment);
+    }
+    else {
+      //Snack Error?
+    }
+
+  }
+
 
   return (
     <>
     <div className="header">
       <div className="spans">
         <span className="left">{title}</span><span className="right"> {newList.length} Articles</span>
-        <FormControl sx={{ m: 1, width: '25ch'}} variant="outlined">
-          <TextField
+
+      </div>
+    </div>
+    <div>
+      <TextField
               id="outlined"
               label="Filter"
               placeholder="Filter"
               value={values.searched}
               onChange={handleFilterChange('searched')}
-            />
-      </FormControl>
+      />
       <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
+      <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
+      <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
       </div>
-    </div>
     <div className="flip">
     <InfiniteScroll
       dataLength={pageNumber + 1} //This is important field to render the next data

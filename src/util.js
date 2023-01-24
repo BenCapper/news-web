@@ -50,3 +50,12 @@ export function getArraySegment(num, arr) {
   }
   return segment
 }
+
+export function getDate(offset) {
+  var today = new Date();
+  var date = new Date(today.getTime() + offset*24*60*60*1000);
+  var dd = String(date.getDate()).padStart(2, '0');
+  var mm = String(date.getMonth() + 1).padStart(2, '0');
+  var yy = date.getFullYear().toString().slice(-2);
+  return mm + '-' + dd + '-' + yy;
+}
