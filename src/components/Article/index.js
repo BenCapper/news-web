@@ -45,7 +45,7 @@ const Article = forwardRef(({ article }, ref) => {
         <Paper
         sx={{
           p: 2,
-          margin: 'auto',
+          marginLeft: '1em',
           boxShadow: 'none',
           maxWidth: '90%',
           backgroundColor: (theme) =>
@@ -53,7 +53,7 @@ const Article = forwardRef(({ article }, ref) => {
         }}
       >
         <Grid container spacing={5}>
-          <Grid item>
+          <Grid item >
           <ExternalLink href={article.link}>
             <ButtonBase sx={{ width: 250, height: 158 }}>
               <Img alt="" color="orange" src={article.storage_link}/>

@@ -24,7 +24,10 @@
     background-color: white;
     z-index: 100;
     border: 1px solid rgba(235, 235, 235, 0.0);
-    padding: 30px ;
+    padding-left: 1.8em;
+    padding-right: 1.8em;
+    padding-top: 1em;
+    padding-bottom: .3em;
   }
   
   .header > h3 {
@@ -68,3 +71,4 @@
     color:rgb(156, 156, 156);
     font-family: "Segoe UI";
   }
+

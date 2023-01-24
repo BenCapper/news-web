@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./feed.css";
 import Article from "../Article";
+import { styled } from '@mui/material/styles';
 import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
 import { compare, getDate, splitArray } from "../../util";
-import { FormControl, Grid, LinearProgress, TextField } from "@mui/material";
+import { Button, ButtonGroup, FormControl, Grid, LinearProgress, TextField } from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { filterByTitle } from "../../util";
 import { getArraySegment } from "../../util";
@@ -13,6 +14,23 @@ import Loader from "../Loader";
 import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import { inputLabelClasses } from "@mui/material/InputLabel";
+
+
+const CssTextField = styled(TextField)({
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'orange',
+    },
+    '&:hover fieldset': {
+      borderColor: '#fcc24c',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'orange',
+      label: 'orange'
+    },
+  },
+});
 
 
 function Feed ( { title }  ) {
@@ -127,16 +145,41 @@ function Feed ( { title }  ) {
       </div>
     </div>
     <div>
-      <TextField
+    <div className="tools">
+    <FormControl sx={{ mt: '.5em', ml: '1.85em', mb:'1em', minWidth: '16em', border: 'orange'}} variant="outlined">
+          <CssTextField
               id="outlined"
               label="Filter"
-              placeholder="Filter"
+              placeholder={d}
+              size="small"
+              InputLabelProps={{
+                sx: {
+                  // set the color of the label when not shrinked
+                  color: "black",
+                  fontWeight: 450,
+                  [`&.${inputLabelClasses.shrink}`]: {
+                    // set the color of the label when shrinked (usually when the TextField is focused)
+                    color: "black",
+                    fontWeight: 600
+                  }
+                }
+              }}
               value={values.searched}
               onChange={handleFilterChange('searched')}
-      />
+            />
+      </FormControl>
+      <ButtonGroup sx={{ml: '1.85em', mt: '.6em'}}>
+      <Button sx={{color: 'black'}}>
       <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
+      </Button>
+      <Button sx={{color: 'black'}}>
       <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
+      </Button>
+      <Button sx={{color: 'black'}}>
       <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
+      </Button>
+      </ButtonGroup>
+      </div>
       </div>
     <div className="flip">
     <InfiniteScroll
