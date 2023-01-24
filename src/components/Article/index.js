@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import "./article.css";
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -22,9 +22,12 @@ const Img = styled('img')({
 
 
 const Article = forwardRef(({ article }, ref) => {
-  const [title, setTitle] = useState(deFormatTitle(article.title));
+  const [title, setTitle] = useState(article.title);
+  
 
-
+  useEffect(() => {
+    setTitle(deFormatTitle(title))
+  });
 
   const saveClick = () => {
     //Save article to user faves
@@ -63,7 +66,7 @@ const Article = forwardRef(({ article }, ref) => {
 
                 <Typography gutterBottom variant="subtitle1" sx={{cursor: 'pointer', fontWeight: 750, fontFamily: "Segoe UI"}} component="div">
                   <ExternalLink href={article.link}>
-                  <span>{deFormatTitle(title)}</span>
+                  <span>{title}</span>
                   </ExternalLink>
                 </Typography>
                 <Typography variant="body2" sx={{cursor: 'pointer', fontWeight: 700, fontFamily: 'Segoe UI', fontSize: '12px'}} color="text.secondary">
