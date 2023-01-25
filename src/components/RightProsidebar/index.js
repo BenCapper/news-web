@@ -118,7 +118,7 @@ const RightProsidebar = () => {
       </>
     ) : (
         <>
-        <Sidebar style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, borderRight: '0px'}}>
+        <Sidebar backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, borderRight: '0px'}}>
         <Menu menuItemStyles={menuItemStyles}>
 
         <MenuItem disabled></MenuItem>

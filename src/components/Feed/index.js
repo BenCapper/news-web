@@ -143,10 +143,10 @@ function Feed ( { title }  ) {
         <span className="left">{title}</span><span className="right"> {newList.length} Articles</span>
 
       </div>
-    </div>
+    
     <div>
     <div className="tools">
-    <FormControl sx={{ mt: '.5em', ml: '1.85em', mb:'1em', minWidth: '16em', border: 'orange'}} variant="outlined">
+    <FormControl sx={{ mt: '.5em', mb:'1em', minWidth: '16em', border: 'orange'}} variant="outlined">
           <CssTextField
               id="outlined"
               label="Filter"
@@ -168,7 +168,7 @@ function Feed ( { title }  ) {
               onChange={handleFilterChange('searched')}
             />
       </FormControl>
-      <ButtonGroup color="warning" sx={{ml: '1.85em', mt: '.6em'}}>
+      <ButtonGroup color="warning" sx={{ml: '1em', mt: '.6em', mb: '.5em'}}>
       <Button sx={{color: 'black'}}>
       <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
       </Button>
@@ -179,6 +179,7 @@ function Feed ( { title }  ) {
       <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
       </Button>
       </ButtonGroup>
+      </div>
       </div>
       </div>
     <div className="flip">

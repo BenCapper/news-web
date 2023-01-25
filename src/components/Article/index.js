@@ -48,8 +48,8 @@ const Article = forwardRef(({ article }, ref) => {
           marginLeft: '1em',
           boxShadow: 'none',
           maxWidth: '90%',
-          backgroundColor: (theme) =>
-            theme.palette.mode === 'dark' ? '#1A2027' : '#F6F6F6',
+          backgroundColor: '#f2f2f2',
+          border: '1px solid orange',
         }}
       >
         <Grid container spacing={5}>
