@@ -24,11 +24,11 @@
     top: 0;
     background-color: white;
     z-index: 100;
-    border-bottom: 1px solid orange;
     padding-left: 1.8em;
     padding-right: 1.8em;
     padding-top: 1em;
     padding-bottom: .3em;
+    opacity: .92;
   }
   
   .header > h3 {
