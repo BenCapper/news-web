@@ -15,7 +15,7 @@ import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import { inputLabelClasses } from "@mui/material/InputLabel";
-import MediaCard from "../MediaCard";
+import Art from "../Art";
 
 
 const CssTextField = styled(TextField)({
@@ -196,13 +196,12 @@ function Feed ( { title }  ) {
         </>
       }
       >
-        <Grid container spacing={2} sx={{justifyContent: 'center'}}>
+        <Grid container spacing={1} sx={{justifyContent: 'center'}}>
       {articles.map((article) => (
-        <Grid item>
-        <MediaCard
-          key={Math.floor(Math.random() * 10000000000)}
-          article={article} />
-        </Grid>
+          <Art
+            key={Math.floor(Math.random() * 990000000000)}
+            article={article}
+          />
         ))}
         </Grid>
       </InfiniteScroll>
