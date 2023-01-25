@@ -1,7 +1,8 @@
 .feed {
     position: relative;
     flex: 0.5;
-    border-right: 1px solid rgba(235, 235, 235, 0.9);
+    border-right: 1px solid rgba(250, 184, 28, 0.9);
+    border-left: 1px solid rgba(250, 184, 28, 0.9);
     overflow-y:visible;
     font-family: sans-serif;
     min-width: 18em;
@@ -23,8 +24,12 @@
     top: 0;
     background-color: white;
     z-index: 100;
-    border: 1px solid rgba(235, 235, 235, 0.0);
-    padding: 30px ;
+    border: 1px solid rgba(255, 126, 28, 0);
+    padding-left: 1.8em;
+    padding-right: 1.8em;
+    padding-top: 1em;
+    padding-bottom: .3em;
+    opacity: 90%;
   }
   
   .header > h3 {
@@ -68,3 +73,4 @@
     color:rgb(156, 156, 156);
     font-family: "Segoe UI";
   }
+

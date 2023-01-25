@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import "./article.css";
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -17,14 +17,17 @@ const Img = styled('img')({
     maxWidth: '100%',
     minHeight: '100%',
     maxHeight: '100%',
-    border: '2px solid #DEDEDE',
+    border: '1px solid orange',
   });
 
 
 const Article = forwardRef(({ article }, ref) => {
-  const [title, setTitle] = useState(deFormatTitle(article.title));
+  const [title, setTitle] = useState(article.title);
+  
 
-
+  useEffect(() => {
+    setTitle(deFormatTitle(title))
+  });
 
   const saveClick = () => {
     //Save article to user faves
@@ -42,7 +45,7 @@ const Article = forwardRef(({ article }, ref) => {
         <Paper
         sx={{
           p: 2,
-          margin: 'auto',
+          marginLeft: '1em',
           boxShadow: 'none',
           maxWidth: '90%',
           backgroundColor: (theme) =>
@@ -50,7 +53,7 @@ const Article = forwardRef(({ article }, ref) => {
         }}
       >
         <Grid container spacing={5}>
-          <Grid item>
+          <Grid item >
           <ExternalLink href={article.link}>
             <ButtonBase sx={{ width: 250, height: 158 }}>
               <Img alt="" color="orange" src={article.storage_link}/>
@@ -63,7 +66,7 @@ const Article = forwardRef(({ article }, ref) => {
 
                 <Typography gutterBottom variant="subtitle1" sx={{cursor: 'pointer', fontWeight: 750, fontFamily: "Segoe UI"}} component="div">
                   <ExternalLink href={article.link}>
-                  <span>{deFormatTitle(title)}</span>
+                  <span>{title}</span>
                   </ExternalLink>
                 </Typography>
                 <Typography variant="body2" sx={{cursor: 'pointer', fontWeight: 700, fontFamily: 'Segoe UI', fontSize: '12px'}} color="text.secondary">
