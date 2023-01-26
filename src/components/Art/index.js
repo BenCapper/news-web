@@ -14,7 +14,8 @@ import _ from 'lodash';
 import { ie, uk, us, ca, eu } from "../../db/collections";
 import { iei, gbi, usi, cai, eui } from "../../db/icons";
 import { icons } from "../../db/icons";
-
+import { ExternalLink } from "react-external-link";
+import "./art.css";
 
   
 const StyledCard = styled(Card)({
@@ -23,7 +24,7 @@ const StyledCard = styled(Card)({
     backgroundColor: 'white',
     margin: '10px',
     borderRadius: '10px',
-    boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, .15)',
+    boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, .15)'
   });
   
   const StyledCardMedia = styled(CardMedia)({
@@ -43,12 +44,6 @@ const StyledCard = styled(Card)({
     marginRight: '10px',
   });
   
-  const StyledCaption = styled(Typography)({
-    fontFamily: '"Open Sans", sans-serif',
-    fontWeight: 'bold',
-    fontSize: '15px',
-    color: 'black',
-  });
   
   export default function Art({article}) {
     const [title, setTitle] = useState(article.title);
@@ -76,16 +71,20 @@ const StyledCard = styled(Card)({
 
     return (
       <StyledCard>
-        <StyledCardMedia
-          image={article.storage_link}
-          title={title}
-        />
+        <ExternalLink href={article.link}>
+          <StyledCardMedia
+            image={article.storage_link}
+            title={title}
+          />
+        </ExternalLink>
         <CardContent>
             <Grid container direction="column">
               <Grid item>
                 <Grid container>
                   <Grid item>
+                  <ExternalLink href={article.link}>
                     <StyledAvatar src={icon} />
+                  </ExternalLink>
                   </Grid>
                   <Grid item>
                     <div sx={{ display: 'flex', alignItems: 'center'}}>
@@ -97,11 +96,17 @@ const StyledCard = styled(Card)({
                 </Grid>
               </Grid>
               <Grid item sx={{mt:'1em'}}>
-                <StyledCaption>{title}</StyledCaption>
+              <ExternalLink href={article.link}>
+              <Typography variant="body2" align="left" sx={{fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px' }}>
+                {title}
+              </Typography>
+              </ExternalLink>
               </Grid>
               <Grid item>
-                <Typography variant="body2" align="left" sx={{ fontStyle: 'italic', mt: '1em' }}>
+                <Typography variant="body2" align="left" sx={{ fontStyle: 'italic', mt: '1em'}}>
+                <ExternalLink href={"//" + outlet}>
                   {outlet}
+                </ExternalLink>
                 </Typography>
               </Grid>
             </Grid>
@@ -113,10 +118,11 @@ const StyledCard = styled(Card)({
                 /> 
                 </Grid>
                 <Grid item sx={{ marginLeft: '1em' }}>
-                    <FileDownloadOutlinedIcon fontSize="small"/>
+                  <ShareOutlinedIcon fontSize="small"/>
+                    
                 </Grid>
                 <Grid item sx={{ marginLeft: '1em' }}>
-                  <ShareOutlinedIcon fontSize="small"/>
+                  <FileDownloadOutlinedIcon fontSize="small"/>
                 </Grid>
             </Grid>
         </CardContent>
