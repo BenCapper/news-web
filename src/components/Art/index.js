@@ -10,44 +10,9 @@ import { Icon, styled } from "@mui/material";
 import { deFormatTitle } from '../../util';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
-import gwp from '../../assets/gwp.png'
-import gript from '../../assets/gript.png'
-import rte from '../../assets/rte.png'
-import spiked from '../../assets/spiked.png'
-import gbn from '../../assets/gbn.png'
-import sky from '../../assets/sky.png'
-import guard from '../../assets/guard.png'
-import dmail from '../../assets/dmail.png'
-import sceptic from '../../assets/sceptic.png'
-import blaze from '../../assets/blaze.png'
-import tim from '../../assets/tim.png'
-import breit from '../../assets/breit.png'
-import info from '../../assets/info.png'
-import zero from '../../assets/zero.png'
-import rev from '../../assets/rev.png'
-import bong from '../../assets/bong.png'
-import trend from '../../assets/trend.png'
-import call from '../../assets/caller.png'
-import think from '../../assets/amthink.png'
-import pmill from '../../assets/pmill.png'
-import euro from '../../assets/euro.png'
-import abc from '../../assets/abc.png'
-import cbs from '../../assets/cbs.png'
-import npr from '../../assets/npr.png'
-import vox from '../../assets/vox.png'
-import pol from '../../assets/pol.png'
-import hill from '../../assets/hill.png'
-import yah from '../../assets/yah.png'
-import beast from '../../assets/beast.png'
-import huff from '../../assets/huff.png'
-import glo from '../../assets/glo.png'
 import _ from 'lodash';
 import { ie, uk, us, ca, eu } from "../../db/collections";
-import canicon from '../../assets/canicon.png'
-import usicon from '../../assets/usicon.png'
-import gbicon from '../../assets/gbicon.png'
-import ieicon from '../../assets/ieicon.png'
-import euicon from '../../assets/euicon.png'
+import { icons } from "../../db/icons";
 
 
   
@@ -86,58 +51,26 @@ const StyledCard = styled(Card)({
   
   export default function Art({article}) {
     const [title, setTitle] = useState(article.title);
+    const [outlet, setOutlet] = useState(article.outlet);
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
 
-    const outletToIcon = {
-      "www.Gript.ie": gript,
-      "www.RTE.ie": rte,
-      "www.GBNews.uk": gbn,
-      "news.Sky.com": sky,
-      "www.Spiked-Online.com": spiked,
-      "www.TheGuardian.com": guard,
-      "www.DailyMail.co.uk": dmail,
-      "www.DailySceptic.org": sceptic,
-      "www.ThePostMillennial.com": pmill,
-      "www.GlobalNews.ca": glo,
-      "www.Euronews.com": euro,
-      "www.TheBlaze.com": blaze,
-      "www.Timcast.com": tim,
-      "www.Revolver.news": rev,
-      "www.BonginoReport.com": bong,
-      "www.Zerohedge.com": zero,
-      "www.Breitbart.com": breit,
-      "www.DailyCaller.com": call,
-      "www.InfoWars.com": info,
-      "www.AmericanThinker.com": think,
-      "www.TheDailyBeast.com": beast,
-      "www.TheGatewayPundit.com": gwp,
-      "TrendingPoliticsNews.com": trend,
-      "www.Politico.com": pol,
-      "www.CbsNews.com": cbs,
-      "AbcNews.go.com": abc,
-      "news.Yahoo.com": yah,
-      "www.Vox.com": vox,
-      "www.HuffPost.com": huff,
-      "www.Npr.org": npr,
-      "www.TheHill.com": hill
-    };
-
     useEffect(() => {
         setTitle(deFormatTitle(title));
-        setIcon(_.get(outletToIcon, article.outlet, null));
-        if (ie.includes(article.outlet)) {
-          setRegion(ieicon);
-          } else if (uk.includes(article.outlet)) {
-          setRegion(gbicon);
-          } else if (ca.includes(article.outlet)) {
-          setRegion(canicon);
-          } else if (eu.includes(article.outlet)) {
-          setRegion(euicon);
-          } else if (us.includes(article.outlet)) {
-          setRegion(usicon);
+        setIcon(_.get(icons, outlet, null));
+        if (ie.includes(outlet)) {
+          setRegion(ie);
+          } else if (uk.includes(outlet)) {
+          setRegion(uk);
+          } else if (ca.includes(outlet)) {
+          setRegion(ca);
+          } else if (eu.includes(outlet)) {
+          setRegion(eu);
+          } else if (us.includes(outlet)) {
+          setRegion(us);
           }
       }); 
+
 
 
     return (
@@ -167,16 +100,16 @@ const StyledCard = styled(Card)({
               </Grid>
               <Grid item>
                 <Typography variant="body2" align="left" sx={{ fontStyle: 'italic', mt: '1em' }}>
-                  {article.outlet}
+                  {outlet}
                 </Typography>
               </Grid>
             </Grid>
             <Grid container direction="row" justify="flex-end" alignItems="center" sx={{ marginTop: '1em' }}>
                 <Grid item>
-                  <CardMedia
+                <CardMedia
                     image={region}
-                    style={{ width: 20, height: 20 }}
-                  /> 
+                    sx={{ width: 20, height: 20 }}
+                /> 
                 </Grid>
                 <Grid item sx={{ marginLeft: '1em' }}>
                     <FileDownloadOutlinedIcon fontSize="small"/>

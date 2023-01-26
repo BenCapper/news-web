@@ -187,7 +187,7 @@ function Feed ( { title }  ) {
       </div>
       </div>
       </div>
-    <div className="flip">
+    <div className="infinite">
     <InfiniteScroll
       dataLength={pageNumber + 1} //This is important field to render the next data
       next={() => next()}
