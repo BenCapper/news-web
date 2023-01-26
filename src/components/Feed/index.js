@@ -70,7 +70,6 @@ function Feed ( { title }  ) {
   }
   splitArr = splitArray(newList);
   firstSegment = splitArr[pageNumber];
-  console.log(firstSegment)
 
   if (articles.length == 0){
     setArticles(firstSegment);
@@ -91,7 +90,7 @@ function Feed ( { title }  ) {
     }
 
     if (filtered.length === 0){
-      let empty = [{title: "No Results"}]
+      let empty = [{title: "No Results", date: d, outlet:''}]
       setArticles(empty);
     }
     else {

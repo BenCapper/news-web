@@ -61,6 +61,10 @@ export function getDate(offset) {
 }
 
 export function formatDate(date) {
+  console.log(date)
+  if (date === undefined){
+    return 
+  }
   const dateArr = date.split("-");
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const month = months[dateArr[0] - 1];

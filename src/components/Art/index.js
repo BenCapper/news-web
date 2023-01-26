@@ -17,6 +17,7 @@ import { icons } from "../../db/icons";
 import { ExternalLink } from "react-external-link";
 import "./art.css";
 import { fall } from "../../db/icons";
+import logo from '../../assets/360.png'
 
   
 const StyledCard = styled(Card)({
@@ -62,13 +63,15 @@ const StyledCard = styled(Card)({
     const [title, setTitle] = useState(article.title);
     const [outlet, setOutlet] = useState(article.outlet);
     const [img, setImg] = useState(article.storage_link);
-    const [date, setDate] = useState(formatDate(article.date));
+    const [date, setDate] = useState(article.date);
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
 
     useEffect(() => {
+      if (article.title !== 'No Results'){
         setTitle(deFormatTitle(title));
         setIcon(_.get(icons, outlet, null));
+        setDate(formatDate(article.date))
         setImg(img.replace(/"/g, "%22"));
         if (ie.includes(outlet)) {
           setRegion(iei);
@@ -81,6 +84,11 @@ const StyledCard = styled(Card)({
           } else if (us.includes(outlet)) {
           setRegion(usi);
           }
+        }
+      else{
+        setIcon(logo);
+        setRegion(iei);
+      }
       }); 
     
     const shareClick = () => {
