@@ -45,6 +45,18 @@ const StyledCard = styled(Card)({
     marginRight: '10px',
   });
 
+  const StyledShareIcon = styled(ShareOutlinedIcon)`
+  &:hover {
+    color: orange;
+  }
+  `;
+
+  const StyledDownloadIcon = styled(FileDownloadOutlinedIcon)`
+    &:hover {
+      color: orange;
+    }
+  `;
+
   
   export default function Art({article}) {
     const [title, setTitle] = useState(article.title);
@@ -69,7 +81,14 @@ const StyledCard = styled(Card)({
           setRegion(usi);
           }
       }); 
+    
+    const shareClick = () => {
+      console.log("Share")
+    }
 
+    const saveClick = () => {
+      console.log("Save")
+    }
 
 
     return (
@@ -118,11 +137,10 @@ const StyledCard = styled(Card)({
                 <img src={region} width="20" height="20" alt="icon" />
                 </Grid>
                 <Grid item sx={{ marginLeft: '1em' }}>
-                  <ShareOutlinedIcon fontSize="small"/>
-                    
+                  <StyledShareIcon fontSize="small"  onClick={() => shareClick()}/>
                 </Grid>
                 <Grid item sx={{ marginLeft: '1em' }}>
-                  <FileDownloadOutlinedIcon fontSize="small"/>
+                  <StyledDownloadIcon fontSize="medium" onClick={() => saveClick()}/>
                 </Grid>
             </Grid>
         </CardContent>
