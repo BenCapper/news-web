@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./feed.css";
-import Article from "../Article";
 import { styled } from '@mui/material/styles';
 import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
@@ -15,6 +14,7 @@ import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import { inputLabelClasses } from "@mui/material/InputLabel";
+import Art from "../Art";
 
 
 const CssTextField = styled(TextField)({
@@ -106,9 +106,14 @@ function Feed ( { title }  ) {
   }
 
   function next(){
-    let next = getArraySegment(pageNumber, newList);
-    setArticles(next);
-    setPageNumber(pageNumber + 1);
+    console.log(articles.length)
+    if (articles.length === newList.length) return
+    else{
+      let next = getArraySegment(pageNumber, newList);
+      setArticles(next);
+      setPageNumber(pageNumber + 1);
+    }
+
   }
 
   function back(){
@@ -143,10 +148,10 @@ function Feed ( { title }  ) {
         <span className="left">{title}</span><span className="right"> {newList.length} Articles</span>
 
       </div>
-    </div>
+    
     <div>
     <div className="tools">
-    <FormControl sx={{ mt: '.5em', ml: '1.85em', mb:'1em', minWidth: '16em', border: 'orange'}} variant="outlined">
+    <FormControl sx={{ mt: '.5em', mb:'1em', minWidth: '16em', border: 'orange'}} variant="outlined">
           <CssTextField
               id="outlined"
               label="Filter"
@@ -168,7 +173,7 @@ function Feed ( { title }  ) {
               onChange={handleFilterChange('searched')}
             />
       </FormControl>
-      <ButtonGroup color="warning" sx={{ml: '1.85em', mt: '.6em'}}>
+      <ButtonGroup color="warning" sx={{ml: '1em', mt: '.6em', mb: '.5em'}}>
       <Button sx={{color: 'black'}}>
       <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
       </Button>
@@ -181,7 +186,8 @@ function Feed ( { title }  ) {
       </ButtonGroup>
       </div>
       </div>
-    <div className="flip">
+      </div>
+    <div className="infinite">
     <InfiniteScroll
       dataLength={pageNumber + 1} //This is important field to render the next data
       next={() => next()}
@@ -194,12 +200,14 @@ function Feed ( { title }  ) {
         </>
       }
       >
+        <Grid container spacing={1} sx={{justifyContent: 'center'}}>
       {articles.map((article) => (
-          <Article
-            key={Math.floor(Math.random() * 10000000000)}   
+          <Art
+            key={Math.floor(Math.random() * 990000000000)}
             article={article}
           />
         ))}
+        </Grid>
       </InfiniteScroll>
       </div>
     </>

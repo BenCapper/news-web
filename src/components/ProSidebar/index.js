@@ -48,7 +48,7 @@ const menuItemStyles = {
 const ProSidebar = () => {
     const { collapseSidebar } = useProSidebar();
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <>
@@ -74,7 +74,7 @@ const ProSidebar = () => {
       </>
     ) : (
         <>
-        <Sidebar style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0 }}>
+        <Sidebar backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0 }}>
         <Menu menuItemStyles={menuItemStyles}>
 
           <MenuItem disabled ></MenuItem>

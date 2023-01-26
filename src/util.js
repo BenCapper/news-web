@@ -59,3 +59,12 @@ export function getDate(offset) {
   var yy = date.getFullYear().toString().slice(-2);
   return mm + '-' + dd + '-' + yy;
 }
+
+export function formatDate(date) {
+  const dateArr = date.split("-");
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const month = months[dateArr[0] - 1];
+  const day = dateArr[1];
+  const year = "20" + dateArr[2];
+  return `${month} ${day}, ${year}`;
+}

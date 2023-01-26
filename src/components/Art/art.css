@@ -1,0 +1,20 @@
+a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .outlet {
+    color: gray !important;
+  }
+  
+  .outlet:hover {
+    color:orange !important;
+  }
+  
+  a:hover {
+    color: orange !important;
+  }
+  
+  .options:hover {
+    color:orange;
+  }
