@@ -30,6 +30,8 @@ import beast from '../assets/beast.png'
 import huff from '../assets/huff.png'
 import glo from '../assets/glo.png'
 
+import biden from '../assets/bfall.gif'
+
 import canicon from '../assets/canicon.png'
 import usicon from '../assets/usicon.png'
 import gbicon from '../assets/gbicon.png'
@@ -41,6 +43,8 @@ export const usi = usicon
 export const gbi = gbicon
 export const iei = ieicon
 export const eui = euicon
+
+export const fall = biden
 
 export const icons = {
     "www.Gript.ie": gript,

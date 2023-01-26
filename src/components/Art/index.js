@@ -16,10 +16,11 @@ import { iei, gbi, usi, cai, eui } from "../../db/icons";
 import { icons } from "../../db/icons";
 import { ExternalLink } from "react-external-link";
 import "./art.css";
+import { fall } from "../../db/icons";
 
   
 const StyledCard = styled(Card)({
-    maxWidth: 345,
+    maxWidth: 300,
     minHeight: '250px',
     backgroundColor: 'white',
     margin: '10px',
@@ -28,7 +29,7 @@ const StyledCard = styled(Card)({
   });
   
   const StyledCardMedia = styled(CardMedia)({
-    width: '345px',
+    width: '300px',
     height: '175px',
     overflow: 'hidden',
     '& img': {
@@ -43,17 +44,20 @@ const StyledCard = styled(Card)({
     height: '30px',
     marginRight: '10px',
   });
-  
+
   
   export default function Art({article}) {
     const [title, setTitle] = useState(article.title);
     const [outlet, setOutlet] = useState(article.outlet);
+    const [img, setImg] = useState(article.storage_link);
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
 
     useEffect(() => {
         setTitle(deFormatTitle(title));
         setIcon(_.get(icons, outlet, null));
+        setImg(img.replace(/"/g, "%22"));
+        console.log(img)
         if (ie.includes(outlet)) {
           setRegion(iei);
           } else if (uk.includes(outlet)) {
@@ -73,7 +77,7 @@ const StyledCard = styled(Card)({
       <StyledCard>
         <ExternalLink href={article.link}>
           <StyledCardMedia
-            image={article.storage_link}
+            image={img ? img : fall}
             title={title}
           />
         </ExternalLink>
