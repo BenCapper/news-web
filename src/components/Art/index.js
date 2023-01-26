@@ -6,7 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
-import { styled } from "@mui/material";
+import { Icon, styled } from "@mui/material";
 import { deFormatTitle } from '../../util';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
@@ -42,6 +42,12 @@ import beast from '../../assets/beast.png'
 import huff from '../../assets/huff.png'
 import glo from '../../assets/glo.png'
 import _ from 'lodash';
+import { ie, uk, us, ca, eu } from "../../db/collections";
+import canicon from '../../assets/canicon.png'
+import usicon from '../../assets/usicon.png'
+import gbicon from '../../assets/gbicon.png'
+import ieicon from '../../assets/ieicon.png'
+import euicon from '../../assets/euicon.png'
 
 
   
@@ -80,7 +86,7 @@ const StyledCard = styled(Card)({
   
   export default function Art({article}) {
     const [title, setTitle] = useState(article.title);
-    const [outlet, setOutlet] = useState(article.outlet);
+    const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
 
     const outletToIcon = {
@@ -120,6 +126,17 @@ const StyledCard = styled(Card)({
     useEffect(() => {
         setTitle(deFormatTitle(title));
         setIcon(_.get(outletToIcon, article.outlet, null));
+        if (ie.includes(article.outlet)) {
+          setRegion(ieicon);
+          } else if (uk.includes(article.outlet)) {
+          setRegion(gbicon);
+          } else if (ca.includes(article.outlet)) {
+          setRegion(canicon);
+          } else if (eu.includes(article.outlet)) {
+          setRegion(euicon);
+          } else if (us.includes(article.outlet)) {
+          setRegion(usicon);
+          }
       }); 
 
 
@@ -156,13 +173,16 @@ const StyledCard = styled(Card)({
             </Grid>
             <Grid container direction="row" justify="flex-end" alignItems="center" sx={{ marginTop: '1em' }}>
                 <Grid item>
-                    <ShareOutlinedIcon fontSize="small"/>
+                  <CardMedia
+                    image={region}
+                    style={{ width: 20, height: 20 }}
+                  /> 
                 </Grid>
                 <Grid item sx={{ marginLeft: '1em' }}>
                     <FileDownloadOutlinedIcon fontSize="small"/>
                 </Grid>
                 <Grid item sx={{ marginLeft: '1em' }}>
-                    <ShareOutlinedIcon fontSize="small"/>
+                  <ShareOutlinedIcon fontSize="small"/>
                 </Grid>
             </Grid>
         </CardContent>
