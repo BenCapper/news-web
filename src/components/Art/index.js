@@ -57,7 +57,6 @@ const StyledCard = styled(Card)({
         setTitle(deFormatTitle(title));
         setIcon(_.get(icons, outlet, null));
         setImg(img.replace(/"/g, "%22"));
-        console.log(img)
         if (ie.includes(outlet)) {
           setRegion(iei);
           } else if (uk.includes(outlet)) {
@@ -116,10 +115,7 @@ const StyledCard = styled(Card)({
             </Grid>
             <Grid container direction="row" justify="flex-end" alignItems="center" sx={{ marginTop: '1em' }}>
                 <Grid item>
-                <CardMedia
-                    image={region}
-                    sx={{ width: 20, height: 20 }}
-                /> 
+                <img src={region} width="20" height="20" alt="icon" />
                 </Grid>
                 <Grid item sx={{ marginLeft: '1em' }}>
                   <ShareOutlinedIcon fontSize="small"/>
