@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./feed.css";
-import Article from "../Article";
 import { styled } from '@mui/material/styles';
 import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
