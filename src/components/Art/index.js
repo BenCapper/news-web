@@ -12,6 +12,7 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import _ from 'lodash';
 import { ie, uk, us, ca, eu } from "../../db/collections";
+import { iei, gbi, usi, cai, eui } from "../../db/icons";
 import { icons } from "../../db/icons";
 
 
@@ -59,15 +60,15 @@ const StyledCard = styled(Card)({
         setTitle(deFormatTitle(title));
         setIcon(_.get(icons, outlet, null));
         if (ie.includes(outlet)) {
-          setRegion(ie);
+          setRegion(iei);
           } else if (uk.includes(outlet)) {
-          setRegion(uk);
+          setRegion(gbi);
           } else if (ca.includes(outlet)) {
-          setRegion(ca);
+          setRegion(cai);
           } else if (eu.includes(outlet)) {
-          setRegion(eu);
+          setRegion(eui);
           } else if (us.includes(outlet)) {
-          setRegion(us);
+          setRegion(usi);
           }
       }); 
 

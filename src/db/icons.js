@@ -36,11 +36,11 @@ import gbicon from '../assets/gbicon.png'
 import ieicon from '../assets/ieicon.png'
 import euicon from '../assets/euicon.png'
 
-export const ca = canicon
-export const us = usicon
-export const gb = gbicon
-export const ie = ieicon
-export const eu = euicon
+export const cai = canicon
+export const usi = usicon
+export const gbi = gbicon
+export const iei = ieicon
+export const eui = euicon
 
 export const icons = {
     "www.Gript.ie": gript,
