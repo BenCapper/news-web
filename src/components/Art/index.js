@@ -18,12 +18,12 @@ const StyledCard = styled(Card)({
     backgroundColor: 'white',
     margin: '10px',
     borderRadius: '10px',
-    boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, .15)',
   });
   
   const StyledCardMedia = styled(CardMedia)({
     width: '345px',
-    height: '150px',
+    height: '175px',
     overflow: 'hidden',
     '& img': {
       width: '100%',
@@ -68,7 +68,9 @@ const StyledCard = styled(Card)({
                   </Grid>
                   <Grid item>
                     <div sx={{ display: 'flex', alignItems: 'center'}}>
-                        <Typography variant="body2" align="center" sx={{ fontStyle: 'italic', fontWeight: 'bold' }}>{article.date}</Typography>
+                        <Typography variant="body2" align="center" sx={{ fontStyle: 'italic', ml: '1em', mt: '.5em' }}>
+                          {article.date}
+                        </Typography>
                     </div>
                   </Grid>
                 </Grid>
@@ -77,7 +79,9 @@ const StyledCard = styled(Card)({
                 <StyledCaption>{title}</StyledCaption>
               </Grid>
               <Grid item>
-                <Typography variant="body2" align="left" sx={{ fontStyle: 'italic', fontWeight: 'bold', mt: '1em' }}>{article.outlet}</Typography>
+                <Typography variant="body2" align="left" sx={{ fontStyle: 'italic', mt: '1em' }}>
+                  {article.outlet}
+                </Typography>
               </Grid>
             </Grid>
             <Grid container direction="row" justify="flex-end" alignItems="center" sx={{ marginTop: '1em' }}>

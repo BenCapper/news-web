@@ -107,9 +107,14 @@ function Feed ( { title }  ) {
   }
 
   function next(){
-    let next = getArraySegment(pageNumber, newList);
-    setArticles(next);
-    setPageNumber(pageNumber + 1);
+    console.log(articles.length)
+    if (articles.length === newList.length) return
+    else{
+      let next = getArraySegment(pageNumber, newList);
+      setArticles(next);
+      setPageNumber(pageNumber + 1);
+    }
+
   }
 
   function back(){
