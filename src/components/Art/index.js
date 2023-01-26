@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
 import { Icon, styled } from "@mui/material";
-import { deFormatTitle } from '../../util';
+import { deFormatTitle, formatDate } from '../../util';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import _ from 'lodash';
@@ -62,6 +62,7 @@ const StyledCard = styled(Card)({
     const [title, setTitle] = useState(article.title);
     const [outlet, setOutlet] = useState(article.outlet);
     const [img, setImg] = useState(article.storage_link);
+    const [date, setDate] = useState(formatDate(article.date));
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
 
@@ -111,7 +112,7 @@ const StyledCard = styled(Card)({
                   <Grid item>
                     <div sx={{ display: 'flex', alignItems: 'center'}}>
                         <Typography variant="body2" align="center" sx={{ fontStyle: 'italic', ml: '1em', mt: '.5em' }}>
-                          {article.date}
+                          {date}
                         </Typography>
                     </div>
                   </Grid>
