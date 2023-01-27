@@ -145,10 +145,10 @@ const StyledCard = styled(Card)({
                 <Grid item>
                 <img src={region} width="20" height="20" alt="icon" />
                 </Grid>
-                <Grid item sx={{ marginLeft: '1em' }}>
+                <Grid item sx={{cursor: 'pointer', marginLeft: '1em' }}>
                   <StyledShareIcon fontSize="small"  onClick={() => shareClick()}/>
                 </Grid>
-                <Grid item sx={{ marginLeft: '1em' }}>
+                <Grid item sx={{cursor: 'pointer', marginLeft: '1em' }}>
                   <StyledDownloadIcon fontSize="medium" onClick={() => saveClick()}/>
                 </Grid>
             </Grid>
