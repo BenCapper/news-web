@@ -12,6 +12,7 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import _ from 'lodash';
 import { ie, uk, us, ca, eu } from "../../db/collections";
+import { right, left } from "../../db/collections";
 import { iei, gbi, usi, cai, eui } from "../../db/icons";
 import { icons } from "../../db/icons";
 import { ExternalLink } from "react-external-link";
@@ -64,6 +65,7 @@ const StyledCard = styled(Card)({
     const [outlet, setOutlet] = useState(article.outlet);
     const [img, setImg] = useState(article.storage_link);
     const [date, setDate] = useState(article.date);
+    const [color, setColor] = useState('white');
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
 
@@ -73,6 +75,13 @@ const StyledCard = styled(Card)({
         setIcon(_.get(icons, outlet, null));
         setDate(formatDate(article.date))
         setImg(img.replace(/"/g, "%22"));
+        if (right.includes(article.outlet)) {
+          console.log(color, ' ', article.outlet)
+          setColor('217, 11, 11');
+        }
+        else if (left.includes(article.outlet)) {
+          setColor('5, 61, 230');
+        }
         if (ie.includes(outlet)) {
           setRegion(iei);
           } else if (uk.includes(outlet)) {
@@ -101,11 +110,12 @@ const StyledCard = styled(Card)({
 
 
     return (
-      <StyledCard>
+      <StyledCard >
         <ExternalLink href={article.link}>
           <StyledCardMedia
             image={img ? img : fall}
             title={title}
+            sx={{borderBottom: `1px dashed rgb(${color},.5)`}}
           />
         </ExternalLink>
         <CardContent>
