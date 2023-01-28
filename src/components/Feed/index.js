@@ -17,6 +17,7 @@ import { inputLabelClasses } from "@mui/material/InputLabel";
 import Art from "../Art";
 
 
+
 const CssTextField = styled(TextField)({
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
@@ -31,6 +32,10 @@ const CssTextField = styled(TextField)({
     },
   },
 });
+
+
+
+
 
 
 function Feed ( { title }  ) {
@@ -70,7 +75,6 @@ function Feed ( { title }  ) {
   }
   splitArr = splitArray(newList);
   firstSegment = splitArr[pageNumber];
-  console.log(firstSegment)
 
   if (articles.length == 0){
     setArticles(firstSegment);
@@ -91,7 +95,7 @@ function Feed ( { title }  ) {
     }
 
     if (filtered.length === 0){
-      let empty = [{title: "No Results"}]
+      let empty = [{title: "No Results", date: d, outlet:''}]
       setArticles(empty);
     }
     else {
@@ -143,49 +147,44 @@ function Feed ( { title }  ) {
 
   return (
     <>
+    
     <div className="header">
       <div className="spans">
         <span className="left">{title}</span><span className="right"> {newList.length} Articles</span>
+      </div>
+  <div className="filter-group">
+      <CssTextField
+        id="outlined"
+        label="Filter"
+        placeholder={d}
+        size="small"
+        className="textfield"
+        InputLabelProps={{
+          sx: {
+            color: "black",
+            fontWeight: 450,
+            [`&.${inputLabelClasses.shrink}`]: {
+              color: "black",
+              fontWeight: 600
+            }
+          }
+        }}
+        value={values.searched}
+        onChange={handleFilterChange('searched')}
+      />
 
-      </div>
-    
-    <div>
-    <div className="tools">
-    <FormControl sx={{ mt: '.5em', mb:'1em', minWidth: '16em', border: 'orange'}} variant="outlined">
-          <CssTextField
-              id="outlined"
-              label="Filter"
-              placeholder={d}
-              size="small"
-              InputLabelProps={{
-                sx: {
-                  // set the color of the label when not shrinked
-                  color: "black",
-                  fontWeight: 450,
-                  [`&.${inputLabelClasses.shrink}`]: {
-                    // set the color of the label when shrinked (usually when the TextField is focused)
-                    color: "black",
-                    fontWeight: 600
-                  }
-                }
-              }}
-              value={values.searched}
-              onChange={handleFilterChange('searched')}
-            />
-      </FormControl>
-      <ButtonGroup color="warning" sx={{ml: '1em', mt: '.6em', mb: '.5em'}}>
-      <Button sx={{color: 'black'}}>
-      <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
-      </Button>
-      <Button sx={{color: 'black'}}>
-      <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
-      </Button>
-      <Button sx={{color: 'black'}}>
-      <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
-      </Button>
+      <ButtonGroup className="buttongroup" size="small" color="warning" sx={{ml: '1em', height: '2.5em', width: '30%'}}>
+        <Button sx={{color: 'black'}}>
+          <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
+        </Button>
+        <Button sx={{color: 'black'}}>
+          <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
+        </Button>
+        <Button sx={{color: 'black'}}>
+          <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
+        </Button>
       </ButtonGroup>
-      </div>
-      </div>
+  </div>
       </div>
     <div className="infinite">
     <InfiniteScroll
