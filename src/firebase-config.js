@@ -1,16 +1,18 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOMAIN,
-    databaseURL: process.env.DATABASE_URL,
-    projectId: "news-a3e22",
-    storageBucket: process.env.STORAGE_BUCKET,
-    messagingSenderId: process.env.MESSENGER_SENDING_ID,
-    appId: process.env.APP_ID,
-    measurementId: process.env.MEASUREMENT_ID
-  };
+  apiKey: "AIzaSyADQoepfmc1-l1bGwBFv446feWipodnKnY",
+  authDomain: "news-a3e22.firebaseapp.com",
+  databaseURL: "https://news-a3e22-default-rtdb.firebaseio.com",
+  projectId: "news-a3e22",
+  storageBucket: "news-a3e22.appspot.com",
+  messagingSenderId: "30294384215",
+  appId: "1:30294384215:web:9c209cfcfb8eb39537cd12",
+  measurementId: "G-HL87VMTXW5"
+};
 
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
+export const au = getAuth(app);

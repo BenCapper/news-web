@@ -10,6 +10,7 @@ import History from './pages/history';
 import Both from './pages/bothsides';
 import Right from './pages/right';
 import Left from './pages/left';
+import Login from './pages/login';
 
 
 const queryClient = new QueryClient({
@@ -29,6 +30,7 @@ const App = () => {
       <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login/>} />
               <Route path="/saved" element={<Saved />} />
               <Route path="/history" element={<History />} />
               <Route path="/left" element={<Left />} />

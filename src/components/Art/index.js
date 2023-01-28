@@ -76,7 +76,6 @@ const StyledCard = styled(Card)({
         setDate(formatDate(article.date))
         setImg(img.replace(/"/g, "%22"));
         if (right.includes(article.outlet)) {
-          console.log(color, ' ', article.outlet)
           setColor('217, 11, 11');
         }
         else if (left.includes(article.outlet)) {
@@ -98,7 +97,7 @@ const StyledCard = styled(Card)({
         setIcon(logo);
         setRegion(iei);
       }
-      }); 
+      },[article.title, article.date, article.outlet, title, outlet, img]); 
     
     const shareClick = () => {
       console.log("Share")
