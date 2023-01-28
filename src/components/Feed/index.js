@@ -13,9 +13,10 @@ import Loader from "../Loader";
 import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import { inputLabelClasses } from "@mui/material/InputLabel";
 import Art from "../Art";
-
+import Fab from "@mui/material/Fab";
 
 
 const CssTextField = styled(TextField)({
@@ -32,10 +33,6 @@ const CssTextField = styled(TextField)({
     },
   },
 });
-
-
-
-
 
 
 function Feed ( { title }  ) {
@@ -141,7 +138,14 @@ function Feed ( { title }  ) {
     else {
       //Snack Error?
     }
+  }
 
+  function scrollTop(){
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    })
   }
 
 
@@ -175,17 +179,21 @@ function Feed ( { title }  ) {
 
       <ButtonGroup className="buttongroup" size="small" color="warning" sx={{ml: '1em', height: '2.5em', width: '30%'}}>
         <Button sx={{color: 'black'}}>
-          <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
-        </Button>
-        <Button sx={{color: 'black'}}>
           <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
         </Button>
         <Button sx={{color: 'black'}}>
           <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
         </Button>
+        <Button sx={{color: 'black'}}>
+          <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
+        </Button>
+        <Button sx={{color: 'black'}}>
+          <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
+        </Button>
       </ButtonGroup>
   </div>
       </div>
+
     <div className="infinite">
     <InfiniteScroll
       dataLength={pageNumber + 1} //This is important field to render the next data
@@ -208,6 +216,7 @@ function Feed ( { title }  ) {
         ))}
         </Grid>
       </InfiniteScroll>
+
       </div>
     </>
   );
