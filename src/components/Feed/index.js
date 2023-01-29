@@ -151,18 +151,20 @@ function Feed ( { title }  ) {
 
   return (
     <>
-    
+ 
     <div className="header">
       <div className="spans">
-        <span className="left">{title}</span><span className="right"> {newList.length} Articles</span>
+        <span className="left" >{title}</span><span className="right"> {newList.length} Articles</span>
       </div>
   <div className="filter-group">
+
       <CssTextField
         id="outlined"
         label="Filter"
         placeholder={d}
         size="small"
         className="textfield"
+        sx={{ml:'1em'}}
         InputLabelProps={{
           sx: {
             color: "black",
@@ -176,8 +178,8 @@ function Feed ( { title }  ) {
         value={values.searched}
         onChange={handleFilterChange('searched')}
       />
-
-      <ButtonGroup className="buttongroup" size="small" color="warning" sx={{ml: '1em', height: '2.5em', width: '30%'}}>
+      
+      <ButtonGroup className="buttongroup" size="small" color="warning" sx={{ml: '1em', height: '2.5em'}}>
         <Button sx={{color: 'black'}}>
           <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
         </Button>
@@ -187,10 +189,11 @@ function Feed ( { title }  ) {
         <Button sx={{color: 'black'}}>
           <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
         </Button>
-        <Button sx={{color: 'black'}}>
+        <Button sx={{color: 'black', border: '1px solid orange'}}>
           <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
-        </Button>
+      </Button>
       </ButtonGroup>
+
   </div>
       </div>
 
