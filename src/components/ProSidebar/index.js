@@ -84,6 +84,14 @@ const ProSidebar = () => {
       }
     }
 
+    function openHistory(uid) {
+      if (uid === '') {
+        navigate("/login");
+      } else {
+        navigate("/history");
+      }
+    }
+
     return (
         <>
         {isMobile ? (
@@ -95,7 +103,7 @@ const ProSidebar = () => {
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/"} title={"Home"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
           <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} onClick={() => openSaved(uid)}>Saved</MenuItem>
-          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} component={<Link to="/history" />}>History</MenuItem>
+          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory(uid)}>History</MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />} component={<Link to="/left" />}>Leans Left </MenuItem>
           <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}>Leans Right </MenuItem>
@@ -114,7 +122,7 @@ const ProSidebar = () => {
           <MenuItem disabled ></MenuItem>
           <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
           <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />}  onClick={() => openSaved(uid)}>Saved</MenuItem>
-          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} component={<Link to="/history" />}> History </MenuItem>
+          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory(uid)}> History </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />} component={<Link to="/left" />}> Leans Left </MenuItem>
           <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}> Leans Right </MenuItem>
