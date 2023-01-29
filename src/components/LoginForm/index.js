@@ -169,7 +169,7 @@ const LoginForm = () => {
         />
         </FormControl>
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <InputLabel sx={{color:'orange','&:hover': {color: 'orange'}, '&.Mui-focused':{color:'orange'}}} htmlFor="outlined-adornment-password">Password</InputLabel>
+      <InputLabel sx={{color:'orange','&:hover': {color: '#f5c542'}, '&.Mui-focused':{color:'#f5c542'}}} htmlFor="outlined-adornment-password">Password</InputLabel>
       <OutlinedInput
         required
         id="outlined-adornment-password"
@@ -196,10 +196,10 @@ const LoginForm = () => {
         {fbCode}
       </Typography>
     <FormControl sx={{ m: 1, mt: 5, width: '25ch' }} variant="outlined">
-      <Button variant="contained" sx={{backgroundColor: 'orange'}} onClick={register}>Create Account</Button>
+      <Button variant="contained" sx={{backgroundColor: 'orange','&:hover': {backgroundColor: '#f5c542'}}} onClick={register}>Create Account</Button>
     </FormControl>
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <Button variant="contained" sx={{backgroundColor: 'orange'}} onClick={login}>Login</Button>
+      <Button variant="contained" sx={{backgroundColor: 'orange','&:hover': {backgroundColor: '#f5c542'}}} onClick={login}>Login</Button>
     </FormControl><br></br>
       <br></br>
 
