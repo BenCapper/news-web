@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
@@ -19,6 +18,7 @@ import { ExternalLink } from "react-external-link";
 import "./art.css";
 import { fall } from "../../db/icons";
 import logo from '../../assets/360.png'
+import { getDatabase, ref, set } from "firebase/database";
 
   
 const StyledCard = styled(Card)({
@@ -68,8 +68,16 @@ const StyledCard = styled(Card)({
     const [color, setColor] = useState('white');
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
+    const [uid, setUid] = useState('');
 
     useEffect(() => {
+      const loggedIn = localStorage.getItem("user");
+      if (loggedIn) {
+        const foundUser = JSON.parse(loggedIn);
+        setUid(foundUser.uid);
+        console.log(uid);
+      }
+
       if (article.title !== 'No Results'){
         setTitle(deFormatTitle(title));
         setIcon(_.get(icons, outlet, null));
@@ -100,11 +108,18 @@ const StyledCard = styled(Card)({
       },[article.title, article.date, article.outlet, title, outlet, img]); 
     
     const shareClick = () => {
+
       console.log("Share")
     }
 
     const saveClick = () => {
-      console.log("Save")
+      if (uid !== ''){
+        console.log("Save")
+      }
+      else {
+        //Snack to say log in here
+        console.log("Wont Save")
+      }
     }
 
 

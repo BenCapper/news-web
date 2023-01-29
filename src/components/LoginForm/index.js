@@ -103,7 +103,7 @@ const LoginForm = () => {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      console.log(user, values.email, values.password)
+      console.log(user);
       setUser(user)
       localStorage.setItem("user", JSON.stringify(user))
       navigate("/")
@@ -120,10 +120,9 @@ const LoginForm = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log(values.email, values.password)
         setUser(user);
         localStorage.setItem("user", JSON.stringify(user))
-        navigate("/movies")
+        navigate("/")
       })
       .catch((error) => {
         const errorCode = error.code;
