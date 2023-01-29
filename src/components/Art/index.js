@@ -132,10 +132,27 @@ const StyledCard = styled(Card)({
       }
     }
 
+    const articleClick = () => {
+      if (uid !== ''){
+        const db = getDatabase();
+        set(ref(db, 'user-history/' + uid + '/' + article.title), {
+          date: article.date,
+          link: article.link,
+          order: article.order,
+          outlet: article.outlet,
+          storage_link: article.storage_link,
+          title: article.title
+        });
+        console.log("view")
+      }
+      else {
+      }
+    }
+
 
     return (
       <StyledCard >
-        <ExternalLink href={article.link}>
+        <ExternalLink onClick={() => articleClick()} href={article.link} >
           <StyledCardMedia
             image={img ? img : fall}
             title={title}
@@ -147,7 +164,7 @@ const StyledCard = styled(Card)({
               <Grid item>
                 <Grid container>
                   <Grid item>
-                  <ExternalLink href={article.link}>
+                  <ExternalLink onClick={() => articleClick()} href={article.link}>
                     <StyledAvatar src={icon} />
                   </ExternalLink>
                   </Grid>
@@ -161,7 +178,7 @@ const StyledCard = styled(Card)({
                 </Grid>
               </Grid>
               <Grid item sx={{mt:'1em'}}>
-              <ExternalLink href={article.link}>
+              <ExternalLink onClick={() => articleClick()} href={article.link}>
               <Typography variant="body2" align="left" sx={{fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px' }}>
                 {title}
               </Typography>

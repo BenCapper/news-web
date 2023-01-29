@@ -121,7 +121,7 @@ const ProSidebar = () => {
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem icon={<DarkModeOutlinedIcon />}> Theme </MenuItem>
-          <MenuItem icon={<LogoutOutlinedIcon />}> Logout </MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />} onClick={() => sign()} > Logout </MenuItem>
         </Menu>
       </Sidebar>
         </>
