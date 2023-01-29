@@ -19,6 +19,7 @@ import "./art.css";
 import { fall } from "../../db/icons";
 import logo from '../../assets/360.png'
 import { getDatabase, ref, set } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 
   
 const StyledCard = styled(Card)({
@@ -69,13 +70,13 @@ const StyledCard = styled(Card)({
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
     const [uid, setUid] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
       const loggedIn = localStorage.getItem("user");
       if (loggedIn) {
         const foundUser = JSON.parse(loggedIn);
         setUid(foundUser.uid);
-        console.log(uid);
       }
 
       if (article.title !== 'No Results'){
@@ -114,10 +115,19 @@ const StyledCard = styled(Card)({
 
     const saveClick = () => {
       if (uid !== ''){
+        const db = getDatabase();
+        set(ref(db, 'user-likes/' + uid + '/' + article.title), {
+          date: article.date,
+          link: article.link,
+          order: article.order,
+          outlet: article.outlet,
+          storage_link: article.storage_link,
+          title: article.title
+        });
         console.log("Save")
       }
       else {
-        //Snack to say log in here
+        navigate("/login");
         console.log("Wont Save")
       }
     }

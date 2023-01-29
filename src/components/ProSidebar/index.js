@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
 import { menuClasses } from 'react-pro-sidebar';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -12,6 +13,8 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { Link } from 'react-router-dom';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 
 const menuItemStyles = {
@@ -49,6 +52,37 @@ const ProSidebar = () => {
     const { collapseSidebar } = useProSidebar();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const [uid, setUid] = useState('');
+    const auth = getAuth();
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+      const loggedIn = localStorage.getItem("user");
+      if (loggedIn) {
+        const foundUser = JSON.parse(loggedIn);
+        setUid(foundUser.uid);
+      }
+    },[uid]); 
+
+    const sign = () => {
+      signOut(auth).then(() => {
+          localStorage.clear();
+          setUid('');
+          console.log(uid);
+          navigate("/login");
+        }).catch((error) => {
+          console.log(error);
+        });
+    };
+
+    function openSaved(uid) {
+      if (uid === '') {
+        navigate("/login");
+      } else {
+        navigate("/saved");
+      }
+    }
 
     return (
         <>
@@ -60,7 +94,7 @@ const ProSidebar = () => {
 
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/"} title={"Home"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
-          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} component={<Link to="/saved" />}>Saved</MenuItem>
+          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} onClick={() => openSaved(uid)}>Saved</MenuItem>
           <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} component={<Link to="/history" />}>History</MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />} component={<Link to="/left" />}>Leans Left </MenuItem>
@@ -68,7 +102,7 @@ const ProSidebar = () => {
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem icon={<DarkModeOutlinedIcon />}>Theme</MenuItem>
-          <MenuItem icon={<LogoutOutlinedIcon />}>Logout</MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />} onClick={() => sign()} >Logout</MenuItem>
         </Menu>
       </Sidebar>
       </>
@@ -79,7 +113,7 @@ const ProSidebar = () => {
 
           <MenuItem disabled ></MenuItem>
           <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
-          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} component={<Link to="/saved" />}> Saved </MenuItem>
+          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />}  onClick={() => openSaved(uid)}>Saved</MenuItem>
           <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} component={<Link to="/history" />}> History </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />} component={<Link to="/left" />}> Leans Left </MenuItem>
