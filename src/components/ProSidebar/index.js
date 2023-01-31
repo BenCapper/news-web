@@ -99,7 +99,7 @@ const ProSidebar = () => {
         <Sidebar backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0 }}>
         <Menu menuItemStyles={menuItemStyles}>
 
-        <MenuItem disabled><img src={header} height={60}/></MenuItem>
+        <MenuItem disabled><img src={header} style={{paddingTop: '1em'}} height={60}/></MenuItem>
           <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
           <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />}  onClick={() => openSaved()}>Saved</MenuItem>
           <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory()}> History </MenuItem>
