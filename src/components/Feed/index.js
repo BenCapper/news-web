@@ -13,9 +13,9 @@ import Loader from "../Loader";
 import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import { inputLabelClasses } from "@mui/material/InputLabel";
 import Art from "../Art";
-
 
 
 const CssTextField = styled(TextField)({
@@ -32,10 +32,6 @@ const CssTextField = styled(TextField)({
     },
   },
 });
-
-
-
-
 
 
 function Feed ( { title }  ) {
@@ -141,24 +137,33 @@ function Feed ( { title }  ) {
     else {
       //Snack Error?
     }
+  }
 
+  function scrollTop(){
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    })
   }
 
 
   return (
     <>
-    
+ 
     <div className="header">
       <div className="spans">
-        <span className="left">{title}</span><span className="right"> {newList.length} Articles</span>
+        <span className="left" >{title}</span><span className="right"> {newList.length} Articles</span>
       </div>
   <div className="filter-group">
+
       <CssTextField
         id="outlined"
         label="Filter"
         placeholder={d}
         size="small"
         className="textfield"
+        sx={{ml:'1em'}}
         InputLabelProps={{
           sx: {
             color: "black",
@@ -172,20 +177,25 @@ function Feed ( { title }  ) {
         value={values.searched}
         onChange={handleFilterChange('searched')}
       />
-
-      <ButtonGroup className="buttongroup" size="small" color="warning" sx={{ml: '1em', height: '2.5em', width: '30%'}}>
-        <Button sx={{color: 'black'}}>
-          <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
-        </Button>
+      
+      <ButtonGroup className="buttongroup" size="small" color="warning" sx={{ml: '1em', height: '2.5em'}}>
         <Button sx={{color: 'black'}}>
           <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
         </Button>
         <Button sx={{color: 'black'}}>
           <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
         </Button>
+        <Button sx={{color: 'black'}}>
+          <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
+        </Button>
+        <Button sx={{color: 'black', border: '1px solid orange'}}>
+          <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
+      </Button>
       </ButtonGroup>
+
   </div>
       </div>
+
     <div className="infinite">
     <InfiniteScroll
       dataLength={pageNumber + 1} //This is important field to render the next data
@@ -208,6 +218,7 @@ function Feed ( { title }  ) {
         ))}
         </Grid>
       </InfiniteScroll>
+
       </div>
     </>
   );

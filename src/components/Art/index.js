@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
@@ -19,7 +18,9 @@ import { ExternalLink } from "react-external-link";
 import "./art.css";
 import { fall } from "../../db/icons";
 import logo from '../../assets/360.png'
-
+import { getDatabase, ref, set } from "firebase/database";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
   
 const StyledCard = styled(Card)({
     maxWidth: 300,
@@ -61,6 +62,7 @@ const StyledCard = styled(Card)({
 
   
   export default function Art({article}) {
+    const context = useContext(AuthContext);
     const [title, setTitle] = useState(article.title);
     const [outlet, setOutlet] = useState(article.outlet);
     const [img, setImg] = useState(article.storage_link);
@@ -68,15 +70,17 @@ const StyledCard = styled(Card)({
     const [color, setColor] = useState('white');
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
+    const navigate = useNavigate();
+    
 
     useEffect(() => {
+
       if (article.title !== 'No Results'){
         setTitle(deFormatTitle(title));
         setIcon(_.get(icons, outlet, null));
         setDate(formatDate(article.date))
         setImg(img.replace(/"/g, "%22"));
         if (right.includes(article.outlet)) {
-          console.log(color, ' ', article.outlet)
           setColor('217, 11, 11');
         }
         else if (left.includes(article.outlet)) {
@@ -98,20 +102,53 @@ const StyledCard = styled(Card)({
         setIcon(logo);
         setRegion(iei);
       }
-      }); 
+      },[article.title, article.date, article.outlet, title, outlet, img]); 
     
     const shareClick = () => {
+
       console.log("Share")
     }
 
     const saveClick = () => {
-      console.log("Save")
+      if (context.user !== ''){
+        const db = getDatabase();
+        set(ref(db, 'user-likes/' + context.user.uid + '/' + article.title), {
+          date: article.date,
+          link: article.link,
+          order: article.order,
+          outlet: article.outlet,
+          storage_link: article.storage_link,
+          title: article.title
+        });
+        console.log("Save")
+      }
+      else {
+        navigate("/login");
+        console.log("Wont Save")
+      }
+    }
+
+    const articleClick = () => {
+      if (context.user !== ''){
+        const db = getDatabase();
+        set(ref(db, 'user-history/' + context.user.uid + '/' + article.title), {
+          date: article.date,
+          link: article.link,
+          order: article.order,
+          outlet: article.outlet,
+          storage_link: article.storage_link,
+          title: article.title
+        });
+      }
+      else {
+        console.log("Wont Save View History")
+      }
     }
 
 
     return (
       <StyledCard >
-        <ExternalLink href={article.link}>
+        <ExternalLink onClick={() => articleClick()} href={article.link} >
           <StyledCardMedia
             image={img ? img : fall}
             title={title}
@@ -123,7 +160,7 @@ const StyledCard = styled(Card)({
               <Grid item>
                 <Grid container>
                   <Grid item>
-                  <ExternalLink href={article.link}>
+                  <ExternalLink onClick={() => articleClick()} href={article.link}>
                     <StyledAvatar src={icon} />
                   </ExternalLink>
                   </Grid>
@@ -137,7 +174,7 @@ const StyledCard = styled(Card)({
                 </Grid>
               </Grid>
               <Grid item sx={{mt:'1em'}}>
-              <ExternalLink href={article.link}>
+              <ExternalLink onClick={() => articleClick()} href={article.link}>
               <Typography variant="body2" align="left" sx={{fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px' }}>
                 {title}
               </Typography>

@@ -8,13 +8,13 @@ a {
   }
   
   .outlet:hover {
-    color:orange !important;
+    color:rgb(232, 192, 52) !important;
   }
   
   a:hover {
-    color: orange !important;
+    color: rgb(232, 192, 52) !important;
   }
   
   .options:hover {
-    color:orange;
+    color:rgb(232, 192, 52);
   }

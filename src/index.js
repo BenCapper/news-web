@@ -10,6 +10,9 @@ import History from './pages/history';
 import Both from './pages/bothsides';
 import Right from './pages/right';
 import Left from './pages/left';
+import Login from './pages/login';
+import AuthContextProvider from './contexts/authContext';
+import ProtectedRoutes from './pages/protectedRoutes';
 
 
 const queryClient = new QueryClient({
@@ -27,14 +30,19 @@ const App = () => {
     <ProSidebarProvider>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <AuthContextProvider>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/saved" element={<Saved />} />
-              <Route path="/history" element={<History />} />
+              <Route path="/login" element={<Login/>} />
               <Route path="/left" element={<Left />} />
               <Route path="/right" element={<Right />} />
               <Route path="/bothsides" element={<Both />} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path="/saved" element={<Saved />} />
+                <Route path="/history" element={<History />} />
+              </Route>
             </Routes>
+      </AuthContextProvider>
       </BrowserRouter>
     </QueryClientProvider>
     </ProSidebarProvider>

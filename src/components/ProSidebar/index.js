@@ -1,3 +1,4 @@
+import React, { useState, useEffect, useContext } from "react";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
 import { menuClasses } from 'react-pro-sidebar';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -12,6 +13,10 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { Link } from 'react-router-dom';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
+import header from '../../assets/header.png'
 
 
 const menuItemStyles = {
@@ -20,7 +25,7 @@ const menuItemStyles = {
       fontWeight: 400,
     },
     SubMenuExpandIcon: {
-      color: '#607489',
+      color: '#f1c735',
     },
     subMenuContent: {
       backgroundColor: '#fff',
@@ -28,15 +33,15 @@ const menuItemStyles = {
     button: {
         [`&.${menuClasses.active}`]: {
           backgroundColor: '#fff',
-          color: '#f9b404',
+          color: '#f1c735',
           fontWeight: 600,
         },
         [`&.${menuClasses.disabled}`]: {
-          color: '#f9b404',
+          color: '#f1c735',
         },
         '&:hover': {
           backgroundColor: '#faf8e4',
-          color: '#f9b404',
+          color: '#f1c735',
         },
       },
     label: ({ open }) => ({
@@ -46,9 +51,26 @@ const menuItemStyles = {
 
 
 const ProSidebar = () => {
+    const context = useContext(AuthContext);
     const { collapseSidebar } = useProSidebar();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const [user, setUser] = useState(context.user);
+    const auth = getAuth();
+    const navigate = useNavigate();
+
+
+    function openSaved() {
+      navigate("/saved");
+    }
+
+    function openHistory() {
+      navigate("/history");
+    }
+
+    function openLogin() {
+      navigate("/login");
+    }
 
     return (
         <>
@@ -58,17 +80,17 @@ const ProSidebar = () => {
         <Sidebar width="80px" backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0}}>
         <Menu menuItemStyles={menuItemStyles}>
 
-          <MenuItem disabled></MenuItem>
+          <MenuItem diabled></MenuItem>
           <MenuItem active={window.location.pathname === "/"} title={"Home"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
-          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} component={<Link to="/saved" />}>Saved</MenuItem>
-          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} component={<Link to="/history" />}>History</MenuItem>
+          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} onClick={() => openSaved()}>Saved</MenuItem>
+          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory()}>History</MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />} component={<Link to="/left" />}>Leans Left </MenuItem>
           <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}>Leans Right </MenuItem>
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem icon={<DarkModeOutlinedIcon />}>Theme</MenuItem>
-          <MenuItem icon={<LogoutOutlinedIcon />}>Logout</MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />} onClick={context.user === "" ? openLogin : context.signout} > {context.user === "" ? "Login" : "Logout"}</MenuItem>
         </Menu>
       </Sidebar>
       </>
@@ -77,17 +99,17 @@ const ProSidebar = () => {
         <Sidebar backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0 }}>
         <Menu menuItemStyles={menuItemStyles}>
 
-          <MenuItem disabled ></MenuItem>
+        <MenuItem disabled><img src={header} style={{paddingTop: '1em'}} height={60}/></MenuItem>
           <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
-          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} component={<Link to="/saved" />}> Saved </MenuItem>
-          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} component={<Link to="/history" />}> History </MenuItem>
+          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />}  onClick={() => openSaved()}>Saved</MenuItem>
+          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory()}> History </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />} component={<Link to="/left" />}> Leans Left </MenuItem>
           <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}> Leans Right </MenuItem>
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem icon={<DarkModeOutlinedIcon />}> Theme </MenuItem>
-          <MenuItem icon={<LogoutOutlinedIcon />}> Logout </MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />} onClick={context.user === "" ? openLogin : context.signout} > {context.user === "" ? "Login" : "Logout"} </MenuItem>
         </Menu>
       </Sidebar>
         </>
