@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
 import { menuClasses } from 'react-pro-sidebar';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -15,6 +15,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
 
 
 const menuItemStyles = {
@@ -49,6 +50,7 @@ const menuItemStyles = {
 
 
 const ProSidebar = () => {
+    const context = useContext(AuthContext);
     const { collapseSidebar } = useProSidebar();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -56,25 +58,6 @@ const ProSidebar = () => {
     const auth = getAuth();
     const navigate = useNavigate();
 
-
-    useEffect(() => {
-      const loggedIn = localStorage.getItem("user");
-      if (loggedIn) {
-        const foundUser = JSON.parse(loggedIn);
-        setUid(foundUser.uid);
-      }
-    },[uid]); 
-
-    const sign = () => {
-      signOut(auth).then(() => {
-          localStorage.clear();
-          setUid('');
-          console.log(uid);
-          navigate("/login");
-        }).catch((error) => {
-          console.log(error);
-        });
-    };
 
     function openSaved(uid) {
       if (uid === '') {
@@ -110,7 +93,7 @@ const ProSidebar = () => {
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem icon={<DarkModeOutlinedIcon />}>Theme</MenuItem>
-          <MenuItem icon={<LogoutOutlinedIcon />} onClick={() => sign()} >Logout</MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />} onClick={() => context.signout()} >Logout</MenuItem>
         </Menu>
       </Sidebar>
       </>
@@ -129,7 +112,7 @@ const ProSidebar = () => {
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem icon={<DarkModeOutlinedIcon />}> Theme </MenuItem>
-          <MenuItem icon={<LogoutOutlinedIcon />} onClick={() => sign()} > Logout </MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />} onClick={() => context.signout()} > Logout </MenuItem>
         </Menu>
       </Sidebar>
         </>

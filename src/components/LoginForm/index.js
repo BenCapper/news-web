@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -12,6 +12,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { AuthContext } from "../../contexts/authContext";
 
 
 const styles = {
@@ -72,10 +73,8 @@ const styles = {
 };
 
 const LoginForm = () => {
-  const [user, setUser] = useState({});
+  const context = useContext(AuthContext);
   const [fbCode, setFbCode] = useState("")
-  const navigate = useNavigate();
-  const auth = getAuth();
   
   const [values, setValues] = React.useState({
       email: '',
@@ -98,38 +97,13 @@ const LoginForm = () => {
     event.preventDefault();
   };
 
-  const login = () => {
-    signInWithEmailAndPassword(auth, values.email, values.password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      console.log(user);
-      setUser(user)
-      localStorage.setItem("user", JSON.stringify(user))
-      navigate("/")
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      console.log(errorCode)
-      errorCheck(errorCode)
-    });
-  };
+  function reg(){
+    context.register(values.email, values.password)
+  }
 
-  const register = () => {
-      createUserWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        setUser(user);
-        localStorage.setItem("user", JSON.stringify(user))
-        navigate("/")
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode)
-        errorCheck(errorCode)
-      });
-    };
+  function log(){
+    context.login(values.email, values.password)
+  }
 
 
   const errorCheck = (errorCode) => {
@@ -195,10 +169,10 @@ const LoginForm = () => {
         {fbCode}
       </Typography>
     <FormControl sx={{ m: 1, mt: 5, width: '25ch' }} variant="outlined">
-      <Button variant="contained" sx={{backgroundColor: 'orange','&:hover': {backgroundColor: '#f5c542'}}} onClick={register}>Create Account</Button>
+      <Button variant="contained" sx={{backgroundColor: 'orange','&:hover': {backgroundColor: '#f5c542'}}} onClick={reg}>Create Account</Button>
     </FormControl>
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <Button variant="contained" sx={{backgroundColor: 'orange','&:hover': {backgroundColor: '#f5c542'}}} onClick={login}>Login</Button>
+      <Button variant="contained" sx={{backgroundColor: 'orange','&:hover': {backgroundColor: '#f5c542'}}} onClick={log}>Login</Button>
     </FormControl><br></br>
       <br></br>
 

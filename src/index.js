@@ -11,6 +11,7 @@ import Both from './pages/bothsides';
 import Right from './pages/right';
 import Left from './pages/left';
 import Login from './pages/login';
+import AuthContextProvider from './contexts/authContext';
 
 
 const queryClient = new QueryClient({
@@ -28,6 +29,7 @@ const App = () => {
     <ProSidebarProvider>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <AuthContextProvider>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login/>} />
@@ -37,6 +39,7 @@ const App = () => {
               <Route path="/right" element={<Right />} />
               <Route path="/bothsides" element={<Both />} />
             </Routes>
+      </AuthContextProvider>
       </BrowserRouter>
     </QueryClientProvider>
     </ProSidebarProvider>
