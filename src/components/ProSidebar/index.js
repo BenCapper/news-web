@@ -67,6 +67,10 @@ const ProSidebar = () => {
       navigate("/history");
     }
 
+    function openLogin() {
+      navigate("/login");
+    }
+
     return (
         <>
         {isMobile ? (
@@ -104,7 +108,7 @@ const ProSidebar = () => {
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem icon={<DarkModeOutlinedIcon />}> Theme </MenuItem>
-          <MenuItem icon={<LogoutOutlinedIcon />} onClick={() => context.signout()} > Logout </MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />} onClick={context.user === "" ? openLogin : context.signout} > {context.user === "" ? "Login" : "Logout"} </MenuItem>
         </Menu>
       </Sidebar>
         </>

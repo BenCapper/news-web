@@ -82,11 +82,6 @@ const LoginForm = () => {
       showPassword: false,
     });
 
-    useEffect(() => {
-      if (context.user) {
-        window.location.replace(location.state?.from?.pathname || '/');
-      }
-    }, [context, location]);
 
   const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
