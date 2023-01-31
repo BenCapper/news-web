@@ -52,15 +52,15 @@ const menuItemStyles = {
     button: {
         [`&.${menuClasses.active}`]: {
           backgroundColor: '#fff',
-          color: '#f9b404',
+          color: '#e8c034',
           fontWeight: 600,
         },
         [`&.${menuClasses.disabled}`]: {
-          color: '#f9b404',
+          color: '#e8c034',
         },
         '&:hover': {
           backgroundColor: '#faf8e4',
-          color: '#f9b404',
+          color: '#e8c034',
         },
       },
     label: ({ open }) => ({
