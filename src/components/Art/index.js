@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -20,7 +20,7 @@ import { fall } from "../../db/icons";
 import logo from '../../assets/360.png'
 import { getDatabase, ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from "../../contexts/authContext";
   
 const StyledCard = styled(Card)({
     maxWidth: 300,
@@ -62,6 +62,7 @@ const StyledCard = styled(Card)({
 
   
   export default function Art({article}) {
+    const context = useContext(AuthContext);
     const [title, setTitle] = useState(article.title);
     const [outlet, setOutlet] = useState(article.outlet);
     const [img, setImg] = useState(article.storage_link);
@@ -69,15 +70,10 @@ const StyledCard = styled(Card)({
     const [color, setColor] = useState('white');
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
-    const [uid, setUid] = useState('');
     const navigate = useNavigate();
+    
 
     useEffect(() => {
-      const loggedIn = localStorage.getItem("user");
-      if (loggedIn) {
-        const foundUser = JSON.parse(loggedIn);
-        setUid(foundUser.uid);
-      }
 
       if (article.title !== 'No Results'){
         setTitle(deFormatTitle(title));
@@ -114,9 +110,9 @@ const StyledCard = styled(Card)({
     }
 
     const saveClick = () => {
-      if (uid !== ''){
+      if (context.user !== ''){
         const db = getDatabase();
-        set(ref(db, 'user-likes/' + uid + '/' + article.title), {
+        set(ref(db, 'user-likes/' + context.user.uid + '/' + article.title), {
           date: article.date,
           link: article.link,
           order: article.order,
@@ -133,9 +129,9 @@ const StyledCard = styled(Card)({
     }
 
     const articleClick = () => {
-      if (uid !== ''){
+      if (context.user !== ''){
         const db = getDatabase();
-        set(ref(db, 'user-history/' + uid + '/' + article.title), {
+        set(ref(db, 'user-history/' + context.user.uid + '/' + article.title), {
           date: article.date,
           link: article.link,
           order: article.order,
@@ -143,9 +139,9 @@ const StyledCard = styled(Card)({
           storage_link: article.storage_link,
           title: article.title
         });
-        console.log("view")
       }
       else {
+        console.log("Wont Save View History")
       }
     }
 
