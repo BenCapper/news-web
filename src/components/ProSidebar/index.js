@@ -1,19 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
-import { menuClasses } from 'react-pro-sidebar';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
 import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
 import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { Link } from 'react-router-dom';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import header from '../../assets/header.png'
