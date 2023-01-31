@@ -54,25 +54,17 @@ const ProSidebar = () => {
     const { collapseSidebar } = useProSidebar();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const [uid, setUid] = useState('');
+    const [user, setUser] = useState(context.user);
     const auth = getAuth();
     const navigate = useNavigate();
 
 
-    function openSaved(uid) {
-      if (uid === '') {
-        navigate("/login");
-      } else {
-        navigate("/saved");
-      }
+    function openSaved() {
+      navigate("/saved");
     }
 
-    function openHistory(uid) {
-      if (uid === '') {
-        navigate("/login");
-      } else {
-        navigate("/history");
-      }
+    function openHistory() {
+      navigate("/history");
     }
 
     return (
@@ -85,8 +77,8 @@ const ProSidebar = () => {
 
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/"} title={"Home"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
-          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} onClick={() => openSaved(uid)}>Saved</MenuItem>
-          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory(uid)}>History</MenuItem>
+          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} onClick={() => openSaved()}>Saved</MenuItem>
+          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory()}>History</MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />} component={<Link to="/left" />}>Leans Left </MenuItem>
           <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}>Leans Right </MenuItem>
@@ -104,8 +96,8 @@ const ProSidebar = () => {
 
           <MenuItem disabled ></MenuItem>
           <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
-          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />}  onClick={() => openSaved(uid)}>Saved</MenuItem>
-          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory(uid)}> History </MenuItem>
+          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />}  onClick={() => openSaved()}>Saved</MenuItem>
+          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory()}> History </MenuItem>
           <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />} component={<Link to="/left" />}> Leans Left </MenuItem>
           <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}> Leans Right </MenuItem>

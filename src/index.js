@@ -12,6 +12,7 @@ import Right from './pages/right';
 import Left from './pages/left';
 import Login from './pages/login';
 import AuthContextProvider from './contexts/authContext';
+import ProtectedRoutes from './pages/protectedRoutes';
 
 
 const queryClient = new QueryClient({
@@ -33,11 +34,13 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login/>} />
-              <Route path="/saved" element={<Saved />} />
-              <Route path="/history" element={<History />} />
               <Route path="/left" element={<Left />} />
               <Route path="/right" element={<Right />} />
               <Route path="/bothsides" element={<Both />} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path="/saved" element={<Saved />} />
+                <Route path="/history" element={<History />} />
+              </Route>
             </Routes>
       </AuthContextProvider>
       </BrowserRouter>

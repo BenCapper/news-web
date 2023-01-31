@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -13,7 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { AuthContext } from "../../contexts/authContext";
-
+import { useHistory, useLocation } from "react-router-dom";
 
 const styles = {
   root: {
@@ -74,13 +74,19 @@ const styles = {
 
 const LoginForm = () => {
   const context = useContext(AuthContext);
-  const [fbCode, setFbCode] = useState("")
-  
+  const [fbCode, setFbCode] = useState("");
+  const location = useLocation();
   const [values, setValues] = React.useState({
       email: '',
       password: '',
       showPassword: false,
     });
+
+    useEffect(() => {
+      if (context.user) {
+        window.location.replace(location.state?.from?.pathname || '/');
+      }
+    }, [context, location]);
 
   const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
@@ -96,6 +102,8 @@ const LoginForm = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  
 
   function reg(){
     context.register(values.email, values.password)
