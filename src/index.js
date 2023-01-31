@@ -13,7 +13,8 @@ import Left from './pages/left';
 import Login from './pages/login';
 import AuthContextProvider from './contexts/authContext';
 import ProtectedRoutes from './pages/protectedRoutes';
-
+import theme from './contexts/theme';
+import ThemeContext from './contexts/themeContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,6 +31,7 @@ const App = () => {
     <ProSidebarProvider>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <ThemeContext.Provider value={theme}>
       <AuthContextProvider>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -43,6 +45,7 @@ const App = () => {
               </Route>
             </Routes>
       </AuthContextProvider>
+      </ThemeContext.Provider>
       </BrowserRouter>
     </QueryClientProvider>
     </ProSidebarProvider>

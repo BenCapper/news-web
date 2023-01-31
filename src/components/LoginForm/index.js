@@ -1,10 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,69 +11,13 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { AuthContext } from "../../contexts/authContext";
-import { useLocation } from "react-router-dom";
+import ThemeContext from "../../contexts/themeContext";
 
-const styles = {
-  root: {
-    marginTop: 2,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  form: {
-    width: "100%",
-    "& > * ": {
-      marginTop: 2,
-    },
-  },
-  textField: {
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: 'grey',
-      },
-      "&:hover fieldset": {
-        borderColor: '#e8c034',
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: '#e8c034',
-      },
-    },
-    "& .MuiInputLabel-outlined": {
-      color: '#e8c034',
-      "&.Mui-focused": {
-        color: '#e8c034',
-      },
-    },
-  },
-  title: {
-    textAlign: 'center',
-  },
-  err: {
-    textAlign: 'center',
-    color: 'gray',
-    marginTop: 2,
-    marginBottom: -2
-  },
-  outlinedInput: {
-    "&.MuiOutlinedInput-root": {
-      borderColor: "#e8c034",
-      "&.Mui-focused fieldset": {
-        borderColor: "#e8c034",
-      },
-      "&:hover fieldset": {
-        borderColor: "#e8c034",
-      },
-    },
-    "& .MuiInputLabel-outlined": {
-      color: "#e8c034",
-    },
-  },
-};
 
 const LoginForm = () => {
   const context = useContext(AuthContext);
   const [fbCode, setFbCode] = useState("");
-  const location = useLocation();
+  const theme = useContext(ThemeContext);
   const [values, setValues] = React.useState({
       email: '',
       password: '',
@@ -127,31 +69,31 @@ const LoginForm = () => {
   return (
     <>
     <br></br>
-    <Box sx={styles.root}>
+    <Box sx={theme.styles.root}>
     <FormControl sx={{ m: 5, mt: 5, mb: 5, width: '25ch' }} variant="outlined">
-    <Typography sx={styles.title} color="#e8c034" component="h2" variant="h3">
+    <Typography sx={theme.styles.title} color={theme.colors.primary} component="h2" variant="h3">
         Login
       </Typography>
     </FormControl>
     <br/>
-    <FormControl sx={{ m: 1, width: '25ch', color: '#e8c034'}} variant="outlined">
+    <FormControl sx={{ m: 1, width: '25ch', color: theme.colors.primary}} variant="outlined">
       <TextField
           required
           id="outlined-required"
           label="Email"
           autoFocus={true}
           onChange={handleChange('email')}
-          sx={styles.textField}
+          sx={theme.styles.textField}
         />
         </FormControl>
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <InputLabel sx={{color:'#e8c034','&:hover': {color: '#e8c034'}, '&.Mui-focused':{color:'#e8c034'}}} htmlFor="outlined-adornment-password">Password</InputLabel>
+      <InputLabel sx={{color:theme.colors.primary,'&:hover': {color: theme.colors.primary}, '&.Mui-focused':{color:theme.colors.primary}}} htmlFor="outlined-adornment-password">Password</InputLabel>
       <OutlinedInput
         required
         id="outlined-adornment-password"
         type={values.showPassword ? 'text' : 'password'}
         onChange={handleChange('password')}
-        sx={styles.outlinedInput}
+        sx={theme.styles.outlinedInput}
         endAdornment={
           <InputAdornment position="end">
             <IconButton
@@ -159,7 +101,7 @@ const LoginForm = () => {
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
               edge="end"
-              color="primary"
+              color={theme.colors.primary}
             >
               {values.showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
@@ -168,14 +110,14 @@ const LoginForm = () => {
         label="Password"
       />
     </FormControl>
-      <Typography sx={styles.err}>
+      <Typography sx={theme.styles.err}>
         {fbCode}
       </Typography>
     <FormControl sx={{ m: 1, mt: 5, width: '25ch' }} variant="outlined">
-      <Button variant="contained" sx={{backgroundColor: '#e8c034','&:hover': {backgroundColor: '#f5c542'}}} onClick={reg}>Create Account</Button>
+      <Button variant="contained" sx={{backgroundColor: theme.colors.primary,'&:hover': {backgroundColor: '#f5c542'}}} onClick={reg}>Create Account</Button>
     </FormControl>
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <Button variant="contained" sx={{backgroundColor: '#e8c034','&:hover': {backgroundColor: '#f5c542'}}} onClick={log}>Login</Button>
+      <Button variant="contained" sx={{backgroundColor: theme.colors.primary,'&:hover': {backgroundColor: '#f5c542'}}} onClick={log}>Login</Button>
     </FormControl><br></br>
       <br></br>
 
