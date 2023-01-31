@@ -34,16 +34,16 @@ const styles = {
         borderColor: 'grey',
       },
       "&:hover fieldset": {
-        borderColor: 'orange',
+        borderColor: '#e8c034',
       },
       "&.Mui-focused fieldset": {
-        borderColor: 'orange',
+        borderColor: '#e8c034',
       },
     },
     "& .MuiInputLabel-outlined": {
-      color: 'orange',
+      color: '#e8c034',
       "&.Mui-focused": {
-        color: 'orange',
+        color: '#e8c034',
       },
     },
   },
@@ -58,16 +58,16 @@ const styles = {
   },
   outlinedInput: {
     "&.MuiOutlinedInput-root": {
-      borderColor: "orange",
+      borderColor: "#e8c034",
       "&.Mui-focused fieldset": {
-        borderColor: "orange",
+        borderColor: "#e8c034",
       },
       "&:hover fieldset": {
-        borderColor: "#FFA07A",
+        borderColor: "#e8c034",
       },
     },
     "& .MuiInputLabel-outlined": {
-      color: "orange",
+      color: "#e8c034",
     },
   },
 };
@@ -129,12 +129,12 @@ const LoginForm = () => {
     <br></br>
     <Box sx={styles.root}>
     <FormControl sx={{ m: 5, mt: 5, mb: 5, width: '25ch' }} variant="outlined">
-    <Typography sx={styles.title} color="orange" component="h2" variant="h3">
+    <Typography sx={styles.title} color="#e8c034" component="h2" variant="h3">
         Login
       </Typography>
     </FormControl>
     <br/>
-    <FormControl sx={{ m: 1, width: '25ch', color: 'orange'}} variant="outlined">
+    <FormControl sx={{ m: 1, width: '25ch', color: '#e8c034'}} variant="outlined">
       <TextField
           required
           id="outlined-required"
@@ -145,7 +145,7 @@ const LoginForm = () => {
         />
         </FormControl>
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <InputLabel sx={{color:'orange','&:hover': {color: '#f5c542'}, '&.Mui-focused':{color:'#f5c542'}}} htmlFor="outlined-adornment-password">Password</InputLabel>
+      <InputLabel sx={{color:'#e8c034','&:hover': {color: '#e8c034'}, '&.Mui-focused':{color:'#e8c034'}}} htmlFor="outlined-adornment-password">Password</InputLabel>
       <OutlinedInput
         required
         id="outlined-adornment-password"
@@ -172,10 +172,10 @@ const LoginForm = () => {
         {fbCode}
       </Typography>
     <FormControl sx={{ m: 1, mt: 5, width: '25ch' }} variant="outlined">
-      <Button variant="contained" sx={{backgroundColor: 'orange','&:hover': {backgroundColor: '#f5c542'}}} onClick={reg}>Create Account</Button>
+      <Button variant="contained" sx={{backgroundColor: '#e8c034','&:hover': {backgroundColor: '#f5c542'}}} onClick={reg}>Create Account</Button>
     </FormControl>
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <Button variant="contained" sx={{backgroundColor: 'orange','&:hover': {backgroundColor: '#f5c542'}}} onClick={log}>Login</Button>
+      <Button variant="contained" sx={{backgroundColor: '#e8c034','&:hover': {backgroundColor: '#f5c542'}}} onClick={log}>Login</Button>
     </FormControl><br></br>
       <br></br>
 
