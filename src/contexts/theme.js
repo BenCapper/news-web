@@ -1,8 +1,11 @@
+import { menuClasses } from 'react-pro-sidebar';
+
 const theme = {
     colors: {
       primary: "#E8C034",
       secondary: "#7FDBFF",
-      tertiary: "#39CCCC"
+      tertiary: "#39CCCC",
+      white: "#FFFFFF"
     },
     styles: {
         root: {
@@ -59,6 +62,35 @@ const theme = {
             color: "#e8c034",
           },
         },
+    },
+    menuItemStyles: {
+        root: {
+          fontSize: '15px',
+          fontWeight: 400,
+        },
+        SubMenuExpandIcon: {
+          color: '#f1c735',
+        },
+        subMenuContent: {
+          backgroundColor: '#fff',
+        },
+        button: {
+            [`&.${menuClasses.active}`]: {
+              backgroundColor: '#fff',
+              color: '#f1c735',
+              fontWeight: 600,
+            },
+            [`&.${menuClasses.disabled}`]: {
+              color: '#f1c735',
+            },
+            '&:hover': {
+              backgroundColor: '#faf8e4',
+              color: '#f1c735',
+            },
+          },
+        label: ({ open }) => ({
+            fontWeight: 600,
+          }),
     }
   };
   
