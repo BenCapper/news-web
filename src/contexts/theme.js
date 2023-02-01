@@ -1,4 +1,5 @@
 import { menuClasses } from 'react-pro-sidebar';
+import { inputLabelClasses } from "@mui/material/InputLabel";
 
 const theme = {
     colors: {
@@ -91,7 +92,44 @@ const theme = {
         label: ({ open }) => ({
             fontWeight: 600,
           }),
+    },
+    InputLabelProps: {
+      sx: {
+        color: "black",
+        fontWeight: 450,
+        [`&.${inputLabelClasses.shrink}`]: {
+          color: "black",
+          fontWeight: 600
+        }
+      }
+    },
+    Filter: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'orange',
+      },
+      '&:hover fieldset': {
+        borderColor: '#fcc24c',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'orange',
+        label: 'orange'
+      },
+    },
+  },
+  buttonGroup: {
+    color: '#e8c034',
+    sx: {
+        ml: '1em', 
+        height: '2.5em',
+        backgroundColor: "#fff"
     }
-  };
+  },
+  palette: {
+    primary:{
+      main: '#e8c034'
+    }
+  }
+};
   
 export default theme;
