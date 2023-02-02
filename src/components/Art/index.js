@@ -10,13 +10,13 @@ import { deFormatTitle, formatDate } from '../../util';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import _ from 'lodash';
-import { ie, uk, us, ca, eu } from "../../db/collections";
-import { right, left } from "../../db/collections";
-import { iei, gbi, usi, cai, eui } from "../../db/icons";
-import { icons } from "../../db/icons";
+import { ie, uk, us, ca, eu } from "../../icons/collections";
+import { right, left } from "../../icons/collections";
+import { iei, gbi, usi, cai, eui } from "../../icons/icons";
+import { icons } from "../../icons/icons";
 import { ExternalLink } from "react-external-link";
 import "./art.css";
-import { fall } from "../../db/icons";
+import { fall } from "../../icons/icons";
 import logo from '../../assets/360.png'
 import { getDatabase, ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";

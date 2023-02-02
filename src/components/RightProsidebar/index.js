@@ -5,7 +5,7 @@ import ThemeContext from "../../contexts/themeContext";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import "./rightSidebar.css"
-import { icon } from "../../db/icons";
+import { icon } from "../../icons/icons";
 
 
 const RightProsidebar = () => {
