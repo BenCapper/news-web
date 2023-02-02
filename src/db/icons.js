@@ -46,6 +46,40 @@ export const eui = euicon
 
 export const fall = biden
 
+export const icon = {
+  "gript": gript,
+  "rte": rte,
+  "gbn": gbn,
+  "sky": sky,
+  "spiked": spiked,
+  "guard": guard,
+  "dmail": dmail,
+  "sceptic": sceptic,
+  "pmill": pmill,
+  "glo": glo,
+  "euro": euro,
+  "blaze": blaze,
+  "tim": tim,
+  "rev": rev,
+  "bong": bong,
+  "zero": zero,
+  "breit": breit,
+  "call": call,
+  "info": info,
+  "think": think,
+  "beast": beast,
+  "gwp": gwp,
+  "trend": trend,
+  "pol": pol,
+  "cbs": cbs,
+  "abc": abc,
+  "yah": yah,
+  "vox": vox,
+  "huff": huff,
+  "npr": npr,
+  "hill": hill
+}
+
 export const icons = {
     "www.Gript.ie": gript,
     "www.RTE.ie": rte,
