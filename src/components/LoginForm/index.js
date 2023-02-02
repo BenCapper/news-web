@@ -13,6 +13,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import GoogleButton from 'react-google-button'
 
 const LoginForm = () => {
   const auth = getAuth();
@@ -124,7 +125,7 @@ const LoginForm = () => {
       <Button variant="contained" sx={{backgroundColor: theme.colors.primary,'&:hover': {backgroundColor: '#f5c542'}}} onClick={log}>Login</Button>
     </FormControl>
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <Button variant="contained" sx={{backgroundColor: theme.colors.primary,'&:hover': {backgroundColor: '#f5c542'}}} onClick={logGoogle}>google</Button>
+      <GoogleButton style={{width: '24ch'}} onClick={() => logGoogle()}></GoogleButton>
     </FormControl>
     <br></br>
       <br></br>
