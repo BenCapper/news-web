@@ -134,7 +134,6 @@ function Feed ( { title }  ) {
 
   return (
     <>
- 
     <div className="header">
       <div className="spans">
         <span className="left" >{title}</span><span className="right"> {newList.length} Articles</span>

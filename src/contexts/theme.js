@@ -125,11 +125,19 @@ const theme = {
         backgroundColor: "#fff"
     }
   },
-  palette: {
-    primary:{
-      main: '#e8c034'
-    }
-  }
+  card: {
+    maxWidth: 300,
+    minHeight: '250px',
+    backgroundColor: 'white',
+    margin: '10px',
+    borderRadius: '10px',
+    boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, .15)'
+  },
+  avatar: {
+    width: '30px',
+    height: '30px',
+    marginRight: '10px',
+  },
 };
   
 export default theme;
