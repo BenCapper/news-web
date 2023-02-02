@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./feed.css";
 import { styled } from '@mui/material/styles';
 import { db } from "../../firebase-config";
@@ -14,33 +14,17 @@ import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
-import { inputLabelClasses } from "@mui/material/InputLabel";
 import Art from "../Art";
+import ThemeContext from "../../contexts/themeContext";
 
-
-const CssTextField = styled(TextField)({
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: 'orange',
-    },
-    '&:hover fieldset': {
-      borderColor: '#fcc24c',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: 'orange',
-      label: 'orange'
-    },
-  },
-});
 
 
 function Feed ( { title }  ) {
   const [count, setCount] = useState(0);
-  const today = getDate(0);
   const d = getDate(count);
   const dbRef = ref(db, `stories/${d}`);
   const arts = useDatabaseValue([`stories/${d}`], dbRef);
-  
+  const theme = useContext(ThemeContext);
   const [pageNumber, setPageNumber] = useState(0);
   const [articles, setArticles] = useState([]);
   const [more, setMore] = useState(true);
@@ -150,35 +134,25 @@ function Feed ( { title }  ) {
 
   return (
     <>
- 
     <div className="header">
       <div className="spans">
         <span className="left" >{title}</span><span className="right"> {newList.length} Articles</span>
       </div>
   <div className="filter-group">
 
-      <CssTextField
+      <TextField
         id="outlined"
         label="Filter"
         placeholder={d}
         size="small"
         className="textfield"
-        sx={{ml:'1em'}}
-        InputLabelProps={{
-          sx: {
-            color: "black",
-            fontWeight: 450,
-            [`&.${inputLabelClasses.shrink}`]: {
-              color: "black",
-              fontWeight: 600
-            }
-          }
-        }}
+        sx={theme.Filter}
+        InputLabelProps={theme.InputLabelProps}
         value={values.searched}
         onChange={handleFilterChange('searched')}
       />
       
-      <ButtonGroup className="buttongroup" size="small" color="warning" sx={{ml: '1em', height: '2.5em'}}>
+      <ButtonGroup size="small" color='warning' sx={theme.buttonGroup.sx}>
         <Button sx={{color: 'black'}}>
           <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
         </Button>
@@ -188,7 +162,7 @@ function Feed ( { title }  ) {
         <Button sx={{color: 'black'}}>
           <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
         </Button>
-        <Button sx={{color: 'black', border: '1px solid orange'}}>
+        <Button sx={{color: 'black'}}>
           <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
       </Button>
       </ButtonGroup>

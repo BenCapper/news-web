@@ -1,62 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
-import { menuClasses } from 'react-pro-sidebar';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
 import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
 import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { Link } from 'react-router-dom';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import header from '../../assets/header.png'
-
-
-const menuItemStyles = {
-    root: {
-      fontSize: '15px',
-      fontWeight: 400,
-    },
-    SubMenuExpandIcon: {
-      color: '#f1c735',
-    },
-    subMenuContent: {
-      backgroundColor: '#fff',
-    },
-    button: {
-        [`&.${menuClasses.active}`]: {
-          backgroundColor: '#fff',
-          color: '#f1c735',
-          fontWeight: 600,
-        },
-        [`&.${menuClasses.disabled}`]: {
-          color: '#f1c735',
-        },
-        '&:hover': {
-          backgroundColor: '#faf8e4',
-          color: '#f1c735',
-        },
-      },
-    label: ({ open }) => ({
-        fontWeight: 600,
-      }),
-}
+import ThemeContext from "../../contexts/themeContext";
 
 
 const ProSidebar = () => {
     const context = useContext(AuthContext);
-    const { collapseSidebar } = useProSidebar();
     const theme = useTheme();
+    const themes = useContext(ThemeContext);
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const [user, setUser] = useState(context.user);
-    const auth = getAuth();
     const navigate = useNavigate();
 
 
@@ -77,10 +42,10 @@ const ProSidebar = () => {
         {isMobile ? (
             <>
         
-        <Sidebar width="80px" backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0}}>
-        <Menu menuItemStyles={menuItemStyles}>
+        <Sidebar width="80px" backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0}}>
+        <Menu menuItemStyles={themes.menuItemStyles}>
 
-          <MenuItem diabled></MenuItem>
+          <MenuItem disabled></MenuItem>
           <MenuItem active={window.location.pathname === "/"} title={"Home"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
           <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} onClick={() => openSaved()}>Saved</MenuItem>
           <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory()}>History</MenuItem>
@@ -96,8 +61,8 @@ const ProSidebar = () => {
       </>
     ) : (
         <>
-        <Sidebar backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0 }}>
-        <Menu menuItemStyles={menuItemStyles}>
+        <Sidebar backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0 }}>
+        <Menu menuItemStyles={themes.menuItemStyles}>
 
         <MenuItem disabled><img src={header} style={{paddingTop: '1em'}} height={60}/></MenuItem>
           <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>

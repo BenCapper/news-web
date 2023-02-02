@@ -1,7 +1,7 @@
+import React, { useContext } from "react";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
-import { menuClasses } from 'react-pro-sidebar';
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { Link } from 'react-router-dom';
+import ThemeContext from "../../contexts/themeContext";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import "./rightSidebar.css"
@@ -38,48 +38,20 @@ import pol from '../../assets/pol.png'
 import amthink from '../../assets/amthink.png'
 
 
-const menuItemStyles = {
-    root: {
-      fontSize: '15px',
-      fontWeight: 400,
-    },
-    SubMenuExpandIcon: {
-      color: '#607489',
-    },
-    subMenuContent: {
-      backgroundColor: '#fff',
-    },
-    button: {
-        [`&.${menuClasses.active}`]: {
-          backgroundColor: '#fff',
-          color: '#e8c034',
-          fontWeight: 600,
-        },
-        [`&.${menuClasses.disabled}`]: {
-          color: '#e8c034',
-        },
-        '&:hover': {
-          backgroundColor: '#faf8e4',
-          color: '#e8c034',
-        },
-      },
-    label: ({ open }) => ({
-        fontWeight: 600,
-      }),
-}
+
 
 
 const RightProsidebar = () => {
-    const { collapseSidebar } = useProSidebar();
     const theme = useTheme();
+    const themes = useContext(ThemeContext);
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <>
         {isMobile ? (
             <>
-        <Sidebar width="80px" backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, borderRight: '0px'}}>
-        <Menu menuItemStyles={menuItemStyles}>
+        <Sidebar width="80px" backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: '0px'}}>
+        <Menu menuItemStyles={themes.menuItemStyles}>
 
           <MenuItem disabled></MenuItem>
           <MenuItem icon={<img className="image" alt="Gript" src={gript} />} component={<Link to="/" />}>  </MenuItem>
@@ -118,8 +90,8 @@ const RightProsidebar = () => {
       </>
     ) : (
         <>
-        <Sidebar backgroundColor="white" style={{ height: "100vh", backgroundColor: "#fff", position: "sticky", top: 0, borderRight: '0px'}}>
-        <Menu menuItemStyles={menuItemStyles}>
+        <Sidebar backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: '0px'}}>
+        <Menu menuItemStyles={themes.menuItemStyles}>
 
         <MenuItem disabled></MenuItem>
           <MenuItem icon={<img className="image" alt="Gript"src={gript} />} active={window.location.pathname === "/"} component={<Link to="/" />}> Gript </MenuItem>

@@ -21,15 +21,8 @@ import logo from '../../assets/360.png'
 import { getDatabase, ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
+import ThemeContext from "../../contexts/themeContext";
   
-const StyledCard = styled(Card)({
-    maxWidth: 300,
-    minHeight: '250px',
-    backgroundColor: 'white',
-    margin: '10px',
-    borderRadius: '10px',
-    boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, .15)'
-  });
   
   const StyledCardMedia = styled(CardMedia)({
     width: '300px',
@@ -42,21 +35,16 @@ const StyledCard = styled(Card)({
     },
   });
   
-  const StyledAvatar = styled(Avatar)({
-    width: '30px',
-    height: '30px',
-    marginRight: '10px',
-  });
 
   const StyledShareIcon = styled(ShareOutlinedIcon)`
   &:hover {
-    color: orange;
+    color: #e8c034;
   }
   `;
 
   const StyledDownloadIcon = styled(FileDownloadOutlinedIcon)`
     &:hover {
-      color: orange;
+      color: #e8c034;
     }
   `;
 
@@ -71,7 +59,7 @@ const StyledCard = styled(Card)({
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
     const navigate = useNavigate();
-    
+    const theme = useContext(ThemeContext);
 
     useEffect(() => {
 
@@ -147,7 +135,7 @@ const StyledCard = styled(Card)({
 
 
     return (
-      <StyledCard >
+      <Card sx={theme.card}>
         <ExternalLink onClick={() => articleClick()} href={article.link} >
           <StyledCardMedia
             image={img ? img : fall}
@@ -161,7 +149,7 @@ const StyledCard = styled(Card)({
                 <Grid container>
                   <Grid item>
                   <ExternalLink onClick={() => articleClick()} href={article.link}>
-                    <StyledAvatar src={icon} />
+                    <Avatar src={icon} sx={theme.avatar}/>
                   </ExternalLink>
                   </Grid>
                   <Grid item>
@@ -200,6 +188,6 @@ const StyledCard = styled(Card)({
                 </Grid>
             </Grid>
         </CardContent>
-      </StyledCard>
+      </Card>
     );
   }
