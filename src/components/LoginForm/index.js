@@ -12,9 +12,10 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
-
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const LoginForm = () => {
+  const auth = getAuth();
   const context = useContext(AuthContext);
   const [fbCode, setFbCode] = useState("");
   const theme = useContext(ThemeContext);
@@ -50,6 +51,9 @@ const LoginForm = () => {
     context.login(values.email, values.password)
   }
 
+  function logGoogle(){
+    context.loginGoogle();
+  }
 
   const errorCheck = (errorCode) => {
     if (errorCode === "auth/email-already-in-use"){
@@ -118,7 +122,11 @@ const LoginForm = () => {
     </FormControl>
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
       <Button variant="contained" sx={{backgroundColor: theme.colors.primary,'&:hover': {backgroundColor: '#f5c542'}}} onClick={log}>Login</Button>
-    </FormControl><br></br>
+    </FormControl>
+    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+      <Button variant="contained" sx={{backgroundColor: theme.colors.primary,'&:hover': {backgroundColor: '#f5c542'}}} onClick={logGoogle}>google</Button>
+    </FormControl>
+    <br></br>
       <br></br>
 
     </Box>
