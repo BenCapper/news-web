@@ -18,7 +18,6 @@ import GoogleButton from 'react-google-button'
 const LoginForm = () => {
   const auth = getAuth();
   const context = useContext(AuthContext);
-  const [fbCode, setFbCode] = useState("");
   const theme = useContext(ThemeContext);
   const [values, setValues] = React.useState({
       email: '',
@@ -54,21 +53,6 @@ const LoginForm = () => {
 
   function logGoogle(){
     context.loginGoogle();
-  }
-
-  const errorCheck = (errorCode) => {
-    if (errorCode === "auth/email-already-in-use"){
-      setFbCode("Account Already Exists");
-    } 
-    if (errorCode === "auth/invalid-email") {
-      setFbCode("Invalid Email Address");
-    } 
-    if (errorCode === "auth/missing-email") {
-      setFbCode("Enter an Email Address");
-    } 
-    if (errorCode === "auth/internal-error") {
-      setFbCode("Invalid Password");
-    }
   }
 
   return (
@@ -116,7 +100,7 @@ const LoginForm = () => {
       />
     </FormControl>
       <Typography sx={theme.styles.err}>
-        {fbCode}
+        {context.fbCode}
       </Typography>
     <FormControl sx={{ m: 1, mt: 5, width: '25ch' }} variant="outlined">
       <Button variant="contained" sx={{backgroundColor: theme.colors.primary,'&:hover': {backgroundColor: '#f5c542'}}} onClick={reg}>Create Account</Button>

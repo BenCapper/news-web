@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useContext } from "react";
+import React, { useState, createContext } from "react";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -98,6 +98,9 @@ const AuthContextProvider = (props) => {
     if (errorCode === "auth/internal-error") {
       setFbCode("Invalid Password");
     }
+    if (errorCode === "auth/wrong-password") {
+      setFbCode("Invalid Login Details");
+    }
   }
 
 
@@ -108,6 +111,7 @@ const AuthContextProvider = (props) => {
         login,
         signout,
         loginGoogle,
+        fbCode,
         user
 
       }}
