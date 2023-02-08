@@ -1,6 +1,7 @@
-import React, { useState, createContext, useEffect, useContext } from "react";
+import React, { useState, createContext } from "react";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 export const AuthContext = createContext(null);
 
@@ -9,8 +10,7 @@ const AuthContextProvider = (props) => {
   const [fbCode, setFbCode] = useState("")
   const auth = getAuth();
   const navigate = useNavigate();
-
-
+  const provider = new GoogleAuthProvider();
 
 
   const register = (email,pass) => {
@@ -62,6 +62,27 @@ const AuthContextProvider = (props) => {
 
   };
 
+  const loginGoogle = () => {
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      //const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      setUser(user);
+      localStorage.setItem("user", JSON.stringify(user))
+      navigate("/")
+    }).catch((error) => {
+
+      //const errorCode = error.code;
+      //const errorMessage = error.message;
+      // The email of the user's account used.
+      // The AuthCredential type that was used.
+      //const credential = GoogleAuthProvider.credentialFromError(error);
+    })
+};
+
 
 
   const errorCheck = (errorCode) => {
@@ -77,6 +98,9 @@ const AuthContextProvider = (props) => {
     if (errorCode === "auth/internal-error") {
       setFbCode("Invalid Password");
     }
+    if (errorCode === "auth/wrong-password") {
+      setFbCode("Invalid Login Details");
+    }
   }
 
 
@@ -86,6 +110,8 @@ const AuthContextProvider = (props) => {
         register,
         login,
         signout,
+        loginGoogle,
+        fbCode,
         user
 
       }}

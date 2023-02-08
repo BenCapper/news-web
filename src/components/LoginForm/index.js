@@ -12,11 +12,12 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
-
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import GoogleButton from 'react-google-button'
 
 const LoginForm = () => {
+  const auth = getAuth();
   const context = useContext(AuthContext);
-  const [fbCode, setFbCode] = useState("");
   const theme = useContext(ThemeContext);
   const [values, setValues] = React.useState({
       email: '',
@@ -50,20 +51,8 @@ const LoginForm = () => {
     context.login(values.email, values.password)
   }
 
-
-  const errorCheck = (errorCode) => {
-    if (errorCode === "auth/email-already-in-use"){
-      setFbCode("Account Already Exists");
-    } 
-    if (errorCode === "auth/invalid-email") {
-      setFbCode("Invalid Email Address");
-    } 
-    if (errorCode === "auth/missing-email") {
-      setFbCode("Enter an Email Address");
-    } 
-    if (errorCode === "auth/internal-error") {
-      setFbCode("Invalid Password");
-    }
+  function logGoogle(){
+    context.loginGoogle();
   }
 
   return (
@@ -111,14 +100,18 @@ const LoginForm = () => {
       />
     </FormControl>
       <Typography sx={theme.styles.err}>
-        {fbCode}
+        {context.fbCode}
       </Typography>
     <FormControl sx={{ m: 1, mt: 5, width: '25ch' }} variant="outlined">
       <Button variant="contained" sx={{backgroundColor: theme.colors.primary,'&:hover': {backgroundColor: '#f5c542'}}} onClick={reg}>Create Account</Button>
     </FormControl>
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
       <Button variant="contained" sx={{backgroundColor: theme.colors.primary,'&:hover': {backgroundColor: '#f5c542'}}} onClick={log}>Login</Button>
-    </FormControl><br></br>
+    </FormControl>
+    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+      <GoogleButton style={{width: '24ch'}} onClick={() => logGoogle()}></GoogleButton>
+    </FormControl>
+    <br></br>
       <br></br>
 
     </Box>
