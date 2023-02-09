@@ -26,8 +26,7 @@ const ProSidebar = ({setTheme}) => {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const navigate = useNavigate();
 
-    const handleClick = () => {
-      console.log("MANY HANDLE IT")
+    const handleTheme = () => {
       if (themes === lighttheme){
         setTheme(darktheme);
       }
@@ -65,7 +64,7 @@ const ProSidebar = ({setTheme}) => {
           <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}>Leans Right </MenuItem>
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<DarkModeOutlinedIcon />} onClick={handleClick}>Theme</MenuItem>
+          <MenuItem icon={<DarkModeOutlinedIcon />} onClick={handleTheme}>Theme</MenuItem>
           <MenuItem icon={<LogoutOutlinedIcon />} onClick={context.user === "" ? openLogin : context.signout} > {context.user === "" ? "Login" : "Logout"}</MenuItem>
         </Menu>
       </Sidebar>
@@ -84,7 +83,7 @@ const ProSidebar = ({setTheme}) => {
           <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}> Leans Right </MenuItem>
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<DarkModeOutlinedIcon />} onClick={handleClick}> Theme </MenuItem>
+          <MenuItem icon={<DarkModeOutlinedIcon />} onClick={handleTheme}> Theme </MenuItem>
           <MenuItem icon={<LogoutOutlinedIcon />} onClick={context.user === "" ? openLogin : context.signout} > {context.user === "" ? "Login" : "Logout"} </MenuItem>
         </Menu>
       </Sidebar>

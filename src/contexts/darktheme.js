@@ -88,16 +88,16 @@ const darktheme = {
         button: {
             color: '#E8C034',
             [`&.${menuClasses.active}`]: {
-              backgroundColor: 'rgba(255, 255, 255, 0.16)',
-              color: '#E8C034',
+              backgroundColor: '#e8c034',
+              color: '#000',
               fontWeight: 600,
             },
             [`&.${menuClasses.disabled}`]: {
               color: '#f1c735',
             },
             '&:hover': {
-              backgroundColor: 'rgba(255, 255, 255, 0.16)',
-              color: '#E8C034',
+              backgroundColor: '#e8c034',
+              color: '#000 !important',
             },
           },
         label: ({ open }) => ({
