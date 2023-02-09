@@ -61,7 +61,7 @@ const ProSidebar = () => {
       </>
     ) : (
         <>
-        <Sidebar backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0 }}>
+        <Sidebar backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: themes.colors.white }}>
         <Menu menuItemStyles={themes.menuItemStyles}>
 
         <MenuItem disabled><img src={header} style={{paddingTop: '1em'}} height={60}/></MenuItem>
