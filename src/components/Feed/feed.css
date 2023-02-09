@@ -25,13 +25,11 @@
     align-items: center;
     position: sticky;
     top: 0;
-    background-color: white;
     z-index: 100;
     padding-left: 1.8em;
     padding-right: 1.8em;
     padding-top: 1em;
     padding-bottom: .3em;
-    opacity: .92;
 }
 
 .textfield {
@@ -66,29 +64,15 @@
 .right {
   font-size: 14px;
   font-weight: 800;
-  color: rgb(0, 0, 0);
   justify-content: flex-end;
   font-family: 'Segoe UI';
   margin-left: auto;
 }
 .infinite {
   position: relative;
-  background-color: rgb(156, 156, 156,.2);
 }
 .load {
   justify-content: center;
   align-items: center;
   display: flex;
-}
-.count {
-  font-weight: 750;
-  font-size: .75em;
-  color:rgb(156, 156, 156);
-  font-family: "Segoe UI";
-}
-
-.fab {
-  position: absolute;
-  bottom: 16;
-  right:16;
 }

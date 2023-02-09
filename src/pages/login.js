@@ -1,12 +1,29 @@
+import React, {useContext, useEffect} from 'react';
 import LoginForm from "../components/LoginForm";
+import ThemeContext from "../contexts/themeContext";
+import darktheme from '../contexts/darktheme';
+import lighttheme from '../contexts/theme';
+
+const Login = ({setTheme}) => {
+  const theme = useContext(ThemeContext);
 
 
-const Login = () => {
+  useEffect(() => {
+    const found = localStorage.getItem("theme");
+    if (found === 'dark') {
+      setTheme(darktheme);
+    }
+    else {
+      setTheme(lighttheme);
+    }
+  });
 
 
   return (
     <>
-      <LoginForm/>
+    <div style={{backgroundColor:theme.colors.white, height: '100vh'}}>
+      <LoginForm setTheme={setTheme}/>
+    </div>
     </>
   );
 };

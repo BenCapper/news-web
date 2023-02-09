@@ -15,15 +15,25 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import header from '../../assets/header.png'
 import ThemeContext from "../../contexts/themeContext";
+import darktheme from '../../contexts/darktheme';
+import lighttheme from '../../contexts/theme';
 
 
-const ProSidebar = () => {
+const ProSidebar = ({setTheme}) => {
     const context = useContext(AuthContext);
     const theme = useTheme();
     const themes = useContext(ThemeContext);
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const navigate = useNavigate();
 
+    const handleTheme = () => {
+      if (themes === lighttheme){
+        setTheme(darktheme);
+      }
+      else{
+        setTheme(lighttheme);
+      }
+    };
 
     function openSaved() {
       navigate("/saved");
@@ -42,7 +52,7 @@ const ProSidebar = () => {
         {isMobile ? (
             <>
         
-        <Sidebar width="80px" backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0}}>
+        <Sidebar width="80px" backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: themes.colors.white }}>
         <Menu menuItemStyles={themes.menuItemStyles}>
 
           <MenuItem disabled></MenuItem>
@@ -54,14 +64,14 @@ const ProSidebar = () => {
           <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}>Leans Right </MenuItem>
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<DarkModeOutlinedIcon />}>Theme</MenuItem>
+          <MenuItem icon={<DarkModeOutlinedIcon />} onClick={handleTheme}>Theme</MenuItem>
           <MenuItem icon={<LogoutOutlinedIcon />} onClick={context.user === "" ? openLogin : context.signout} > {context.user === "" ? "Login" : "Logout"}</MenuItem>
         </Menu>
       </Sidebar>
       </>
     ) : (
         <>
-        <Sidebar backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0 }}>
+        <Sidebar backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: themes.colors.white }}>
         <Menu menuItemStyles={themes.menuItemStyles}>
 
         <MenuItem disabled><img src={header} style={{paddingTop: '1em'}} height={60}/></MenuItem>
@@ -73,7 +83,7 @@ const ProSidebar = () => {
           <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}> Leans Right </MenuItem>
           <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<DarkModeOutlinedIcon />}> Theme </MenuItem>
+          <MenuItem icon={<DarkModeOutlinedIcon />} onClick={handleTheme}> Theme </MenuItem>
           <MenuItem icon={<LogoutOutlinedIcon />} onClick={context.user === "" ? openLogin : context.signout} > {context.user === "" ? "Login" : "Logout"} </MenuItem>
         </Menu>
       </Sidebar>

@@ -1,22 +1,22 @@
 import { menuClasses } from 'react-pro-sidebar';
 import { inputLabelClasses } from "@mui/material/InputLabel";
 
-const theme = {
+const darktheme = {
     colors: {
       primary: "#E8C034",
       secondary: "#7FDBFF",
       tertiary: "#39CCCC",
-      white: "#FFFFFF"
-    },
-    header: {
-      backgroundColor: '#FFF',
-      opacity: .92,
+      white: "#000000"
     },
     bgIcon: {
-      icon: '#000',
+        icon: '#e8c034',
+    },
+    header: {
+        backgroundColor: '#000000',
+        color: '#e8c034',
     },
     infinite: {
-      backgroundColor: 'rgb(156, 156, 156,.2)',
+        backgroundColor: 'rgba(0, 0, 0, .84)',
     },
     styles: {
         root: {
@@ -33,14 +33,18 @@ const theme = {
         },
         textField: {
           "& .MuiOutlinedInput-root": {
+            backgroundColor: '#FFF',
+            color: '#000',
             "& fieldset": {
               borderColor: 'grey',
             },
             "&:hover fieldset": {
               borderColor: '#e8c034',
+              
             },
             "&.Mui-focused fieldset": {
               borderColor: '#e8c034',
+
             },
           },
           "& .MuiInputLabel-outlined": {
@@ -55,12 +59,14 @@ const theme = {
         },
         err: {
           textAlign: 'center',
-          color: 'gray',
+          color: '#e8c034',
           marginTop: 2,
           marginBottom: -2
         },
         outlinedInput: {
           "&.MuiOutlinedInput-root": {
+            backgroundColor: '#FFF',
+            color: '#000',
             borderColor: "#e8c034",
             "&.Mui-focused fieldset": {
               borderColor: "#e8c034",
@@ -68,9 +74,6 @@ const theme = {
             "&:hover fieldset": {
               borderColor: "#e8c034",
             },
-          },
-          "& .MuiInputLabel-outlined": {
-            color: "#e8c034",
           },
         },
     },
@@ -86,17 +89,18 @@ const theme = {
           backgroundColor: '#fff',
         },
         button: {
+            color: 'rgb(232, 192, 52, .5)',
             [`&.${menuClasses.active}`]: {
-              backgroundColor: '#fff',
-              color: '#f1c735',
+              backgroundColor: '#000',
+              color: 'rgb(232, 192, 52, 1)',
               fontWeight: 600,
             },
             [`&.${menuClasses.disabled}`]: {
               color: '#f1c735',
             },
             '&:hover': {
-              backgroundColor: '#faf8e4',
-              color: '#f1c735',
+              backgroundColor: 'rgb(232, 192, 52, .5)',
+              color: '#000 !important',
             },
           },
         label: ({ open }) => ({
@@ -105,49 +109,52 @@ const theme = {
     },
     InputLabelProps: {
       sx: {
-        color: "black",
+        color: "#e8c034",
         fontWeight: 450,
         [`&.${inputLabelClasses.shrink}`]: {
-          color: "black",
+          color: "#e8c034",
           fontWeight: 600
         }
       }
     },
     Filter: {
+        '& .MuiOutlinedInput-input': {
+            color: '#e8c034',
+          },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: 'orange',
+        borderColor: '#773601',
       },
       '&:hover fieldset': {
-        borderColor: '#fcc24c',
+        borderColor: '#ed6c02',
       },
       '&.Mui-focused fieldset': {
-        borderColor: 'orange',
-        label: 'orange'
+        borderColor: '#773601',
+        label: 'orange',
       },
     },
   },
   right: {
-    color: "#000",
+    color: "#e8c034",
   },
   buttonGroup: {
     color: '#e8c034',
     sx: {
         ml: '1em', 
         height: '2.5em',
-        backgroundColor: "#fff"
+        backgroundColor: "#000"
     }
   },
   card: {
     maxWidth: 300,
     minHeight: '250px',
-    backgroundColor: 'white',
+    backgroundColor: '#ededed',
     margin: '10px',
     borderRadius: '10px',
     boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, .15)'
   },
   cardmedia: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ededed',
   },
   avatar: {
     width: '30px',
@@ -156,4 +163,4 @@ const theme = {
   },
 };
   
-export default theme;
+export default darktheme;

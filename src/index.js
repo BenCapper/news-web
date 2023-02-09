@@ -13,7 +13,7 @@ import Left from './pages/left';
 import Login from './pages/login';
 import AuthContextProvider from './contexts/authContext';
 import ProtectedRoutes from './pages/protectedRoutes';
-import theme from './contexts/theme';
+import themes from './contexts/theme';
 import ThemeContext from './contexts/themeContext';
 
 const queryClient = new QueryClient({
@@ -27,17 +27,16 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-
-
+  const [theme, setTheme] = useState(themes);
   return (
-    <ProSidebarProvider>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
       <ThemeContext.Provider value={theme}>
       <AuthContextProvider>
+      <ProSidebarProvider>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login/>} />
+              <Route path="/" element={<Home setTheme={setTheme} />} />
+              <Route path="/login" element={<Login setTheme={setTheme}/>} />
               <Route path="/left" element={<Left />} />
               <Route path="/right" element={<Right />} />
               <Route path="/bothsides" element={<Both />} />
@@ -46,11 +45,12 @@ const App = () => {
                 <Route path="/history" element={<History />} />
               </Route>
             </Routes>
+      </ProSidebarProvider>
       </AuthContextProvider>
       </ThemeContext.Provider>
       </BrowserRouter>
     </QueryClientProvider>
-    </ProSidebarProvider>
+    
   );
 };
 
