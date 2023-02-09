@@ -33,14 +33,18 @@ const darktheme = {
         },
         textField: {
           "& .MuiOutlinedInput-root": {
+            backgroundColor: '#FFF',
+            color: '#000',
             "& fieldset": {
               borderColor: 'grey',
             },
             "&:hover fieldset": {
               borderColor: '#e8c034',
+              
             },
             "&.Mui-focused fieldset": {
               borderColor: '#e8c034',
+
             },
           },
           "& .MuiInputLabel-outlined": {
@@ -55,12 +59,14 @@ const darktheme = {
         },
         err: {
           textAlign: 'center',
-          color: 'gray',
+          color: '#e8c034',
           marginTop: 2,
           marginBottom: -2
         },
         outlinedInput: {
           "&.MuiOutlinedInput-root": {
+            backgroundColor: '#FFF',
+            color: '#000',
             borderColor: "#e8c034",
             "&.Mui-focused fieldset": {
               borderColor: "#e8c034",
@@ -68,9 +74,6 @@ const darktheme = {
             "&:hover fieldset": {
               borderColor: "#e8c034",
             },
-          },
-          "& .MuiInputLabel-outlined": {
-            color: "#e8c034",
           },
         },
     },
