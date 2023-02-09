@@ -89,17 +89,17 @@ const darktheme = {
           backgroundColor: '#fff',
         },
         button: {
-            color: '#E8C034',
+            color: 'rgb(232, 192, 52, .5)',
             [`&.${menuClasses.active}`]: {
-              backgroundColor: '#e8c034',
-              color: '#000',
+              backgroundColor: '#000',
+              color: 'rgb(232, 192, 52, 1)',
               fontWeight: 600,
             },
             [`&.${menuClasses.disabled}`]: {
               color: '#f1c735',
             },
             '&:hover': {
-              backgroundColor: '#e8c034',
+              backgroundColor: 'rgb(232, 192, 52, .5)',
               color: '#000 !important',
             },
           },
