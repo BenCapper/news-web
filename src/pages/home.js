@@ -5,13 +5,13 @@ import "../App.css";
 import Feed from '../components/Feed';
 
 
-function Home() {
+function Home({setTheme}) {
 
 
   return (
     <>
     <div className="flex">
-    <ProSidebar/>
+    <ProSidebar setTheme={setTheme}/>
     <div>
     <div className='feed'>
     <Feed title={"Home"}/>

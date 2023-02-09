@@ -134,9 +134,9 @@ function Feed ( { title }  ) {
 
   return (
     <>
-    <div className="header">
+    <div className="header" style={theme.header}>
       <div className="spans">
-        <span className="left" >{title}</span><span className="right"> {newList.length} Articles</span>
+        <span className="left" >{title}</span><span className="right" style={theme.right}> {newList.length} Articles</span>
       </div>
   <div className="filter-group">
 
@@ -153,16 +153,16 @@ function Feed ( { title }  ) {
       />
       
       <ButtonGroup size="small" color='warning' sx={theme.buttonGroup.sx}>
-        <Button sx={{color: 'black'}}>
+        <Button sx={{color: theme.bgIcon.icon}}>
           <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
         </Button>
-        <Button sx={{color: 'black'}}>
+        <Button sx={{color: theme.bgIcon.icon}}>
           <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
         </Button>
-        <Button sx={{color: 'black'}}>
+        <Button sx={{color: theme.bgIcon.icon}}>
           <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
         </Button>
-        <Button sx={{color: 'black'}}>
+        <Button sx={{color: theme.bgIcon.icon}}>
           <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
       </Button>
       </ButtonGroup>
@@ -170,7 +170,7 @@ function Feed ( { title }  ) {
   </div>
       </div>
 
-    <div className="infinite">
+    <div className="infinite" style={theme.infinite}>
     <InfiniteScroll
       dataLength={pageNumber + 1} //This is important field to render the next data
       next={() => next()}

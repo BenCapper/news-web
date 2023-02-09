@@ -136,7 +136,7 @@ import ThemeContext from "../../contexts/themeContext";
 
     return (
       <Card sx={theme.card}>
-        <ExternalLink onClick={() => articleClick()} href={article.link} >
+        <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link} >
           <StyledCardMedia
             image={img ? img : fall}
             title={title}
