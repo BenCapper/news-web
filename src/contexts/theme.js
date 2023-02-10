@@ -7,7 +7,9 @@ const theme = {
       secondary: "#7FDBFF",
       tertiary: "#39CCCC",
       white: "#FFFFFF",
-      card: '#000000'
+      card: '#000000',
+      snackbg: '#FFFFFF',
+      snack: '#000000'
     },
     header: {
       backgroundColor: '#FFFFFF',

@@ -8,7 +8,9 @@ const darktheme = {
       tertiary: "#39CCCC",
       white: "#14171A",
       card: '#B0BEC5',
-      hover: 'rgb(232, 192, 52, 1)'
+      hover: 'rgb(232, 192, 52, 1)',
+      snackbg: '#1A2D3B',
+      snack: '#E8C034'
     },
     bgIcon: {
         icon: '#e8c034',

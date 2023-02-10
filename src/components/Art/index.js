@@ -22,6 +22,8 @@ import { getDatabase, ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
   
   
   const StyledCardMedia = styled(CardMedia)({
@@ -48,7 +50,10 @@ import ThemeContext from "../../contexts/themeContext";
     }
   `;
 
-  
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
   export default function Art({article}) {
     const context = useContext(AuthContext);
     const [title, setTitle] = useState(article.title);
@@ -60,6 +65,7 @@ import ThemeContext from "../../contexts/themeContext";
     const [icon, setIcon] = useState('')
     const navigate = useNavigate();
     const theme = useContext(ThemeContext);
+    const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
 
@@ -93,8 +99,8 @@ import ThemeContext from "../../contexts/themeContext";
       },[article.title, article.date, article.outlet, title, outlet, img]); 
     
     const shareClick = () => {
-
-      console.log("Share")
+      navigator.clipboard.writeText(article.link);
+      setOpen(true);
     }
 
     const saveClick = () => {
@@ -108,11 +114,9 @@ import ThemeContext from "../../contexts/themeContext";
           storage_link: article.storage_link,
           title: article.title
         });
-        console.log("Save")
       }
       else {
         navigate("/login");
-        console.log("Wont Save")
       }
     }
 
@@ -133,8 +137,17 @@ import ThemeContext from "../../contexts/themeContext";
       }
     }
 
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpen(false);
+    };
+
 
     return (
+      <>
       <Card sx={theme.card}>
         <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link} >
           <StyledCardMedia
@@ -190,5 +203,11 @@ import ThemeContext from "../../contexts/themeContext";
             </Grid>
         </CardContent>
       </Card>
+      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="success" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
+        Link copied to clipboard
+      </Alert>
+      </Snackbar>
+      </>
     );
   }
