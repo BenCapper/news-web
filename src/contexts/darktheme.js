@@ -100,7 +100,7 @@ const darktheme = {
             },
             '&:hover': {
               backgroundColor: 'rgb(232, 192, 52, .5)',
-              color: '#000 !important',
+              color: 'rgb(232, 192, 52, 1)',
             },
           },
         label: ({ open }) => ({
