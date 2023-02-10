@@ -13,7 +13,7 @@ import Left from './pages/left';
 import Login from './pages/login';
 import AuthContextProvider from './contexts/authContext';
 import ProtectedRoutes from './pages/protectedRoutes';
-import themes from './contexts/theme';
+import themes from './contexts/darktheme';
 import ThemeContext from './contexts/themeContext';
 
 const queryClient = new QueryClient({
