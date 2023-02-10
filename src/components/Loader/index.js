@@ -8,15 +8,11 @@ const Loader = ({title}) => {
 
     return (
         <>
+                
         <div className="header" style={theme.header}>
-          <h3>{title}</h3>
-          <div>
-        <div className="load"></div>
-          <LinearProgress/>
-          </div>
+          <h3>{title}<LinearProgress/></h3>
+          
         </div>
-        <div className="flip">
-      </div>
         </>
       );
 }
