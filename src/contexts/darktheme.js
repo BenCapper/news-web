@@ -6,17 +6,17 @@ const darktheme = {
       primary: "#E8C034",
       secondary: "#7FDBFF",
       tertiary: "#39CCCC",
-      white: "#000000"
+      white: "#14171A"
     },
     bgIcon: {
         icon: '#e8c034',
     },
     header: {
-        backgroundColor: '#000000',
+        backgroundColor: '#14171A',
         color: '#e8c034',
     },
     infinite: {
-        backgroundColor: 'rgba(0, 0, 0, .84)',
+        backgroundColor: '#1A2D3B',
     },
     styles: {
         root: {
@@ -91,7 +91,7 @@ const darktheme = {
         button: {
             color: 'rgb(232, 192, 52, .5)',
             [`&.${menuClasses.active}`]: {
-              backgroundColor: '#000',
+              backgroundColor: '#14171A',
               color: 'rgb(232, 192, 52, 1)',
               fontWeight: 600,
             },
@@ -142,7 +142,7 @@ const darktheme = {
     sx: {
         ml: '1em', 
         height: '2.5em',
-        backgroundColor: "#000"
+        backgroundColor: "#14171A"
     }
   },
   card: {
