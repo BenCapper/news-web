@@ -29,9 +29,11 @@ const ProSidebar = ({setTheme}) => {
     const handleTheme = () => {
       if (themes === lighttheme){
         setTheme(darktheme);
+        window.localStorage.setItem('theme', 'dark')
       }
       else{
         setTheme(lighttheme);
+        window.localStorage.setItem('theme', 'light')
       }
     };
 
