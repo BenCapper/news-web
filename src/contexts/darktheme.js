@@ -6,7 +6,9 @@ const darktheme = {
       primary: "#E8C034",
       secondary: "#7FDBFF",
       tertiary: "#39CCCC",
-      white: "#14171A"
+      white: "#14171A",
+      card: '#B0BEC5',
+      hover: 'rgb(232, 192, 52, 1)'
     },
     bgIcon: {
         icon: '#e8c034',
@@ -89,7 +91,7 @@ const darktheme = {
           backgroundColor: '#fff',
         },
         button: {
-            color: 'rgb(232, 192, 52, .5)',
+            color: 'rgb(232, 192, 52, .7)',
             [`&.${menuClasses.active}`]: {
               backgroundColor: '#14171A',
               color: 'rgb(232, 192, 52, 1)',
@@ -148,7 +150,8 @@ const darktheme = {
   card: {
     maxWidth: 300,
     minHeight: '250px',
-    backgroundColor: '#ededed',
+    backgroundColor: '#14171A',
+    color: '#B0BEC5',
     margin: '10px',
     borderRadius: '10px',
     boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, .15)'

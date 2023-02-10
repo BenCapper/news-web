@@ -163,17 +163,18 @@ import ThemeContext from "../../contexts/themeContext";
               </Grid>
               <Grid item sx={{mt:'1em'}}>
               <ExternalLink onClick={() => articleClick()} href={article.link}>
-              <Typography variant="body2" align="left" sx={{fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px' }}>
+              <Typography variant="body2" align="left" sx={{color: theme.colors.card,fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px','&:hover': {cursor: 'pointer',color: theme.colors.primary} }}>
                 {title}
               </Typography>
               </ExternalLink>
               </Grid>
               <Grid item>
-                <Typography variant="body2" align="left" sx={{ fontStyle: 'italic', mt: '1em'}}>
                 <ExternalLink href={"//" + outlet}>
+                <Typography variant="body2" align="left" sx={{color: theme.colors.card, fontStyle: 'italic', mt: '1em','&:hover': {cursor: 'pointer',color: theme.colors.primary}}}>
                   {outlet}
-                </ExternalLink>
                 </Typography>
+                </ExternalLink>
+                
               </Grid>
             </Grid>
             <Grid container direction="row" justify="flex-end" alignItems="center" sx={{ marginTop: '1em' }}>

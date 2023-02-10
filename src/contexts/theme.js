@@ -6,7 +6,8 @@ const theme = {
       primary: "#E8C034",
       secondary: "#7FDBFF",
       tertiary: "#39CCCC",
-      white: "#FFFFFF"
+      white: "#FFFFFF",
+      card: '#000000'
     },
     header: {
       backgroundColor: '#FFF',
