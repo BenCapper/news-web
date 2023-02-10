@@ -91,7 +91,7 @@ const darktheme = {
           backgroundColor: '#fff',
         },
         button: {
-            color: 'rgb(232, 192, 52, .7)',
+            color: 'rgb(232, 192, 52, .60)',
             [`&.${menuClasses.active}`]: {
               backgroundColor: '#14171A',
               color: 'rgb(232, 192, 52, 1)',
@@ -101,7 +101,7 @@ const darktheme = {
               color: '#f1c735',
             },
             '&:hover': {
-              backgroundColor: 'rgb(232, 192, 52, .5)',
+              backgroundColor: '#14171A',
               color: 'rgb(232, 192, 52, 1)',
             },
           },
