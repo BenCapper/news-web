@@ -67,6 +67,7 @@ import MuiAlert from '@mui/material/Alert';
     const theme = useContext(ThemeContext);
     const [open, setOpen] = React.useState(false);
     const [openSave, setOpenSave] = React.useState(false);
+    const [openSaveConfirm, setOpenSaveConfirm] = React.useState(false);
 
     useEffect(() => {
 
@@ -102,6 +103,7 @@ import MuiAlert from '@mui/material/Alert';
     const shareClick = () => {
       navigator.clipboard.writeText(article.link);
       if (openSave) setOpenSave(false);
+      if (openSaveConfirm) setOpenSaveConfirm(false);
       setOpen(true);
     }
 
@@ -116,9 +118,13 @@ import MuiAlert from '@mui/material/Alert';
           storage_link: article.storage_link,
           title: article.title
         });
+        if (open) setOpen(false);
+        if (openSave) setOpenSave(false);
+        setOpenSaveConfirm(true);
       }
       else {
         if (open) setOpen(false);
+        if (openSaveConfirm) setOpenSaveConfirm(false);
         setOpenSave(true);
       }
     }
@@ -151,6 +157,14 @@ import MuiAlert from '@mui/material/Alert';
       }
   
       setOpenSave(false);
+    };
+
+    const handleCloseSaveConfirm = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpenSaveConfirm(false);
     };
 
     return (
@@ -218,6 +232,11 @@ import MuiAlert from '@mui/material/Alert';
       <Snackbar open={openSave} autoHideDuration={4000} onClose={handleCloseSave}>
       <Alert onClose={handleCloseSave} severity="error" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
         Log in to Save Articles
+      </Alert>
+      </Snackbar>
+      <Snackbar open={openSaveConfirm} autoHideDuration={4000} onClose={handleCloseSaveConfirm}>
+      <Alert onClose={handleCloseSaveConfirm} severity="success" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
+        Article Saved Successfully
       </Alert>
       </Snackbar>
       </>
