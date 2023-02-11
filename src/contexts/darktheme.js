@@ -81,6 +81,12 @@ const darktheme = {
           },
         },
     },
+    disabledButton: {
+      '&.Mui-disabled': {
+        color: 'rgb(232, 192, 52, .40)',
+        borderColor: '#773601',
+      }
+    },
     menuItemStyles: {
         root: {
           fontSize: '15px',

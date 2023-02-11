@@ -77,6 +77,12 @@ const theme = {
           },
         },
     },
+    disabledButton: {
+      '&.Mui-disabled': {
+        color: '#9E9E9E',
+        borderColor: 'orange',
+      }
+    },
     menuItemStyles: {
         root: {
           fontSize: '15px',
