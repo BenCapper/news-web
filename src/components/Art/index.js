@@ -66,6 +66,7 @@ import MuiAlert from '@mui/material/Alert';
     const navigate = useNavigate();
     const theme = useContext(ThemeContext);
     const [open, setOpen] = React.useState(false);
+    const [openSave, setOpenSave] = React.useState(false);
 
     useEffect(() => {
 
@@ -100,6 +101,7 @@ import MuiAlert from '@mui/material/Alert';
     
     const shareClick = () => {
       navigator.clipboard.writeText(article.link);
+      if (openSave) setOpenSave(false);
       setOpen(true);
     }
 
@@ -116,7 +118,8 @@ import MuiAlert from '@mui/material/Alert';
         });
       }
       else {
-        navigate("/login");
+        if (open) setOpen(false);
+        setOpenSave(true);
       }
     }
 
@@ -132,9 +135,6 @@ import MuiAlert from '@mui/material/Alert';
           title: article.title
         });
       }
-      else {
-        console.log("Wont Save View History")
-      }
     }
 
     const handleClose = (event, reason) => {
@@ -145,6 +145,13 @@ import MuiAlert from '@mui/material/Alert';
       setOpen(false);
     };
 
+    const handleCloseSave = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpenSave(false);
+    };
 
     return (
       <>
@@ -206,6 +213,11 @@ import MuiAlert from '@mui/material/Alert';
       <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="success" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
         Link copied to clipboard
+      </Alert>
+      </Snackbar>
+      <Snackbar open={openSave} autoHideDuration={4000} onClose={handleCloseSave}>
+      <Alert onClose={handleCloseSave} severity="error" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
+        Log in to Save Articles
       </Alert>
       </Snackbar>
       </>
