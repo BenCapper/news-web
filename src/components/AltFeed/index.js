@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./altFeed.css";
 import { db } from "../../firebase-config";
-import { ref } from "firebase/database";
+import { getDatabase, ref, remove, set } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
 import { compare, getDate, splitArray, sortByDate } from "../../util";
 import { Button, ButtonGroup, Grid, LinearProgress, TextField } from "@mui/material";
@@ -13,17 +13,11 @@ import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
-import Art from "../Art";
+import NoImgArt from "../NoImgArt";
 import ThemeContext from "../../contexts/themeContext";
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
 import { formatDate } from '../../util';
 import { AuthContext } from "../../contexts/authContext";
 
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 function AltFeed ( { title, affix }  ) {
   const [count, setCount] = useState(0);
@@ -36,8 +30,7 @@ function AltFeed ( { title, affix }  ) {
   const [pageNumber, setPageNumber] = useState(0);
   const [articles, setArticles] = useState([]);
   const [more, setMore] = useState(true);
-  const [open, setOpen] = React.useState(false);
-  const [openBack, setOpenBack] = React.useState(false);
+  const [refresh, setState] = useState(0);
 
   const articleTitles = [];
   const newList = [];
@@ -58,6 +51,7 @@ function AltFeed ( { title, affix }  ) {
   }
 
 
+
   for (let a in arts.data) {
     articleTitles.push(a);
     newList.push(arts.data[a]);
@@ -72,6 +66,25 @@ function AltFeed ( { title, affix }  ) {
 
   sortByDate(articles);
 
+  const forceRerender = (article) => {
+    console.log(`user-${affix}/${context.user.uid}/${article.title}`)
+    const index = articles.indexOf(article);
+    if (index > -1) { // only splice array when item is found
+      articles.splice(index, 1); // 2nd parameter means remove one item only
+    }
+    set(ref(db,`/user-${affix}/${context.user.uid}/${article.title}`),{
+    }).then(() => {
+        console.log(articles)
+        setState(refresh + 1)
+        setArticles(articles);
+    })
+    .catch((error) => {
+    });
+    if (articles.length === 0){
+        articles.push({title: "No Results", date: formatDate(d), outlet:''});
+        setArticles(articles);
+    }
+  };
   
   const handleFilterChange = (prop) => (event) => {
     let searchQuery = ''
@@ -118,22 +131,10 @@ function AltFeed ( { title, affix }  ) {
       behavior: "smooth"
     })
   }
-
-  const handleCloseBack = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpenBack(false);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
+//   if (articles.length === 0){
+//     articles.push({title: "No Results", date: formatDate(d), outlet:''});
+//     setArticles(articles);
+//   }
 
 
   return (
@@ -189,9 +190,10 @@ function AltFeed ( { title, affix }  ) {
       >
         <Grid container spacing={1} sx={{justifyContent: 'center'}}>
       {articles.map((article) => (
-          <Art
+          <NoImgArt
             key={Math.floor(Math.random() * 990000000000)}
             article={article}
+            forceRerender={forceRerender}
           />
         ))}
         </Grid>
