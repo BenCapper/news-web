@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
 import "./feed.css";
-import { styled } from '@mui/material/styles';
 import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
 import { compare, getDate, splitArray } from "../../util";
-import { Button, ButtonGroup, FormControl, Grid, LinearProgress, TextField } from "@mui/material";
+import { Button, ButtonGroup, Grid, LinearProgress, TextField } from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { filterByTitle } from "../../util";
 import { getArraySegment } from "../../util";
@@ -18,6 +17,7 @@ import Art from "../Art";
 import ThemeContext from "../../contexts/themeContext";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { formatDate } from '../../util';
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -82,7 +82,7 @@ function Feed ( { title }  ) {
     }
 
     if (filtered.length === 0){
-      let empty = [{title: "No Results", date: d, outlet:''}]
+      let empty = [{title: "No Results", date: formatDate(d), outlet:''}]
       setArticles(empty);
     }
     else {
