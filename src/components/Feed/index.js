@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
 import "./feed.css";
-import { styled } from '@mui/material/styles';
 import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
 import { compare, getDate, splitArray } from "../../util";
-import { Button, ButtonGroup, FormControl, Grid, LinearProgress, TextField } from "@mui/material";
+import { Button, ButtonGroup, Grid, LinearProgress, TextField } from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { filterByTitle } from "../../util";
 import { getArraySegment } from "../../util";
@@ -16,8 +15,14 @@ import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeft
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import Art from "../Art";
 import ThemeContext from "../../contexts/themeContext";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import { formatDate } from '../../util';
 
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function Feed ( { title }  ) {
   const [count, setCount] = useState(0);
@@ -28,6 +33,8 @@ function Feed ( { title }  ) {
   const [pageNumber, setPageNumber] = useState(0);
   const [articles, setArticles] = useState([]);
   const [more, setMore] = useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [openBack, setOpenBack] = React.useState(false);
 
   const articleTitles = [];
   const newList = [];
@@ -75,7 +82,7 @@ function Feed ( { title }  ) {
     }
 
     if (filtered.length === 0){
-      let empty = [{title: "No Results", date: d, outlet:''}]
+      let empty = [{title: "No Results", date: formatDate(d), outlet:''}]
       setArticles(empty);
     }
     else {
@@ -107,7 +114,7 @@ function Feed ( { title }  ) {
       setArticles(segment);
     }
     else {
-      //Snack Error?
+      setOpenBack(true);
     }
 
   }
@@ -119,7 +126,7 @@ function Feed ( { title }  ) {
       setArticles(segment);
     }
     else {
-      //Snack Error?
+      setOpen(true);
     }
   }
 
@@ -130,6 +137,22 @@ function Feed ( { title }  ) {
       behavior: "smooth"
     })
   }
+
+  const handleCloseBack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenBack(false);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
 
   return (
@@ -194,6 +217,16 @@ function Feed ( { title }  ) {
       </InfiniteScroll>
 
       </div>
+      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="error" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
+        Already on Todays News
+      </Alert>
+      </Snackbar>
+      <Snackbar open={openBack} autoHideDuration={4000} onClose={handleCloseBack}>
+      <Alert onClose={handleCloseBack} severity="error" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
+        Cannot Navigate any Further
+      </Alert>
+      </Snackbar>
     </>
   );
 }

@@ -6,17 +6,20 @@ const theme = {
       primary: "#E8C034",
       secondary: "#7FDBFF",
       tertiary: "#39CCCC",
-      white: "#FFFFFF"
+      white: "#FFFFFF",
+      card: '#000000',
+      snackbg: '#FFFFFF',
+      snack: '#000000'
     },
     header: {
-      backgroundColor: '#FFF',
-      opacity: .92,
+      backgroundColor: '#FFFFFF',
+      opacity: .94,
     },
     bgIcon: {
       icon: '#000',
     },
     infinite: {
-      backgroundColor: 'rgb(156, 156, 156,.2)',
+      backgroundColor: '#E6E6E6',
     },
     styles: {
         root: {
@@ -88,15 +91,15 @@ const theme = {
         button: {
             [`&.${menuClasses.active}`]: {
               backgroundColor: '#fff',
-              color: '#f1c735',
+              color: '#e8c034',
               fontWeight: 600,
             },
             [`&.${menuClasses.disabled}`]: {
               color: '#f1c735',
             },
             '&:hover': {
-              backgroundColor: '#faf8e4',
-              color: '#f1c735',
+              backgroundColor: '#FFFFFF',
+              color: '#e8c034',
             },
           },
         label: ({ open }) => ({
@@ -135,7 +138,7 @@ const theme = {
     sx: {
         ml: '1em', 
         height: '2.5em',
-        backgroundColor: "#fff"
+        backgroundColor: "#FFFFFF"
     }
   },
   card: {

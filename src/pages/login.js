@@ -9,8 +9,8 @@ const Login = ({setTheme}) => {
 
 
   useEffect(() => {
-    const found = localStorage.getItem("theme");
-    if (found === 'dark') {
+    const localTheme = window.localStorage.getItem('theme');
+    if (localTheme === 'dark') {
       setTheme(darktheme);
     }
     else {

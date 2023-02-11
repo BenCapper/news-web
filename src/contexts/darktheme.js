@@ -6,17 +6,21 @@ const darktheme = {
       primary: "#E8C034",
       secondary: "#7FDBFF",
       tertiary: "#39CCCC",
-      white: "#000000"
+      white: "#14171A",
+      card: '#B0BEC5',
+      hover: 'rgb(232, 192, 52, 1)',
+      snackbg: '#1A2D3B',
+      snack: '#E8C034'
     },
     bgIcon: {
         icon: '#e8c034',
     },
     header: {
-        backgroundColor: '#000000',
+        backgroundColor: '#14171A',
         color: '#e8c034',
     },
     infinite: {
-        backgroundColor: 'rgba(0, 0, 0, .84)',
+        backgroundColor: '#1A2D3B',
     },
     styles: {
         root: {
@@ -89,9 +93,9 @@ const darktheme = {
           backgroundColor: '#fff',
         },
         button: {
-            color: 'rgb(232, 192, 52, .5)',
+            color: 'rgb(232, 192, 52, .60)',
             [`&.${menuClasses.active}`]: {
-              backgroundColor: '#000',
+              backgroundColor: '#14171A',
               color: 'rgb(232, 192, 52, 1)',
               fontWeight: 600,
             },
@@ -99,8 +103,8 @@ const darktheme = {
               color: '#f1c735',
             },
             '&:hover': {
-              backgroundColor: 'rgb(232, 192, 52, .5)',
-              color: '#000 !important',
+              backgroundColor: '#14171A',
+              color: 'rgb(232, 192, 52, 1)',
             },
           },
         label: ({ open }) => ({
@@ -142,13 +146,14 @@ const darktheme = {
     sx: {
         ml: '1em', 
         height: '2.5em',
-        backgroundColor: "#000"
+        backgroundColor: "#14171A"
     }
   },
   card: {
     maxWidth: 300,
     minHeight: '250px',
-    backgroundColor: '#ededed',
+    backgroundColor: '#14171A',
+    color: '#B0BEC5',
     margin: '10px',
     borderRadius: '10px',
     boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, .15)'

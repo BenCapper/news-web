@@ -17,6 +17,8 @@ import header from '../../assets/header.png'
 import ThemeContext from "../../contexts/themeContext";
 import darktheme from '../../contexts/darktheme';
 import lighttheme from '../../contexts/theme';
+import { set,ref, } from "firebase/database";
+import { db } from "../../firebase-config";
 
 
 const ProSidebar = ({setTheme}) => {
@@ -29,9 +31,25 @@ const ProSidebar = ({setTheme}) => {
     const handleTheme = () => {
       if (themes === lighttheme){
         setTheme(darktheme);
+        window.localStorage.setItem('theme', 'dark');
+        if (context.user !== ''){
+          set(ref(db, 'user-theme/' + context.user.uid), {
+            theme: 'dark'
+          });
+          console.log("Set Dark Theme");
+        }
+
       }
       else{
         setTheme(lighttheme);
+        window.localStorage.setItem('theme', 'light');
+        if (context.user !== ''){
+          set(ref(db, 'user-theme/' + context.user.uid), {
+            theme: 'light'
+          });
+          console.log("Set Light Theme");
+        }
+
       }
     };
 

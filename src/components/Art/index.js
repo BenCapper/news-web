@@ -22,6 +22,8 @@ import { getDatabase, ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
   
   
   const StyledCardMedia = styled(CardMedia)({
@@ -48,7 +50,10 @@ import ThemeContext from "../../contexts/themeContext";
     }
   `;
 
-  
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
   export default function Art({article}) {
     const context = useContext(AuthContext);
     const [title, setTitle] = useState(article.title);
@@ -60,6 +65,9 @@ import ThemeContext from "../../contexts/themeContext";
     const [icon, setIcon] = useState('')
     const navigate = useNavigate();
     const theme = useContext(ThemeContext);
+    const [open, setOpen] = React.useState(false);
+    const [openSave, setOpenSave] = React.useState(false);
+    const [openSaveConfirm, setOpenSaveConfirm] = React.useState(false);
 
     useEffect(() => {
 
@@ -93,8 +101,10 @@ import ThemeContext from "../../contexts/themeContext";
       },[article.title, article.date, article.outlet, title, outlet, img]); 
     
     const shareClick = () => {
-
-      console.log("Share")
+      navigator.clipboard.writeText(article.link);
+      if (openSave) setOpenSave(false);
+      if (openSaveConfirm) setOpenSaveConfirm(false);
+      setOpen(true);
     }
 
     const saveClick = () => {
@@ -108,11 +118,14 @@ import ThemeContext from "../../contexts/themeContext";
           storage_link: article.storage_link,
           title: article.title
         });
-        console.log("Save")
+        if (open) setOpen(false);
+        if (openSave) setOpenSave(false);
+        setOpenSaveConfirm(true);
       }
       else {
-        navigate("/login");
-        console.log("Wont Save")
+        if (open) setOpen(false);
+        if (openSaveConfirm) setOpenSaveConfirm(false);
+        setOpenSave(true);
       }
     }
 
@@ -128,13 +141,34 @@ import ThemeContext from "../../contexts/themeContext";
           title: article.title
         });
       }
-      else {
-        console.log("Wont Save View History")
-      }
     }
 
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpen(false);
+    };
+
+    const handleCloseSave = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpenSave(false);
+    };
+
+    const handleCloseSaveConfirm = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpenSaveConfirm(false);
+    };
 
     return (
+      <>
       <Card sx={theme.card}>
         <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link} >
           <StyledCardMedia
@@ -163,17 +197,18 @@ import ThemeContext from "../../contexts/themeContext";
               </Grid>
               <Grid item sx={{mt:'1em'}}>
               <ExternalLink onClick={() => articleClick()} href={article.link}>
-              <Typography variant="body2" align="left" sx={{fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px' }}>
+              <Typography variant="body2" align="left" sx={{color: theme.colors.card,fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px','&:hover': {cursor: 'pointer',color: theme.colors.primary} }}>
                 {title}
               </Typography>
               </ExternalLink>
               </Grid>
               <Grid item>
-                <Typography variant="body2" align="left" sx={{ fontStyle: 'italic', mt: '1em'}}>
                 <ExternalLink href={"//" + outlet}>
+                <Typography variant="body2" align="left" sx={{color: theme.colors.card, fontStyle: 'italic', mt: '1em','&:hover': {cursor: 'pointer',color: theme.colors.primary}}}>
                   {outlet}
-                </ExternalLink>
                 </Typography>
+                </ExternalLink>
+                
               </Grid>
             </Grid>
             <Grid container direction="row" justify="flex-end" alignItems="center" sx={{ marginTop: '1em' }}>
@@ -189,5 +224,21 @@ import ThemeContext from "../../contexts/themeContext";
             </Grid>
         </CardContent>
       </Card>
+      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="success" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
+        Link copied to clipboard
+      </Alert>
+      </Snackbar>
+      <Snackbar open={openSave} autoHideDuration={4000} onClose={handleCloseSave}>
+      <Alert onClose={handleCloseSave} severity="error" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
+        Log in to Save Articles
+      </Alert>
+      </Snackbar>
+      <Snackbar open={openSaveConfirm} autoHideDuration={4000} onClose={handleCloseSaveConfirm}>
+      <Alert onClose={handleCloseSaveConfirm} severity="success" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
+        Article Saved Successfully
+      </Alert>
+      </Snackbar>
+      </>
     );
   }
