@@ -22,28 +22,10 @@ import { getDatabase, ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
+
   
   
-  const StyledShareIcon = styled(ShareOutlinedIcon)`
-  &:hover {
-    color: #e8c034;
-  }
-  `;
-
-  const StyledDeleteIcon = styled(DeleteOutlineOutlinedIcon)`
-  &:hover {
-    color: #e8c034;
-  }
-`;
-
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
-
-  export default function Art({article, forceRerender}) {
+  export default function EmptyArt({article, forceRerender}) {
     const context = useContext(AuthContext);
     const [title, setTitle] = useState(article.title);
     const [outlet, setOutlet] = useState(article.outlet);
@@ -55,9 +37,8 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
     const navigate = useNavigate();
     const theme = useContext(ThemeContext);
     const db = getDatabase();
+    const likeref = ref(db, 'user-likes/' + context.user.uid + '/' + article.title);
 
-    const [open, setOpen] = React.useState(false);
-    const [openRemove, setOpenRemove] = React.useState(false);
 
     useEffect(() => {
 
@@ -90,49 +71,6 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
       }
       },[article.title, article.date, article.outlet, title, outlet, img]); 
     
-    const shareClick = () => {
-      navigator.clipboard.writeText(article.link);
-      if (openRemove) setOpenRemove(false);
-      setOpen(true);
-    }
-
-    const deleteClick = () => {
-      if (context.user !== ''){
-        if (open) setOpen(false);
-        setOpenRemove(true);
-        forceRerender(article);
-      }
-    }
-
-    const articleClick = () => {
-      if (context.user !== ''){
-        const db = getDatabase();
-        set(ref(db, 'user-history/' + context.user.uid + '/' + article.title), {
-          date: article.date,
-          link: article.link,
-          order: article.order,
-          outlet: article.outlet,
-          storage_link: article.storage_link,
-          title: article.title
-        });
-      }
-    }
-
-    const handleClose = (event, reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-  
-      setOpen(false);
-    };
-
-    const handleCloseRemove = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-    
-        setOpenRemove(false);
-      };
 
 
     return (
@@ -143,7 +81,7 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
               <Grid item>
                 <Grid container>
                   <Grid item>
-                  <ExternalLink onClick={() => articleClick()} href={article.link}>
+                  <ExternalLink href={article.link}>
                     <Avatar src={icon} sx={theme.avatar}/>
                   </ExternalLink>
                   </Grid>
@@ -157,7 +95,7 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
                 </Grid>
               </Grid>
               <Grid item sx={{mt:'1em'}}>
-              <ExternalLink onClick={() => articleClick()} href={article.link}>
+              <ExternalLink href={article.link}>
               <Typography variant="body2" align="left" sx={{color: theme.colors.card,fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px','&:hover': {cursor: 'pointer',color: theme.colors.primary} }}>
                 {title}
               </Typography>
@@ -172,29 +110,8 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
                 
               </Grid>
             </Grid>
-            <Grid container direction="row" justify="flex-end" alignItems="center" sx={{ marginTop: '1em'}}>
-                <Grid item>
-                <img src={region} width="20" height="20" alt="icon" />
-                </Grid>
-                <Grid item sx={{cursor: 'pointer', marginLeft: '1em' }}>
-                  <StyledShareIcon fontSize="small"  onClick={() => shareClick()}/>
-                </Grid>
-                <Grid item sx={{cursor: 'pointer', marginLeft: '1em' }}>
-                  <StyledDeleteIcon fontSize="medium" onClick={() => deleteClick()}/>
-                </Grid>
-            </Grid>
         </CardContent>
       </Card>
-      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="success" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
-        Link copied to clipboard
-      </Alert>
-      </Snackbar>
-      <Snackbar open={openRemove} autoHideDuration={4000} onClose={handleCloseRemove}>
-      <Alert onClose={handleCloseRemove} severity="success" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
-        Article Removed from Saved Articles
-      </Alert>
-      </Snackbar>
       </>
     );
   }

@@ -1,4 +1,4 @@
-import React, {useContext,useEffect} from 'react';
+import React, {useContext,useEffect, useState} from 'react';
 import ProSidebar from '../components/ProSidebar';
 import "../App.css";
 import AltFeed from '../components/AltFeed';
@@ -13,9 +13,12 @@ function Saved({ setTheme }) {
   const theme = useContext(ThemeContext);
   const context = useContext(AuthContext);
   const db = getDatabase();
+  const [articles, setArticles] = useState([]);
+  let arts = [];
 
   useEffect(() => {
     if (context.user !== ''){
+      // Get theme from DB
       const userId = context.user.uid;
       onValue(ref(db, 'user-theme/' + userId), (snapshot) => {
         const found = (snapshot.val() && snapshot.val());
@@ -30,6 +33,16 @@ function Saved({ setTheme }) {
       }, {
         onlyOnce: true
       });
+
+    // Get Articles from DB
+    onValue(ref(db, `/user-likes/${context.user.uid}`), (snapshot) => {
+      const foundArticle = (snapshot.val() && snapshot.val());
+      if(foundArticle !== null) arts = Object.values(foundArticle);
+      if (arts.length > articles.length || arts.length < articles.length) setArticles(arts);
+    }, {
+      onlyOnce: true
+    });
+      
     }
     else{
       const localTheme = localStorage.getItem('theme');
@@ -42,6 +55,9 @@ function Saved({ setTheme }) {
     }
   });
 
+
+
+  console.log(articles)
   return (
     <>
     <div style={{backgroundColor:theme.colors.white}}>
@@ -49,7 +65,7 @@ function Saved({ setTheme }) {
     <ProSidebar setTheme={setTheme}/>
     <div>
     <div className='feed'>
-    <AltFeed title={"Saved"} affix={"likes"}/>
+    <AltFeed title={"Saved"} articles={articles} affix={"likes"} setArticles={setArticles}/>
     </div>
     </div>
     <div className='right'>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./altFeed.css";
 import { db } from "../../firebase-config";
 import { getDatabase, ref, remove, set } from "firebase/database";
@@ -19,110 +19,51 @@ import { formatDate } from '../../util';
 import { AuthContext } from "../../contexts/authContext";
 
 
-function AltFeed ( { title, affix }  ) {
+function AltFeed ( { title, articles, affix, setArticles}  ) {
   const [count, setCount] = useState(0);
   const context = useContext(AuthContext);
-  const uid = context.user.uid;
   const d = getDate(count);
-  const dbRef = ref(db, `user-${affix}/${uid}`);
-  const arts = useDatabaseValue([`user-${affix}/${uid}`], dbRef);
   const theme = useContext(ThemeContext);
-  const [pageNumber, setPageNumber] = useState(0);
-  const [articles, setArticles] = useState([]);
-  const [more, setMore] = useState(true);
   const [refresh, setState] = useState(0);
-
-  const articleTitles = [];
-  const newList = [];
-  let splitArr = [];
-  let firstSegment = [];
 
   const [values, setValues] = React.useState({
     searched: '',
   });
 
-
-  if (arts.isLoading) {
-    return (
-        <Loader
-          title={title}
-          />
-    );
-  }
-
-
-
-  for (let a in arts.data) {
-    articleTitles.push(a);
-    newList.push(arts.data[a]);
-    newList.sort(compare).reverse();
-  }
-  splitArr = splitArray(newList);
-  firstSegment = splitArr[pageNumber];
-
-  if (articles.length == 0){
-    setArticles(firstSegment);
-  }
-
-  sortByDate(articles);
+  
+  console.log(articles)
 
   const forceRerender = (article) => {
-    console.log(`user-${affix}/${context.user.uid}/${article.title}`)
     const index = articles.indexOf(article);
     if (index > -1) { // only splice array when item is found
       articles.splice(index, 1); // 2nd parameter means remove one item only
     }
     set(ref(db,`/user-${affix}/${context.user.uid}/${article.title}`),{
     }).then(() => {
-        console.log(articles)
-        setState(refresh + 1)
-        setArticles(articles);
     })
     .catch((error) => {
     });
-    if (articles.length === 0){
-        articles.push({title: "No Results", date: formatDate(d), outlet:''});
-        setArticles(articles);
+    if (articles.length > 0){
+      setState(refresh + 1)
+    }
+    if (articles.length == 0){
+      setState(refresh + 1)
     }
   };
   
   const handleFilterChange = (prop) => (event) => {
     let searchQuery = ''
-    let filtered = [];
     setValues({ ...values, [prop]: event.target.value });
     searchQuery = searchQuery + event.target.value
-    filtered = filterByTitle(newList, searchQuery);
-    if( searchQuery === ''){
-      setMore(true)
-    }
-    if (searchQuery !== ''){
-      setMore(false)
-    }
-
-    if (filtered.length === 0){
-      let empty = [{title: "No Results", date: formatDate(d), outlet:''}]
-      setArticles(empty);
-    }
-    else {
-      setArticles(filtered);
-    }
+    let filtered = filterByTitle(articles, searchQuery);
+    setArticles(filtered);
   }
 
   const shuffleArticles = () => {
     let shuffled = articles.slice().sort(() => Math.random() - 0.5);
     setArticles(shuffled);
+    
   }
-
-  function next(){
-    if (articles.length === newList.length) return
-    else{
-      let next = getArraySegment(pageNumber, newList);
-      setArticles(next);
-      setPageNumber(pageNumber + 1);
-    }
-
-  }
-
 
   function scrollTop(){
     window.scrollTo({
@@ -131,17 +72,12 @@ function AltFeed ( { title, affix }  ) {
       behavior: "smooth"
     })
   }
-//   if (articles.length === 0){
-//     articles.push({title: "No Results", date: formatDate(d), outlet:''});
-//     setArticles(articles);
-//   }
-
 
   return (
     <>
     <div className="header" style={theme.header}>
       <div className="spans">
-        <span className="left" >{title}</span><span className="right" style={theme.right}> {newList.length} Articles</span>
+        <span className="left" >{title}</span><span className="right" style={theme.right}> {articles.length} Articles</span>
       </div>
   <div className="filter-group">
 
@@ -176,18 +112,6 @@ function AltFeed ( { title, affix }  ) {
       </div>
 
     <div className="infinite" style={theme.infinite}>
-    <InfiniteScroll
-      dataLength={pageNumber + 1} //This is important field to render the next data
-      next={() => next()}
-      hasMore={more}
-      loader={
-        <>
-        <div className="load">
-          <LinearProgress/>
-        </div>
-        </>
-      }
-      >
         <Grid container spacing={1} sx={{justifyContent: 'center'}}>
       {articles.map((article) => (
           <NoImgArt
@@ -197,7 +121,6 @@ function AltFeed ( { title, affix }  ) {
           />
         ))}
         </Grid>
-      </InfiniteScroll>
 
       </div>
     </>
