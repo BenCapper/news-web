@@ -67,9 +67,7 @@ function Saved({ setTheme }) {
     <AltFeed title={"Saved"} articles={articles} affix={"likes"} setArticles={setArticles}/>
     </div>
     </div>
-    <div className='right'>
     <RightProsidebar/>
-    </div>
     </div>
     </div>
     </>

@@ -118,7 +118,7 @@ function AltFeed ( { title, articles, affix, setArticles}  ) {
       </div>
 
     <div className="infinite" style={theme.infinite}>
-        <Grid container spacing={1} sx={{justifyContent: 'center'}}>
+        <Grid container spacing={1} sx={{justifyContent: 'center', width: '100%'}}>
       {(filtered.length > 0 ? filtered : articles).map((article) => (
           <NoImgArt
             key={Math.floor(Math.random() * 990000000000)}

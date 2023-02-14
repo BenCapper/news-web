@@ -66,9 +66,7 @@ function History({setTheme}) {
     <AltFeed title={"View History"} articles={articles} affix={"history"} setArticles={setArticles}/>
     </div>
     </div>
-    <div className='right'>
     <RightProsidebar/>
-    </div>
     </div>
     </div>
     </>
