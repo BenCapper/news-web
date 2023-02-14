@@ -30,8 +30,7 @@ function AltFeed ( { title, articles, affix, setArticles}  ) {
     searched: '',
   });
 
-  
-  console.log(articles)
+  sortByDate(articles);
 
   const forceRerender = (article) => {
     const index = articles.indexOf(article);
@@ -79,7 +78,7 @@ function AltFeed ( { title, articles, affix, setArticles}  ) {
       behavior: "smooth"
     })
   }
-  console.log(filtered);
+
   return (
     <>
     <div className="header" style={theme.header}>
