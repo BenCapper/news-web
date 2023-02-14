@@ -55,13 +55,14 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
     const navigate = useNavigate();
     const theme = useContext(ThemeContext);
     const db = getDatabase();
-
+    const [empty, setEmpty] = useState(false);
     const [open, setOpen] = React.useState(false);
     const [openRemove, setOpenRemove] = React.useState(false);
 
     useEffect(() => {
 
       if (article.title !== 'No Results'){
+        setEmpty(false);
         setTitle(deFormatTitle(title));
         setIcon(_.get(icons, outlet, null));
         setDate(formatDate(article.date))
@@ -87,6 +88,7 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
       else{
         setIcon(logo);
         setRegion(iei);
+        setEmpty(true);
       }
       },[article.title, article.date, article.outlet, title, outlet, img]); 
     
@@ -177,10 +179,10 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
                 <img src={region} width="20" height="20" alt="icon" />
                 </Grid>
                 <Grid item sx={{cursor: 'pointer', marginLeft: '1em' }}>
-                  <StyledShareIcon fontSize="small"  onClick={() => shareClick()}/>
+                  {empty ? null : <StyledShareIcon fontSize="medium" onClick={() => shareClick()}/>}
                 </Grid>
                 <Grid item sx={{cursor: 'pointer', marginLeft: '1em' }}>
-                  <StyledDeleteIcon fontSize="medium" onClick={() => deleteClick()}/>
+                  {empty ? null : <StyledDeleteIcon fontSize="medium" onClick={() => deleteClick()}/>}
                 </Grid>
             </Grid>
         </CardContent>

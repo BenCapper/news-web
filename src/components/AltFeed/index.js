@@ -25,7 +25,7 @@ function AltFeed ( { title, articles, affix, setArticles}  ) {
   const d = getDate(count);
   const theme = useContext(ThemeContext);
   const [refresh, setState] = useState(0);
-
+  const [filtered, setFiltered] = useState([]);
   const [values, setValues] = React.useState({
     searched: '',
   });
@@ -53,10 +53,17 @@ function AltFeed ( { title, articles, affix, setArticles}  ) {
   
   const handleFilterChange = (prop) => (event) => {
     let searchQuery = ''
+    let filter = [];
     setValues({ ...values, [prop]: event.target.value });
     searchQuery = searchQuery + event.target.value
-    let filtered = filterByTitle(articles, searchQuery);
-    setArticles(filtered);
+    filter = filterByTitle(articles, searchQuery);
+    if (filter.length === 0){
+      let empty = [{title: "No Results", date: formatDate(d), outlet:'', link:'https://play.google.com/store/apps/details?id=org.ben.news'}]
+      setFiltered(empty);
+    }
+    else {
+      setFiltered(filter);
+    }
   }
 
   const shuffleArticles = () => {
@@ -72,7 +79,7 @@ function AltFeed ( { title, articles, affix, setArticles}  ) {
       behavior: "smooth"
     })
   }
-
+  console.log(filtered);
   return (
     <>
     <div className="header" style={theme.header}>
@@ -113,7 +120,7 @@ function AltFeed ( { title, articles, affix, setArticles}  ) {
 
     <div className="infinite" style={theme.infinite}>
         <Grid container spacing={1} sx={{justifyContent: 'center'}}>
-      {articles.map((article) => (
+      {(filtered.length > 0 ? filtered : articles).map((article) => (
           <NoImgArt
             key={Math.floor(Math.random() * 990000000000)}
             article={article}
