@@ -57,7 +57,6 @@ function Saved({ setTheme }) {
 
 
 
-  console.log(articles)
   return (
     <>
     <div style={{backgroundColor:theme.colors.white}}>
