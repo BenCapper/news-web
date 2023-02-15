@@ -41,8 +41,8 @@ const App = () => {
               <Route path="/right" element={<Right />} />
               <Route path="/bothsides" element={<Both />} />
               <Route element={<ProtectedRoutes />}>
-                <Route path="/saved" element={<Saved />} />
-                <Route path="/history" element={<History />} />
+                <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
+                <Route path="/history" element={<History setTheme={setTheme} />} />
               </Route>
             </Routes>
       </ProSidebarProvider>

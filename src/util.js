@@ -71,3 +71,11 @@ export function formatDate(date) {
   const year = "20" + dateArr[2];
   return `${month} ${day}, ${year}`;
 }
+
+export function sortByDate(array) {
+  return array.sort(function(a, b) {
+    var dateA = new Date(a.date);
+    var dateB = new Date(b.date);
+    return dateB - dateA;
+  });
+}
