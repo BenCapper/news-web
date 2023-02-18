@@ -240,7 +240,7 @@ import MuiAlert from '@mui/material/Alert';
 
     return (
       <>
-    <Card variant="outlined" sx={{mt: '1em', ml: '1em', backgroundColor: '#B0BEC5'}}>
+    <Card variant="outlined" sx={{mt: '1em', ml: '1em', backgroundColor: 'rgb(	176, 190, 197, .1)'}}>
         <Grid container direction="row">
       <Card sx={theme.card}>
         <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link} >
