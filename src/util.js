@@ -79,3 +79,11 @@ export function sortByDate(array) {
     return dateB - dateA;
   });
 }
+
+export function scrollTop(){
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth"
+  })
+}

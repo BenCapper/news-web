@@ -8,6 +8,7 @@ import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import RightProsidebar from '../components/RightProsidebar';
+import { scrollTop } from '../util';
 
 function Sky({setTheme}) {
   const theme = useContext(ThemeContext);
@@ -15,6 +16,7 @@ function Sky({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;
       onValue(ref(db, 'user-theme/' + userId), (snapshot) => {
