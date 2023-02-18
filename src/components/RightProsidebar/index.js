@@ -37,7 +37,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Revolver News" src={icon['rev']} />} component={<Link to="/revolver" />}> </MenuItem>
           <MenuItem icon={<img className="image" alt="Bongino Report" src={icon['bong']} />} component={<Link to="/bongino" />}> </MenuItem>
           <MenuItem icon={<img className="image" alt="Trending Politics" src={icon['trend']} />} component={<Link to="/trendingpolitics" />}>  </MenuItem>
-          <MenuItem icon={<img className="image" alt="The Daily Caller" src={icon['call']} />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="The Daily Caller" src={icon['call']} />} component={<Link to="/dailycaller" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="American Thinker" src={icon['think']} />}></MenuItem>
           <MenuItem icon={<img className="image" alt="The Gateway Pundit" src={icon['gwp']} />}></MenuItem>
           <MenuItem icon={<img className="image" alt="The Post Millennial" src={icon['pmill']} />}></MenuItem>
@@ -77,7 +77,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Revolver News" src={icon['rev']} />} active={window.location.pathname === "/revolver"} component={<Link to="/revolver" />}> Revolver News </MenuItem>
           <MenuItem icon={<img className="image" alt="Bongino Report" src={icon['bong']} />} active={window.location.pathname === "/bongino"} component={<Link to="/bongino" />}> Bongino Report </MenuItem>
           <MenuItem icon={<img className="image" alt="Trending Politics" src={icon['trend']} />} active={window.location.pathname === "/trendingpolitics"} component={<Link to="/trendingpolitics" />}> Trending Politics </MenuItem>
-          <MenuItem icon={<img className="image" alt="The Daily Caller" src={icon['call']} />} component={<Link to="/history" />}> The Daily Caller </MenuItem>
+          <MenuItem icon={<img className="image" alt="The Daily Caller" src={icon['call']} />} active={window.location.pathname === "/dailycaller"} component={<Link to="/dailycaller" />}> The Daily Caller </MenuItem>
           <MenuItem icon={<img className="image" alt="American Thinker" src={icon['think']} />} component={<Link to="/left" />}> American Thinker </MenuItem>
           <MenuItem icon={<img className="image" alt="The Gateway Pundit" src={icon['gwp']} />} component={<Link to="/right" />}> The Gateway Pundit </MenuItem>
           <MenuItem icon={<img className="image" alt="The Post Millennial" src={icon['pmill']} />} component={<Link to="/bothsides" />}> The Post Millennial </MenuItem>
