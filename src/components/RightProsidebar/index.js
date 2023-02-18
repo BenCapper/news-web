@@ -44,7 +44,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Euronews" src={icon['euro']} />} component={<Link to="/euronews" />}>  </MenuItem>
           <MenuItem icon={<img className="image" alt="ABC" src={icon['abc']} />} component={<Link to="/abc" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="CBS" src={icon['cbs']} />} component={<Link to="/cbs" />}></MenuItem>
-          <MenuItem icon={<img className="image" alt="NPR" src={icon['npr']} />} component={<Link to="/left" />}> </MenuItem>
+          <MenuItem icon={<img className="image" alt="NPR" src={icon['npr']} />} component={<Link to="/npr" />}> </MenuItem>
           <MenuItem icon={<img className="image" alt="Vox" src={icon['vox']} />} component={<Link to="/right" />}> </MenuItem>
           <MenuItem icon={<img className="image" alt="Politico" src={icon['pol']} />} component={<Link to="/bothsides" />}>  </MenuItem>
           <MenuItem icon={<img className="image" alt="The Hill" src={icon['hill']} />}></MenuItem>
@@ -84,7 +84,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Euronews"  src={icon['euro']} />} active={window.location.pathname === "/euronews"} component={<Link to="/euronews" />}> Euronews </MenuItem>
           <MenuItem icon={<img className="image" alt="ABC"  src={icon['abc']} />} active={window.location.pathname === "/abc"}  component={<Link to="/abc" />}> ABC </MenuItem>
           <MenuItem icon={<img className="image" alt="CBS" src={icon['cbs']} />} active={window.location.pathname === "/cbs"}  component={<Link to="/cbs" />}> CBS </MenuItem>
-          <MenuItem icon={<img className="image" alt="NPR" src={icon['npr']} />}> NPR </MenuItem>
+          <MenuItem icon={<img className="image" alt="NPR" src={icon['npr']} />} active={window.location.pathname === "/npr"}  component={<Link to="/npr" />}> NPR </MenuItem>
           <MenuItem icon={<img className="image" alt="Vox" src={icon['vox']} />}> Vox </MenuItem>
           <MenuItem icon={<img className="image" alt="Politico" src={icon['pol']} />}> Politico </MenuItem>
           <MenuItem icon={<img className="image" alt="The Hill" src={icon['hill']} />}> The Hill </MenuItem>

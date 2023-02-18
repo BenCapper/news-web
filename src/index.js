@@ -36,6 +36,7 @@ import Gwp from './pages/gateway';
 import PostMill from './pages/postmill';
 import Euronews from './pages/euronews';
 import Cbs from './pages/cbs';
+import Npr from './pages/npr';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -82,6 +83,7 @@ const App = () => {
               <Route path="/postmillennial" element={<PostMill setTheme={setTheme}/>} />
               <Route path="/euronews" element={<Euronews setTheme={setTheme}/>} />
               <Route path="/cbs" element={<Cbs setTheme={setTheme}/>} />
+              <Route path="/npr" element={<Npr setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
