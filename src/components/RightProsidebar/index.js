@@ -25,7 +25,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Rte" src={icon['rte']} />} component={<Link to="/rte" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="Spiked-Online" src={icon['spiked']} />} component={<Link to="/spiked" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="GB News" src={icon['gbn']} />} component={<Link to="/gbnews" />}> </MenuItem>
-          <MenuItem icon={<img className="image" alt="Sky News" src={icon['sky']} />} component={<Link to="/right" />}> </MenuItem>
+          <MenuItem icon={<img className="image" alt="Sky News" src={icon['sky']} />} component={<Link to="/sky" />}> </MenuItem>
           <MenuItem icon={<img className="image" alt="The Guardian" src={icon['guard']} />} component={<Link to="/bothsides" />}>  </MenuItem>
           <MenuItem icon={<img className="image" alt="The Daily Mail" src={icon['dmail']} />}></MenuItem>
           <MenuItem icon={<img className="image" alt="Daily Sceptic" src={icon['sceptic']} />}></MenuItem>
@@ -65,7 +65,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Rte" src={icon['rte']} />} active={window.location.pathname === "/rte"} component={<Link to="/rte" />}> RTE </MenuItem>
           <MenuItem icon={<img className="image" alt="Spiked-Online" src={icon['spiked']} />} active={window.location.pathname === "/spiked"} component={<Link to="/spiked" />}> Spiked-Online </MenuItem>
           <MenuItem icon={<img className="image" alt="GB News" src={icon['gbn']} />} active={window.location.pathname === "/gbnews"} component={<Link to="/gbnews" />}> GB News </MenuItem>
-          <MenuItem icon={<img className="image" alt="Sky News" src={icon['sky']} />} component={<Link to="/saved" />}> Sky News </MenuItem>
+          <MenuItem icon={<img className="image" alt="Sky News" src={icon['sky']} />} active={window.location.pathname === "/sky"} component={<Link to="/sky" />}> Sky News </MenuItem>
           <MenuItem icon={<img className="image" alt="The Guardian" src={icon['guard']} />} component={<Link to="/history" />}> The Guardian </MenuItem>
           <MenuItem icon={<img className="image" alt="The Daily Mail" src={icon['dmail']} />} component={<Link to="/left" />}> The Daily Mail </MenuItem>
           <MenuItem icon={<img className="image" alt="Daily Sceptic" src={icon['sceptic']} />} component={<Link to="/left" />}> Daily Sceptic</MenuItem>

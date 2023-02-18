@@ -19,6 +19,7 @@ import Gript from './pages/gript';
 import Rte from './pages/rte';
 import Spiked from './pages/spiked';
 import Gbn from './pages/gbn';
+import Sky from './pages/sky';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +49,7 @@ const App = () => {
               <Route path="/rte" element={<Rte setTheme={setTheme}/>} />
               <Route path="/spiked" element={<Spiked setTheme={setTheme}/>} />
               <Route path="/gbnews" element={<Gbn setTheme={setTheme}/>} />
+              <Route path="/sky" element={<Sky setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
