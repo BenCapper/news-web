@@ -16,6 +16,7 @@ import ProtectedRoutes from './pages/protectedRoutes';
 import themes from './contexts/darktheme';
 import ThemeContext from './contexts/themeContext';
 import Gript from './pages/gript';
+import Rte from './pages/rte';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,6 +43,7 @@ const App = () => {
               <Route path="/right" element={<Right setTheme={setTheme} />} />
               <Route path="/bothsides" element={<Both setTheme={setTheme}/>} />
               <Route path="/gript" element={<Gript setTheme={setTheme}/>} />
+              <Route path="/rte" element={<Rte setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
