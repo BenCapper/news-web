@@ -26,6 +26,7 @@ import Sceptic from './pages/sceptic';
 import Blaze from './pages/blaze';
 import Timcast from './pages/timcast';
 import Breitbart from './pages/breit';
+import Info from './pages/infowars';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -62,6 +63,7 @@ const App = () => {
               <Route path="/blaze" element={<Blaze setTheme={setTheme}/>} />
               <Route path="/timcast" element={<Timcast setTheme={setTheme}/>} />
               <Route path="/breitbart" element={<Breitbart setTheme={setTheme}/>} />
+              <Route path="/infowars" element={<Info setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
