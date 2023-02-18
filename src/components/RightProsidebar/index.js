@@ -46,7 +46,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="CBS" src={icon['cbs']} />} component={<Link to="/cbs" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="NPR" src={icon['npr']} />} component={<Link to="/npr" />}> </MenuItem>
           <MenuItem icon={<img className="image" alt="Vox" src={icon['vox']} />} component={<Link to="/vox" />}> </MenuItem>
-          <MenuItem icon={<img className="image" alt="Politico" src={icon['pol']} />} component={<Link to="/bothsides" />}>  </MenuItem>
+          <MenuItem icon={<img className="image" alt="Politico" src={icon['pol']} />} component={<Link to="/politico" />}>  </MenuItem>
           <MenuItem icon={<img className="image" alt="The Hill" src={icon['hill']} />}></MenuItem>
           <MenuItem icon={<img className="image" alt="Yahoo News" src={icon['yah']} />}></MenuItem>
           <MenuItem icon={<img className="image" alt="The Daily Beast" src={icon['beast']} />}></MenuItem>
@@ -86,7 +86,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="CBS" src={icon['cbs']} />} active={window.location.pathname === "/cbs"}  component={<Link to="/cbs" />}> CBS </MenuItem>
           <MenuItem icon={<img className="image" alt="NPR" src={icon['npr']} />} active={window.location.pathname === "/npr"}  component={<Link to="/npr" />}> NPR </MenuItem>
           <MenuItem icon={<img className="image" alt="Vox" src={icon['vox']} />} active={window.location.pathname === "/vox"}  component={<Link to="/vox" />}> Vox </MenuItem>
-          <MenuItem icon={<img className="image" alt="Politico" src={icon['pol']} />}> Politico </MenuItem>
+          <MenuItem icon={<img className="image" alt="Politico" src={icon['pol']} />} active={window.location.pathname === "/politico"}  component={<Link to="/politico" />}> Politico </MenuItem>
           <MenuItem icon={<img className="image" alt="The Hill" src={icon['hill']} />}> The Hill </MenuItem>
           <MenuItem icon={<img className="image" alt="Yahoo News" src={icon['yah']} />}> Yahoo News </MenuItem>
           <MenuItem icon={<img className="image" alt="The Daily Beast" src={icon['beast']} />}> The Daily Beast </MenuItem>
