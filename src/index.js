@@ -28,6 +28,7 @@ import Timcast from './pages/timcast';
 import Breitbart from './pages/breit';
 import Info from './pages/infowars';
 import Revolver from './pages/revolver';
+import Bongino from './pages/bongino';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -66,6 +67,7 @@ const App = () => {
               <Route path="/breitbart" element={<Breitbart setTheme={setTheme}/>} />
               <Route path="/infowars" element={<Info setTheme={setTheme}/>} />
               <Route path="/revolver" element={<Revolver setTheme={setTheme}/>} />
+              <Route path="/bongino" element={<Bongino setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
