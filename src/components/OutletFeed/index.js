@@ -25,7 +25,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function LeansFeed ( { title, keyword }  ) {
+function OutletFeed ( { title, keyword }  ) {
   const [count, setCount] = useState(0);
   const d = getDate(count);
   const dbRef = ref(db, `stories/${d}`);
@@ -56,13 +56,54 @@ function LeansFeed ( { title, keyword }  ) {
 
 
   for (let a in arts.data) {
-    if (keyword === "left"){
-      if (left.includes(arts.data[a].outlet)) newList.push(arts.data[a]);
-    }
-    else{
-      if (right.includes(arts.data[a].outlet)) newList.push(arts.data[a]);
+    console.log(keyword)
+    console.log(arts.data[a].outlet)
+    if (keyword === arts.data[a].outlet){
+      newList.push(arts.data[a]);
     }
     newList.sort(compare).reverse();
+  }
+  if (newList.length == 0){
+    return (
+        <>
+        <div className="header" style={theme.header}>
+      <div className="spans">
+        <span className="left" >{title}</span><span className="right" style={theme.right}> {newList.length} Articles</span>
+      </div>
+  <div className="filter-group">
+
+      <TextField
+        id="outlined"
+        label="Filter"
+        placeholder={d}
+        size="small"
+        className="textfield"
+        sx={theme.Filter}
+        InputLabelProps={theme.InputLabelProps}
+        value={values.searched}
+      />
+      
+      <ButtonGroup size="small" color='warning' sx={theme.buttonGroup.sx}>
+        <Button sx={{color: theme.bgIcon.icon}}>
+          <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
+        </Button>
+        <Button sx={{color: theme.bgIcon.icon}}>
+          <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
+        </Button>
+        <Button sx={{color: theme.bgIcon.icon}}>
+          <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
+        </Button>
+        <Button sx={{color: theme.bgIcon.icon}}>
+          <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
+      </Button>
+      </ButtonGroup>
+    </div>
+      </div>
+      <div className="infinite" style={theme.infinite}>
+        No Results
+      </div>
+        </>
+    )
   }
   splitArr = splitArray(newList);
   firstSegment = splitArr[pageNumber];
@@ -235,4 +276,4 @@ function LeansFeed ( { title, keyword }  ) {
   );
 }
 
-export default LeansFeed;
+export default OutletFeed;

@@ -21,7 +21,7 @@ const RightProsidebar = () => {
         <Menu menuItemStyles={themes.menuItemStyles}>
 
           <MenuItem disabled></MenuItem>
-          <MenuItem icon={<img className="image" alt="Gript" src={icon['gript']} />} component={<Link to="/" />}>  </MenuItem>
+          <MenuItem icon={<img className="image" alt="Gript" src={icon['gript']} />} component={<Link to="/gript" />}>  </MenuItem>
           <MenuItem icon={<img className="image" alt="Rte" src={icon['rte']} />} component={<Link to="/saved" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="Spiked-Online" src={icon['spiked']} />} component={<Link to="/history" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="GB News" src={icon['gbn']} />} component={<Link to="/left" />}> </MenuItem>
@@ -61,7 +61,7 @@ const RightProsidebar = () => {
         <Menu menuItemStyles={themes.menuItemStyles}>
 
         <MenuItem disabled></MenuItem>
-          <MenuItem icon={<img className="image" alt="Gript"src={icon['gript']} />} active={window.location.pathname === "/"} component={<Link to="/" />}> Gript </MenuItem>
+          <MenuItem icon={<img className="image" alt="Gript"src={icon['gript']} />} active={window.location.pathname === "/gript"} component={<Link to="/gript" />}> Gript </MenuItem>
           <MenuItem icon={<img className="image" alt="Rte" src={icon['rte']} />} component={<Link to="/" />}> RTE </MenuItem>
           <MenuItem icon={<img className="image" alt="Spiked-Online" src={icon['spiked']} />} component={<Link to="/saved" />}> Spiked-Online </MenuItem>
           <MenuItem icon={<img className="image" alt="GB News" src={icon['gbn']} />} component={<Link to="/history" />}> GB News </MenuItem>
