@@ -17,6 +17,7 @@ import themes from './contexts/darktheme';
 import ThemeContext from './contexts/themeContext';
 import Gript from './pages/gript';
 import Rte from './pages/rte';
+import Spiked from './pages/spiked';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +45,7 @@ const App = () => {
               <Route path="/bothsides" element={<Both setTheme={setTheme}/>} />
               <Route path="/gript" element={<Gript setTheme={setTheme}/>} />
               <Route path="/rte" element={<Rte setTheme={setTheme}/>} />
+              <Route path="/spiked" element={<Spiked setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
