@@ -128,22 +128,29 @@ import MuiAlert from '@mui/material/Alert';
       },[article.title, article.date, article.outlet, title, outlet, img]); 
     
     const shareClick = () => {
-      navigator.clipboard.writeText(article.link);
+      navigator.clipboard.writeText(article.link1);
       if (openSave) setOpenSave(false);
       if (openSaveConfirm) setOpenSaveConfirm(false);
       setOpen(true);
     }
 
+    const share2Click = () => {
+        navigator.clipboard.writeText(article.link2);
+        if (openSave) setOpenSave(false);
+        if (openSaveConfirm) setOpenSaveConfirm(false);
+        setOpen(true);
+      }
+
     const saveClick = () => {
       if (context.user !== ''){
         const db = getDatabase();
-        set(ref(db, 'user-likes/' + context.user.uid + '/' + article.title), {
-          date: article.date,
-          link: article.link,
+        set(ref(db, 'user-likes/' + context.user.uid + '/' + article.title1), {
+          date: article.date1,
+          link: article.link1,
           order: article.order,
-          outlet: article.outlet,
-          storage_link: article.storage_link,
-          title: article.title
+          outlet: article.outlet1,
+          storage_link: article.storage_link1,
+          title: article.title1
         });
         if (open) setOpen(false);
         if (openSave) setOpenSave(false);
@@ -156,19 +163,55 @@ import MuiAlert from '@mui/material/Alert';
       }
     }
 
+    const save2Click = () => {
+        if (context.user !== ''){
+          const db = getDatabase();
+          set(ref(db, 'user-likes/' + context.user.uid + '/' + article.title2), {
+            date: article.date2,
+            link: article.link2,
+            order: article.order,
+            outlet: article.outlet2,
+            storage_link: article.storage_link2,
+            title: article.title2
+          });
+          if (open) setOpen(false);
+          if (openSave) setOpenSave(false);
+          setOpenSaveConfirm(true);
+        }
+        else {
+          if (open) setOpen(false);
+          if (openSaveConfirm) setOpenSaveConfirm(false);
+          setOpenSave(true);
+        }
+      }
+
     const articleClick = () => {
       if (context.user !== ''){
         const db = getDatabase();
-        set(ref(db, 'user-history/' + context.user.uid + '/' + article.title), {
-          date: article.date,
-          link: article.link,
+        set(ref(db, 'user-history/' + context.user.uid + '/' + article.title1), {
+          date: article.date1,
+          link: article.link1,
           order: article.order,
-          outlet: article.outlet,
-          storage_link: article.storage_link,
-          title: article.title
+          outlet: article.outlet1,
+          storage_link: article.storage_link1,
+          title: article.title1
         });
       }
     }
+
+    const article2Click = () => {
+        if (context.user !== ''){
+          const db = getDatabase();
+          set(ref(db, 'user-history/' + context.user.uid + '/' + article.title2), {
+            date: article.date2,
+            link: article.link2,
+            order: article.order,
+            outlet: article.outlet2,
+            storage_link: article.storage_link2,
+            title: article.title2
+          });
+        }
+      }
 
     const handleClose = (event, reason) => {
       if (reason === 'clickaway') {
@@ -251,7 +294,7 @@ import MuiAlert from '@mui/material/Alert';
                 </Grid>
             </Grid>
         </CardContent>
-        <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link2} >
+        <ExternalLink style={theme.cardmedia} onClick={() => article2Click()} href={article.link2} >
           <StyledCardMedia
             image={img2 ? img2 : fall}
             title={title2}
@@ -263,7 +306,7 @@ import MuiAlert from '@mui/material/Alert';
               <Grid item>
                 <Grid container>
                   <Grid item>
-                  <ExternalLink onClick={() => articleClick()} href={article.link2}>
+                  <ExternalLink onClick={() => article2Click()} href={article.link2}>
                     <Avatar src={icon2} sx={theme.avatar}/>
                   </ExternalLink>
                   </Grid>
@@ -277,7 +320,7 @@ import MuiAlert from '@mui/material/Alert';
                 </Grid>
               </Grid>
               <Grid item sx={{mt:'1em'}}>
-              <ExternalLink onClick={() => articleClick()} href={article.link2}>
+              <ExternalLink onClick={() => article2Click()} href={article.link2}>
               <Typography variant="body2" align="left" sx={{color: theme.colors.card,fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px','&:hover': {cursor: 'pointer',color: theme.colors.primary} }}>
                 {title2}
               </Typography>
@@ -297,10 +340,10 @@ import MuiAlert from '@mui/material/Alert';
                 <img src={region2} width="20" height="20" alt="icon" />
                 </Grid>
                 <Grid item sx={{cursor: 'pointer', marginLeft: '1em' }}>
-                  <StyledShareIcon fontSize="small"  onClick={() => shareClick()}/>
+                  <StyledShareIcon fontSize="small"  onClick={() => share2Click()}/>
                 </Grid>
                 <Grid item sx={{cursor: 'pointer', marginLeft: '1em' }}>
-                  <StyledDownloadIcon fontSize="medium" onClick={() => saveClick()}/>
+                  <StyledDownloadIcon fontSize="medium" onClick={() => save2Click()}/>
                 </Grid>
             </Grid>
         </CardContent>
