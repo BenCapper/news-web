@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
-import { Icon, styled } from "@mui/material";
+import { Box, Icon, styled } from "@mui/material";
 import { deFormatTitle, formatDate } from '../../util';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
@@ -240,6 +240,8 @@ import MuiAlert from '@mui/material/Alert';
 
     return (
       <>
+    <Card variant="outlined" sx={{mt: '1em', ml: '1em', backgroundColor: '#B0BEC5'}}>
+        <Grid container direction="row">
       <Card sx={theme.card}>
         <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link} >
           <StyledCardMedia
@@ -249,7 +251,7 @@ import MuiAlert from '@mui/material/Alert';
           />
         </ExternalLink>
         <CardContent>
-            <Grid container direction="column">
+            <Grid container direction="row">
               <Grid item>
                 <Grid container>
                   <Grid item>
@@ -294,7 +296,9 @@ import MuiAlert from '@mui/material/Alert';
                 </Grid>
             </Grid>
         </CardContent>
-        <ExternalLink style={theme.cardmedia} onClick={() => article2Click()} href={article.link2} >
+      </Card>
+      <Card sx={theme.card}>
+      <ExternalLink style={theme.cardmedia} onClick={() => article2Click()} href={article.link2} >
           <StyledCardMedia
             image={img2 ? img2 : fall}
             title={title2}
@@ -348,6 +352,9 @@ import MuiAlert from '@mui/material/Alert';
             </Grid>
         </CardContent>
       </Card>
+      </Grid>
+      </Card>
+      
       <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="success" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
         Link copied to clipboard

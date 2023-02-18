@@ -97,7 +97,6 @@ function Feed ( { title }  ) {
   }
 
   function next(){
-    console.log(articles.length)
     if (articles.length === newList.length) return
     else{
       let next = getArraySegment(pageNumber, newList);
