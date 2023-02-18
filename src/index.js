@@ -31,6 +31,7 @@ import Revolver from './pages/revolver';
 import Bongino from './pages/bongino';
 import TrendingPol from './pages/trendingpol';
 import Caller from './pages/caller';
+import AmThinker from './pages/amthinker';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,6 +73,7 @@ const App = () => {
               <Route path="/bongino" element={<Bongino setTheme={setTheme}/>} />
               <Route path="/trendingpolitics" element={<TrendingPol setTheme={setTheme}/>} />
               <Route path="/dailycaller" element={<Caller setTheme={setTheme}/>} />
+              <Route path="/americanthinker" element={<AmThinker setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
