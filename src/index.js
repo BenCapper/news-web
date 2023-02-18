@@ -40,6 +40,7 @@ import Npr from './pages/npr';
 import Vox from './pages/vox';
 import Politico from './pages/politico';
 import Hill from './pages/hill';
+import Yahoo from './pages/yahoo';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -90,6 +91,7 @@ const App = () => {
               <Route path="/vox" element={<Vox setTheme={setTheme}/>} />
               <Route path="/politico" element={<Politico setTheme={setTheme}/>} />
               <Route path="/thehill" element={<Hill setTheme={setTheme}/>} />
+              <Route path="/yahoonews" element={<Yahoo setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
