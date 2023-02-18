@@ -33,6 +33,7 @@ import TrendingPol from './pages/trendingpol';
 import Caller from './pages/caller';
 import AmThinker from './pages/amthinker';
 import Gwp from './pages/gateway';
+import PostMill from './pages/postmill';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -76,6 +77,7 @@ const App = () => {
               <Route path="/dailycaller" element={<Caller setTheme={setTheme}/>} />
               <Route path="/americanthinker" element={<AmThinker setTheme={setTheme}/>} />
               <Route path="/gatewaypundit" element={<Gwp setTheme={setTheme}/>} />
+              <Route path="/postmillennial" element={<PostMill setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
