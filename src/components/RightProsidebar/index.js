@@ -50,8 +50,8 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="The Hill" src={icon['hill']} />} component={<Link to="/thehill" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="Yahoo News" src={icon['yah']} />} component={<Link to="/yahoonews" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="The Daily Beast" src={icon['beast']} />} component={<Link to="/dailybeast" />}></MenuItem>
-          <MenuItem icon={<img className="image" alt="Huffington Post" src={icon['huff']} />}  component={<Link to="/huffingtonpost" />}></MenuItem>
-          <MenuItem icon={<img className="image" alt="Global News" src={icon['glo']} />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Huffington Post" src={icon['huff']} />} component={<Link to="/huffingtonpost" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Global News" src={icon['glo']} />} component={<Link to="/globalnews" />}></MenuItem>
         </Menu>
       </Sidebar>
       </>
@@ -91,7 +91,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Yahoo News" src={icon['yah']} />} active={window.location.pathname === "/yahoonews"}  component={<Link to="/yahoonews" />}> Yahoo News </MenuItem>
           <MenuItem icon={<img className="image" alt="The Daily Beast" src={icon['beast']} />} active={window.location.pathname === "/dailybeast"}  component={<Link to="/dailybeast" />}> The Daily Beast </MenuItem>
           <MenuItem icon={<img className="image" alt="Huffington Post" src={icon['huff']} />} active={window.location.pathname === "/huffingtonpost"}  component={<Link to="/huffingtonpost" />}> Huffington Post </MenuItem>
-          <MenuItem icon={<img className="image" alt="Global News" src={icon['glo']} />}> Global News </MenuItem>
+          <MenuItem icon={<img className="image" alt="Global News" src={icon['glo']} />} active={window.location.pathname === "/globalnews"}  component={<Link to="/globalnews" />}> Global News </MenuItem>
         </Menu>
       </Sidebar>
         </>

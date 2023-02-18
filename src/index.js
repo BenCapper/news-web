@@ -43,6 +43,7 @@ import Hill from './pages/hill';
 import Yahoo from './pages/yahoo';
 import Beast from './pages/beast';
 import Huff from './pages/huffpost';
+import GlobalNews from './pages/global';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -96,6 +97,7 @@ const App = () => {
               <Route path="/yahoonews" element={<Yahoo setTheme={setTheme}/>} />
               <Route path="/dailybeast" element={<Beast setTheme={setTheme}/>} />
               <Route path="/huffingtonpost" element={<Huff setTheme={setTheme}/>} />
+              <Route path="/globalnews" element={<GlobalNews setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
