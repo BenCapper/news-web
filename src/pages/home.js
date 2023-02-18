@@ -53,9 +53,7 @@ function Home({setTheme}) {
     <Feed title={"Home"}/>
     </div>
     </div>
-    <div className='right'>
     <RightProsidebar/>
-    </div>
     </div>
     </div>
     </>
