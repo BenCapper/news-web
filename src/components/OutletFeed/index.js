@@ -19,6 +19,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { formatDate } from '../../util';
 import { right, left } from "../../icons/collections";
+import EmptyArt from "../EmptyArt";
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -73,6 +74,7 @@ function OutletFeed ( { title, keyword }  ) {
   <div className="filter-group">
 
       <TextField
+        disabled
         id="outlined"
         label="Filter"
         placeholder={d}
@@ -99,8 +101,10 @@ function OutletFeed ( { title, keyword }  ) {
       </ButtonGroup>
     </div>
       </div>
-      <div className="infinite" style={theme.infinite}>
-        No Results
+      <div className="infinite2" style={theme.infinite}>
+        <div className="contain">
+        <EmptyArt/>
+        </div>
       </div>
         </>
     )
