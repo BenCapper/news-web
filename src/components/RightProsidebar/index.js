@@ -49,7 +49,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Politico" src={icon['pol']} />} component={<Link to="/politico" />}>  </MenuItem>
           <MenuItem icon={<img className="image" alt="The Hill" src={icon['hill']} />} component={<Link to="/thehill" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="Yahoo News" src={icon['yah']} />} component={<Link to="/yahoonews" />}></MenuItem>
-          <MenuItem icon={<img className="image" alt="The Daily Beast" src={icon['beast']} />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="The Daily Beast" src={icon['beast']} />} component={<Link to="/dailybeast" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="Huffington Post" src={icon['huff']} />}></MenuItem>
           <MenuItem icon={<img className="image" alt="Global News" src={icon['glo']} />}></MenuItem>
         </Menu>
@@ -89,7 +89,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Politico" src={icon['pol']} />} active={window.location.pathname === "/politico"}  component={<Link to="/politico" />}> Politico </MenuItem>
           <MenuItem icon={<img className="image" alt="The Hill" src={icon['hill']} />} active={window.location.pathname === "/thehill"}  component={<Link to="/thehill" />}> The Hill </MenuItem>
           <MenuItem icon={<img className="image" alt="Yahoo News" src={icon['yah']} />} active={window.location.pathname === "/yahoonews"}  component={<Link to="/yahoonews" />}> Yahoo News </MenuItem>
-          <MenuItem icon={<img className="image" alt="The Daily Beast" src={icon['beast']} />}> The Daily Beast </MenuItem>
+          <MenuItem icon={<img className="image" alt="The Daily Beast" src={icon['beast']} />} active={window.location.pathname === "/dailybeast"}  component={<Link to="/dailybeast" />}> The Daily Beast </MenuItem>
           <MenuItem icon={<img className="image" alt="Huffington Post" src={icon['huff']} />}> Huffington Post </MenuItem>
           <MenuItem icon={<img className="image" alt="Global News" src={icon['glo']} />}> Global News </MenuItem>
         </Menu>

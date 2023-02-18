@@ -41,6 +41,7 @@ import Vox from './pages/vox';
 import Politico from './pages/politico';
 import Hill from './pages/hill';
 import Yahoo from './pages/yahoo';
+import Beast from './pages/beast';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -92,6 +93,7 @@ const App = () => {
               <Route path="/politico" element={<Politico setTheme={setTheme}/>} />
               <Route path="/thehill" element={<Hill setTheme={setTheme}/>} />
               <Route path="/yahoonews" element={<Yahoo setTheme={setTheme}/>} />
+              <Route path="/dailybeast" element={<Beast setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
