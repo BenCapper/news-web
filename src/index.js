@@ -35,6 +35,7 @@ import AmThinker from './pages/amthinker';
 import Gwp from './pages/gateway';
 import PostMill from './pages/postmill';
 import Euronews from './pages/euronews';
+import Cbs from './pages/cbs';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -80,6 +81,7 @@ const App = () => {
               <Route path="/gatewaypundit" element={<Gwp setTheme={setTheme}/>} />
               <Route path="/postmillennial" element={<PostMill setTheme={setTheme}/>} />
               <Route path="/euronews" element={<Euronews setTheme={setTheme}/>} />
+              <Route path="/cbs" element={<Cbs setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
