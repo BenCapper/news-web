@@ -22,6 +22,7 @@ import Gbn from './pages/gbn';
 import Sky from './pages/sky';
 import Guardian from './pages/guardian';
 import Dmail from './pages/dmail';
+import Sceptic from './pages/sceptic';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,6 +55,7 @@ const App = () => {
               <Route path="/sky" element={<Sky setTheme={setTheme}/>} />
               <Route path="/guardian" element={<Guardian setTheme={setTheme}/>} />
               <Route path="/dailymail" element={<Dmail setTheme={setTheme}/>} />
+              <Route path="/dailysceptic" element={<Sceptic setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
