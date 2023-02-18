@@ -18,21 +18,25 @@ import ThemeContext from "../../contexts/themeContext";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { formatDate } from '../../util';
+import { right, left } from "../../icons/collections";
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function LeansFeed ( { title, articles, date, setDate, setArticles }  ) {
+function Feed ( { title, keyword }  ) {
   const [count, setCount] = useState(0);
+  const d = getDate(count);
+  const dbRef = ref(db, `stories/${d}`);
+  const arts = useDatabaseValue([`stories/${d}`], dbRef);
   const theme = useContext(ThemeContext);
   const [pageNumber, setPageNumber] = useState(0);
+  const [articles, setArticles] = useState([]);
   const [more, setMore] = useState(true);
   const [open, setOpen] = React.useState(false);
   const [openBack, setOpenBack] = React.useState(false);
 
-  const articleTitles = [];
   const newList = [];
   let splitArr = [];
   let firstSegment = [];
@@ -42,6 +46,30 @@ function LeansFeed ( { title, articles, date, setDate, setArticles }  ) {
   });
 
 
+  if (arts.isLoading) {
+    return (
+        <Loader
+          title={title}
+          />
+    );
+  }
+
+
+  for (let a in arts.data) {
+    if (keyword === "left"){
+      if (left.includes(arts.data[a].outlet)) newList.push(arts.data[a]);
+    }
+    else{
+      if (right.includes(arts.data[a].outlet)) newList.push(arts.data[a]);
+    }
+    newList.sort(compare).reverse();
+  }
+  splitArr = splitArray(newList);
+  firstSegment = splitArr[pageNumber];
+
+  if (articles.length == 0){
+    setArticles(firstSegment);
+  }
 
   
   const handleFilterChange = (prop) => (event) => {
@@ -58,7 +86,7 @@ function LeansFeed ( { title, articles, date, setDate, setArticles }  ) {
     }
 
     if (filtered.length === 0){
-      let empty = [{title: "No Results", date: formatDate(date), outlet:''}]
+      let empty = [{title: "No Results", date: formatDate(d), outlet:''}]
       setArticles(empty);
     }
     else {
@@ -142,7 +170,7 @@ function LeansFeed ( { title, articles, date, setDate, setArticles }  ) {
       <TextField
         id="outlined"
         label="Filter"
-        placeholder={date}
+        placeholder={d}
         size="small"
         className="textfield"
         sx={theme.Filter}
@@ -207,4 +235,4 @@ function LeansFeed ( { title, articles, date, setDate, setArticles }  ) {
   );
 }
 
-export default LeansFeed;
+export default Feed;
