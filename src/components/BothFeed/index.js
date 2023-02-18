@@ -13,11 +13,12 @@ import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
-import Art from "../Art";
+import BothArt from "../BothArt";
 import ThemeContext from "../../contexts/themeContext";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { formatDate } from '../../util';
+import { right, left } from "../../icons/collections";
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -27,8 +28,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 function Feed ( { title }  ) {
   const [count, setCount] = useState(0);
   const d = getDate(count);
-  const dbRef = ref(db, `stories/${d}`);
-  const arts = useDatabaseValue([`stories/${d}`], dbRef);
+  const dbRef = ref(db, `doubles/${d}`);
+  const arts = useDatabaseValue([`doubles/${d}`], dbRef);
   const theme = useContext(ThemeContext);
   const [pageNumber, setPageNumber] = useState(0);
   const [articles, setArticles] = useState([]);
@@ -36,7 +37,6 @@ function Feed ( { title }  ) {
   const [open, setOpen] = React.useState(false);
   const [openBack, setOpenBack] = React.useState(false);
 
-  const articleTitles = [];
   const newList = [];
   let splitArr = [];
   let firstSegment = [];
@@ -56,7 +56,6 @@ function Feed ( { title }  ) {
 
 
   for (let a in arts.data) {
-    articleTitles.push(a);
     newList.push(arts.data[a]);
     newList.sort(compare).reverse();
   }
@@ -97,6 +96,7 @@ function Feed ( { title }  ) {
   }
 
   function next(){
+    console.log(articles.length)
     if (articles.length === newList.length) return
     else{
       let next = getArraySegment(pageNumber, newList);
@@ -207,7 +207,7 @@ function Feed ( { title }  ) {
       >
         <Grid container spacing={1} sx={{justifyContent: 'center'}}>
       {articles.map((article) => (
-          <Art
+          <BothArt
             key={Math.floor(Math.random() * 990000000000)}
             article={article}
           />

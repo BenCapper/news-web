@@ -39,7 +39,7 @@ const App = () => {
               <Route path="/login" element={<Login setTheme={setTheme}/>} />
               <Route path="/left" element={<Left setTheme={setTheme}/>} />
               <Route path="/right" element={<Right setTheme={setTheme} />} />
-              <Route path="/bothsides" element={<Both />} />
+              <Route path="/bothsides" element={<Both setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
