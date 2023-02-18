@@ -39,6 +39,7 @@ import Cbs from './pages/cbs';
 import Npr from './pages/npr';
 import Vox from './pages/vox';
 import Politico from './pages/politico';
+import Hill from './pages/hill';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -88,6 +89,7 @@ const App = () => {
               <Route path="/npr" element={<Npr setTheme={setTheme}/>} />
               <Route path="/vox" element={<Vox setTheme={setTheme}/>} />
               <Route path="/politico" element={<Politico setTheme={setTheme}/>} />
+              <Route path="/thehill" element={<Hill setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
