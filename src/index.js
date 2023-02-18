@@ -21,6 +21,7 @@ import Spiked from './pages/spiked';
 import Gbn from './pages/gbn';
 import Sky from './pages/sky';
 import Guardian from './pages/guardian';
+import Dmail from './pages/dmail';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +53,7 @@ const App = () => {
               <Route path="/gbnews" element={<Gbn setTheme={setTheme}/>} />
               <Route path="/sky" element={<Sky setTheme={setTheme}/>} />
               <Route path="/guardian" element={<Guardian setTheme={setTheme}/>} />
+              <Route path="/dailymail" element={<Dmail setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
