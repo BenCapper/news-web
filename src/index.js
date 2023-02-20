@@ -45,6 +45,7 @@ import Beast from './pages/beast';
 import Huff from './pages/huffpost';
 import GlobalNews from './pages/global';
 import Abc from './pages/abc';
+import Zero from './pages/zero';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -100,6 +101,7 @@ const App = () => {
               <Route path="/dailybeast" element={<Beast setTheme={setTheme}/>} />
               <Route path="/huffingtonpost" element={<Huff setTheme={setTheme}/>} />
               <Route path="/globalnews" element={<GlobalNews setTheme={setTheme}/>} />
+              <Route path="/zerohedge" element={<Zero setTheme={setTheme}/>} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/saved" element={<Saved setTheme={setTheme}/>} />
                 <Route path="/history" element={<History setTheme={setTheme} />} />
