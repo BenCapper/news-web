@@ -57,8 +57,6 @@ function OutletFeed ( { title, keyword }  ) {
 
 
   for (let a in arts.data) {
-    console.log(keyword)
-    console.log(arts.data[a].outlet)
     if (keyword === arts.data[a].outlet){
       newList.push(arts.data[a]);
     }
@@ -140,13 +138,11 @@ function OutletFeed ( { title, keyword }  ) {
   }
 
   const shuffleArticles = () => {
-    console.log("shuffle")
     let shuffled = articles.slice().sort(() => Math.random() - 0.5);
     setArticles(shuffled);
   }
 
   function next(){
-    console.log(articles.length)
     if (articles.length === newList.length) return
     else{
       let next = getArraySegment(pageNumber, newList);

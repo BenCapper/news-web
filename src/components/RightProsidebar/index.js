@@ -33,7 +33,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Timcast" src={icon['tim']} component={<Link to="/timcast" />}/>}></MenuItem>
           <MenuItem icon={<img className="image" alt="Breitbart" src={icon['breit']} />} component={<Link to="/breitbart" />}>  </MenuItem>
           <MenuItem icon={<img className="image" alt="Infowars" src={icon['info']} />} component={<Link to="/infowars" />}></MenuItem>
-          <MenuItem icon={<img className="image" alt="Zerohedge" src={icon['zero']} />} component={<Link to="/history" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Zerohedge" src={icon['zero']} />} component={<Link to="/zerohedge" />}></MenuItem>
           <MenuItem icon={<img className="image" alt="Revolver News" src={icon['rev']} />} component={<Link to="/revolver" />}> </MenuItem>
           <MenuItem icon={<img className="image" alt="Bongino Report" src={icon['bong']} />} component={<Link to="/bongino" />}> </MenuItem>
           <MenuItem icon={<img className="image" alt="Trending Politics" src={icon['trend']} />} component={<Link to="/trendingpolitics" />}>  </MenuItem>
@@ -73,7 +73,7 @@ const RightProsidebar = () => {
           <MenuItem icon={<img className="image" alt="Timcast" src={icon['tim']} />} active={window.location.pathname === "/timcast"} component={<Link to="/timcast" />}> Timcast </MenuItem>
           <MenuItem icon={<img className="image" alt="Breitbart" src={icon['breit']} />} active={window.location.pathname === "/breitbart"} component={<Link to="/breitbart" />}> Breitbart </MenuItem>
           <MenuItem icon={<img className="image" alt="Infowars" src={icon['info']} />} active={window.location.pathname === "/infowars"} component={<Link to="/infowars" />}> Infowars </MenuItem>
-          <MenuItem icon={<img className="image" alt="Zerohedge" src={icon['zero']} />}> Zerohedge </MenuItem>
+          <MenuItem icon={<img className="image" alt="Zerohedge" src={icon['zero']} />} active={window.location.pathname === "/zerohedge"} component={<Link to="/zerohedge" />}> Zerohedge </MenuItem>
           <MenuItem icon={<img className="image" alt="Revolver News" src={icon['rev']} />} active={window.location.pathname === "/revolver"} component={<Link to="/revolver" />}> Revolver News </MenuItem>
           <MenuItem icon={<img className="image" alt="Bongino Report" src={icon['bong']} />} active={window.location.pathname === "/bongino"} component={<Link to="/bongino" />}> Bongino Report </MenuItem>
           <MenuItem icon={<img className="image" alt="Trending Politics" src={icon['trend']} />} active={window.location.pathname === "/trendingpolitics"} component={<Link to="/trendingpolitics" />}> Trending Politics </MenuItem>
