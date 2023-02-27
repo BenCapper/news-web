@@ -8,6 +8,7 @@ import { AuthContext } from "../contexts/authContext";
 import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
+import { scrollTop } from '../util';
 
 
 function Home({setTheme}) {
@@ -16,6 +17,7 @@ function Home({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;
       onValue(ref(db, 'user-theme/' + userId), (snapshot) => {

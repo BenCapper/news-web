@@ -8,6 +8,7 @@ import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import RightProsidebar from '../components/RightProsidebar';
+import { scrollTop } from '../util';
 
 
 function History({setTheme}) {
@@ -18,6 +19,7 @@ function History({setTheme}) {
   let arts = [];
 
   useEffect(() => {
+    scrollTop();
     if (context.user !== ''){
       // Get theme from DB
       const userId = context.user.uid;
