@@ -46,18 +46,20 @@ function Spiked({setTheme}) {
 
   return (
     <>
-    <div style={{backgroundColor:theme.colors.white}}>
-    <div className="flex">
-    <ProSidebar setTheme={setTheme}/>
-    <div>
-    <div className='feed'>
-    <OutletFeed title={"Spiked-Online"} keyword={"www.Spiked-Online.com"}/>
+    <div className="container" style={{backgroundColor:theme.colors.white}}>
+    <div className="left-sidebar">
+      <ProSidebar setTheme={setTheme}/>
     </div>
+    <div className='feed-container'>
+      <div className='feed'>
+      <OutletFeed title={"Spiked-Online"} keyword={"www.Spiked-Online.com"}/>
+      </div>
     </div>
-    <RightProsidebar/>
+    <div className="right-sidebar">
+      <RightProsidebar/>
     </div>
-    </div>
-    </>
+  </div>
+</>
   );
 }
 
