@@ -21,6 +21,10 @@ const theme = {
     infinite: {
       backgroundColor: '#E6E6E6',
     },
+    layer:{
+      backgroundColor: 'rgb(	255, 165, 0, .2)',
+      borderColor: 'rgb(	232, 192, 52, 0)'
+    },
     styles: {
         root: {
           marginTop: 2,

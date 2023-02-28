@@ -22,6 +22,9 @@ const darktheme = {
     infinite: {
         backgroundColor: '#1A2D3B',
     },
+    layer:{
+      backgroundColor: 'rgb(	176, 190, 197, .1)'
+    },
     styles: {
         root: {
           marginTop: 2,

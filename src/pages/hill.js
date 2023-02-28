@@ -46,18 +46,20 @@ function Hill({setTheme}) {
 
   return (
     <>
-    <div style={{backgroundColor:theme.colors.white}}>
-    <div className="flex">
-    <ProSidebar setTheme={setTheme}/>
-    <div>
-    <div className='feed'>
-    <OutletFeed title={"The Hill"} keyword={"www.TheHill.com"}/>
+    <div className="container" style={{backgroundColor:theme.colors.white}}>
+    <div className="left-sidebar">
+      <ProSidebar setTheme={setTheme}/>
     </div>
+    <div className='feed-container'>
+      <div className='feed'>
+      <OutletFeed title={"The Hill"} keyword={"www.TheHill.com"}/>
+      </div>
     </div>
-    <RightProsidebar/>
+    <div className="right-sidebar">
+      <RightProsidebar/>
     </div>
-    </div>
-    </>
+  </div>
+</>
   );
 }
 

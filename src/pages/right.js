@@ -8,6 +8,8 @@ import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import RightProsidebar from '../components/RightProsidebar';
+import { scrollTop } from '../util';
+
 
 function Right({setTheme}) {
   const theme = useContext(ThemeContext);
@@ -15,6 +17,7 @@ function Right({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;
       onValue(ref(db, 'user-theme/' + userId), (snapshot) => {
@@ -44,18 +47,21 @@ function Right({setTheme}) {
 
   return (
     <>
-    <div style={{backgroundColor:theme.colors.white}}>
-    <div className="flex">
-    <ProSidebar setTheme={setTheme}/>
-    <div>
-    <div className='feed'>
-    <LeansFeed title={"Leans Right"} keyword={"right"}/>
+    <div className="container" style={{backgroundColor:theme.colors.white}}>
+    <div className="left-sidebar">
+      <ProSidebar setTheme={setTheme}/>
     </div>
+    <div className='feed-container'>
+      <div className='feed'>
+      <LeansFeed title={"Leans Right"} keyword={"right"}/>
+      </div>
     </div>
-    <RightProsidebar/>
+    <div className="right-sidebar">
+      <RightProsidebar/>
     </div>
-    </div>
-    </>
+  </div>
+</>
+    
   );
 }
 

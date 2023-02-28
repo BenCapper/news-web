@@ -8,6 +8,7 @@ import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import RightProsidebar from '../components/RightProsidebar';
+import { scrollTop } from '../util';
 
 function Both({setTheme}) {
   const theme = useContext(ThemeContext);
@@ -15,6 +16,7 @@ function Both({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;
       onValue(ref(db, 'user-theme/' + userId), (snapshot) => {
@@ -43,19 +45,21 @@ function Both({setTheme}) {
   });
 
   return (
-    <>
-    <div style={{backgroundColor:theme.colors.white}}>
-    <div className="flex">
-    <ProSidebar setTheme={setTheme}/>
-    <div>
-    <div className='feed'>
-    <BothFeed title={"See Both Sides"}/>
+<>
+  <div className="container" style={{backgroundColor:theme.colors.white}}>
+    <div className="left-sidebar">
+      <ProSidebar setTheme={setTheme}/>
     </div>
+    <div className='feed-container'>
+      <div className='feed'>
+        <BothFeed title={"See Both Sides"}/>
+      </div>
     </div>
-    <RightProsidebar/>
+    <div className="right-sidebar">
+      <RightProsidebar/>
     </div>
-    </div>
-    </>
+  </div>
+</>
   );
 }
 

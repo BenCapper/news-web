@@ -8,6 +8,7 @@ import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import RightProsidebar from '../components/RightProsidebar';
+import { scrollTop } from '../util';
 
 function Saved({ setTheme }) {
   const theme = useContext(ThemeContext);
@@ -17,6 +18,7 @@ function Saved({ setTheme }) {
   let arts = [];
 
   useEffect(() => {
+    scrollTop();
     if (context.user !== ''){
       // Get theme from DB
       const userId = context.user.uid;
@@ -59,18 +61,20 @@ function Saved({ setTheme }) {
 
   return (
     <>
-    <div style={{backgroundColor:theme.colors.white}}>
-    <div className="flex">
-    <ProSidebar setTheme={setTheme}/>
-    <div>
-    <div className='feed'>
-    <AltFeed title={"Saved"} articles={articles} affix={"likes"} setArticles={setArticles}/>
+    <div className="container" style={{backgroundColor:theme.colors.white}}>
+    <div className="left-sidebar">
+      <ProSidebar setTheme={setTheme}/>
     </div>
+    <div className='feed-container'>
+      <div className='feed'>
+      <AltFeed title={"Saved"} articles={articles} affix={"likes"} setArticles={setArticles}/>
+      </div>
     </div>
-    <RightProsidebar/>
+    <div className="right-sidebar">
+      <RightProsidebar/>
     </div>
-    </div>
-    </>
+  </div>
+</>
   );
 }
 

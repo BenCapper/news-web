@@ -8,6 +8,7 @@ import { AuthContext } from "../contexts/authContext";
 import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
+import { scrollTop } from '../util';
 
 
 function Home({setTheme}) {
@@ -16,6 +17,7 @@ function Home({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;
       onValue(ref(db, 'user-theme/' + userId), (snapshot) => {
@@ -45,18 +47,20 @@ function Home({setTheme}) {
 
   return (
     <>
-    <div style={{backgroundColor:theme.colors.white}}>
-    <div className="flex">
-    <ProSidebar setTheme={setTheme}/>
-    <div>
-    <div className='feed'>
-    <Feed title={"Home"}/>
+    <div className="container" style={{backgroundColor:theme.colors.white}}>
+    <div className="left-sidebar">
+      <ProSidebar setTheme={setTheme}/>
     </div>
+    <div className='feed-container'>
+      <div className='feed'>
+      <Feed title={"Home"}/>
+      </div>
     </div>
-    <RightProsidebar/>
+    <div className="right-sidebar">
+      <RightProsidebar/>
     </div>
-    </div>
-    </>
+  </div>
+</>
   );
 }
 
