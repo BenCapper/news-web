@@ -3,7 +3,7 @@ import "./feed.css";
 import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
-import { compare, getDate, splitArray } from "../../util";
+import { compare, filterByTitleBoth, getDate, splitArray } from "../../util";
 import { Button, ButtonGroup, Grid, LinearProgress, TextField } from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { filterByTitle } from "../../util";
@@ -36,6 +36,7 @@ function Feed ( { title }  ) {
   const [more, setMore] = useState(true);
   const [open, setOpen] = React.useState(false);
   const [openBack, setOpenBack] = React.useState(false);
+  const [emptyValue, setEmptyValue] = useState(false);
 
   const newList = [];
   let splitArr = [];
@@ -72,7 +73,7 @@ function Feed ( { title }  ) {
     let filtered = [];
     setValues({ ...values, [prop]: event.target.value });
     searchQuery = searchQuery + event.target.value
-    filtered = filterByTitle(newList, searchQuery);
+    filtered = filterByTitleBoth(newList, searchQuery);
     if( searchQuery === ''){
       setMore(true)
     }
@@ -83,9 +84,11 @@ function Feed ( { title }  ) {
     if (filtered.length === 0){
       let empty = [{title: "No Results", date: formatDate(d), outlet:''}]
       setArticles(empty);
+      setEmptyValue(true);
     }
     else {
       setArticles(filtered);
+      setEmptyValue(false);
     }
   }
 
@@ -158,7 +161,7 @@ function Feed ( { title }  ) {
     <>
     <div className="header" style={theme.header}>
       <div className="spans">
-        <span className="left" >{title}</span><span className="right" style={theme.right}> {newList.length} Articles</span>
+        <span className="left" >{title}</span><span className="right" style={theme.right}> {newList.length} Article Pairs</span>
       </div>
   <div className="filter-group">
 
@@ -208,6 +211,7 @@ function Feed ( { title }  ) {
         <Grid container spacing={1} sx={{justifyContent: 'center'}}>
       {articles.map((article) => (
           <BothArt
+            on={emptyValue}
             key={Math.floor(Math.random() * 990000000000)}
             article={article}
           />

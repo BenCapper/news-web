@@ -40,6 +40,12 @@ export function filterByTitle(arr, searchTerm) {
     });
   }
 
+export function filterByTitleBoth(arr, searchTerm) {
+  return arr.filter(function(obj) {
+    return obj.title1.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+}
+
 export function getArraySegment(num, arr) {
   const segment = [];
   const length = num * 100;
