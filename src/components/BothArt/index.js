@@ -6,7 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
 import { Box, Icon, Paper, styled } from "@mui/material";
-import { deFormatTitle, formatDate } from '../../util';
+import { deFormatTitle, formatDate, getDate } from '../../util';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import _ from 'lodash';
@@ -54,7 +54,7 @@ import MuiAlert from '@mui/material/Alert';
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
-  export default function BothArt({article}) {
+  export default function BothArt({article, on}) {
     const context = useContext(AuthContext);
     const [title, setTitle] = useState(article.title1);
     const [title2, setTitle2] = useState(article.title2);
@@ -75,6 +75,8 @@ import MuiAlert from '@mui/material/Alert';
     const [open, setOpen] = React.useState(false);
     const [openSave, setOpenSave] = React.useState(false);
     const [openSaveConfirm, setOpenSaveConfirm] = React.useState(false);
+    let today = getDate(0)
+    today = formatDate(today)
 
     useEffect(() => {
 
@@ -240,6 +242,8 @@ import MuiAlert from '@mui/material/Alert';
 
     return (
       <>
+    {!on ? (
+      <>
     <Card variant="outlined" sx={{mt: '1em', ml: '1em'}} style={theme.layer}>
         <Grid container direction="column">
       <Card sx={theme.card}>
@@ -354,7 +358,53 @@ import MuiAlert from '@mui/material/Alert';
       </Card>
       </Grid>
       </Card>
-      
+      </>
+      ) : 
+      <>
+            <Card sx={theme.card}>
+        <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link} >
+          <StyledCardMedia
+            image={img ? img : fall}
+            title={title}
+            sx={{borderBottom: `1px dashed rgb(${color},.5)`}}
+          />
+        </ExternalLink>
+        <CardContent>
+            <Grid container direction="row">
+              <Grid item>
+                <Grid container>
+                  <Grid item>
+                  <ExternalLink onClick={() => articleClick()} href={article.link}>
+                    <Avatar src={icon} sx={theme.avatar}/>
+                  </ExternalLink>
+                  </Grid>
+                  <Grid item>
+                    <div sx={{ display: 'flex', alignItems: 'center'}}>
+                        <Typography variant="body2" align="center" sx={{ fontStyle: 'italic', ml: '1em', mt: '.5em' }}>
+                          {today}
+                        </Typography>
+                    </div>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item sx={{mt:'1em', mr: '5em'}}>
+              <ExternalLink onClick={() => articleClick()} href={article.link}>
+              <Typography variant="body2" align="left" sx={{color: theme.colors.card,fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px','&:hover': {cursor: 'pointer',color: theme.colors.primary} }}>
+                {'No Results'}
+              </Typography>
+              </ExternalLink>
+              </Grid>
+            </Grid>
+            <Grid container direction="row" justify="flex-end" alignItems="center" sx={{ marginTop: '1em' }}>
+                <Grid item>
+                <img src={region} width="20" height="20" alt="icon" />
+                </Grid>
+
+            </Grid>
+        </CardContent>
+      </Card>
+      </>
+      }
       <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="success" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
         Link copied to clipboard
