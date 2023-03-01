@@ -34,9 +34,9 @@ function Feed ( { title }  ) {
   const [articles, setArticles] = useState([]);
   const [more, setMore] = useState(true);
   const [open, setOpen] = React.useState(false);
-  const [openBack, setOpenBack] = React.useState(false);
+  const [openBack, setOpenBack] = useState(false);
+  const [emptyValue, setEmptyValue] = useState(false);
 
-  const articleTitles = [];
   const newList = [];
   let splitArr = [];
   let firstSegment = [];
@@ -56,7 +56,6 @@ function Feed ( { title }  ) {
 
 
   for (let a in arts.data) {
-    articleTitles.push(a);
     newList.push(arts.data[a]);
     newList.sort(compare).reverse();
   }
@@ -84,9 +83,11 @@ function Feed ( { title }  ) {
     if (filtered.length === 0){
       let empty = [{title: "No Results", date: formatDate(d), outlet:''}]
       setArticles(empty);
+      setEmptyValue(true);
     }
     else {
       setArticles(filtered);
+      setEmptyValue(false);
     }
   }
 
@@ -208,6 +209,7 @@ function Feed ( { title }  ) {
         <Grid container spacing={1} sx={{justifyContent: 'center'}}>
       {articles.map((article) => (
           <Art
+            on={emptyValue}
             key={Math.floor(Math.random() * 990000000000)}
             article={article}
           />

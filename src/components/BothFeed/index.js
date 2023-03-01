@@ -3,7 +3,7 @@ import "./feed.css";
 import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
-import { compare, getDate, splitArray } from "../../util";
+import { compare, filterByTitleBoth, getDate, splitArray } from "../../util";
 import { Button, ButtonGroup, Grid, LinearProgress, TextField } from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { filterByTitle } from "../../util";
@@ -72,7 +72,7 @@ function Feed ( { title }  ) {
     let filtered = [];
     setValues({ ...values, [prop]: event.target.value });
     searchQuery = searchQuery + event.target.value
-    filtered = filterByTitle(newList, searchQuery);
+    filtered = filterByTitleBoth(newList, searchQuery);
     if( searchQuery === ''){
       setMore(true)
     }
