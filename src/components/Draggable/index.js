@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
 import { Link } from 'react-router-dom';
 import ThemeContext from "../../contexts/themeContext";
@@ -7,13 +7,21 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import "./rightSidebar.css"
 import { outlets } from "../../icons/icons";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { getDatabase, ref, set } from "firebase/database";
 
 
 const Drag = () => {
     const theme = useTheme();
     const themes = useContext(ThemeContext);
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const [outs, setOuts] = useState(outlets);
+    let list = JSON.parse(window.localStorage.getItem('outlets'));
+    const [outs, setOuts] = useState(list ? list : outlets);
+
+    // useEffect(() => {
+    //     list = window.localStorage.getItem('outlets');
+    //     console.log(list);
+    // });
+
 
     function handleOnDragEnd(result) {
         if (!result.destination) return;
@@ -23,6 +31,9 @@ const Drag = () => {
         items.splice(result.destination.index, 0, reorderedItem);
     
         setOuts(items);
+        //Set Local Storage
+        window.localStorage.setItem('outlets', JSON.stringify(items));
+        console.log(items)
       }
 
     return (
