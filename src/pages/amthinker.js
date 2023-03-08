@@ -7,9 +7,7 @@ import { AuthContext } from "../contexts/authContext";
 import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
-import RightProsidebar from '../components/RightProsidebar';
 import { scrollTop } from '../util';
-import { Draggable } from 'react-beautiful-dnd';
 import Drag from '../components/Drag';
 
 function AmThinker({setTheme}) {
