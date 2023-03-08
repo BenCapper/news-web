@@ -64,12 +64,12 @@ const Drag = () => {
             return (
                 <Draggable key={id} draggableId={id} index={index}>
                 {(provided) => (
-
                     <MenuItem ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} icon={<img className="image" alt={name} src={icon} />} active={window.location.pathname === `/${id}`} component={<Link to={`/${id}`} />}> {name} </MenuItem>
                 )}
                 </Draggable>
             )}
             )}  
+            {provided.placeholder}
         </div>
         )}
         </Droppable>
