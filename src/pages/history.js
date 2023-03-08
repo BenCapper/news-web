@@ -9,6 +9,7 @@ import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import RightProsidebar from '../components/RightProsidebar';
 import { scrollTop } from '../util';
+import Drag from '../components/Drag';
 
 
 function History({setTheme}) {
@@ -70,7 +71,7 @@ function History({setTheme}) {
       </div>
     </div>
     <div className="right-sidebar">
-      <RightProsidebar/>
+      <Drag/>
     </div>
   </div>
 </>

@@ -59,7 +59,7 @@ function Home({setTheme}) {
       </div>
     </div>
     <div className="right-sidebar">
-      <Drag />
+      <Drag/>
     </div>
   </div>
 </>
