@@ -6,3 +6,4 @@ export const us = ["www.TheBlaze.com","www.Timcast.com","www.BonginoReport.com",
  "www.TheDailyBeast.com","www.TheGatewayPundit.com","TrendingPoliticsNews.com","www.Politico.com","www.CbsNews.com","AbcNews.go.com","news.Yahoo.com","www.Vox.com","www.HuffPost.com","www.Npr.org","www.TheHill.com"]
 export const left = ["www.RTE.ie","news.Sky.com","www.TheGuardian.com", "www.DailyMail.co.uk","www.GlobalNews.ca","www.Euronews.com","www.TheDailyBeast.com","www.Politico.com","www.CbsNews.com","AbcNews.go.com","news.Yahoo.com","www.Vox.com","www.HuffPost.com","www.Npr.org","www.TheHill.com"]
 export const right = ["www.Gript.ie","www.GBNews.uk", "www.Spiked-Online.com","www.DailySceptic.org","www.ThePostMillennial.com","www.TheBlaze.com","www.Timcast.com","www.BonginoReport.com","www.Zerohedge.com","www.Breitbart.com","www.Revolver.news","www.DailyCaller.com", "www.InfoWars.com", "www.AmericanThinker.com","www.TheGatewayPundit.com","TrendingPoliticsNews.com",]
+

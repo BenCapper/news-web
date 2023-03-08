@@ -112,5 +112,166 @@ export const icons = {
     "www.HuffPost.com": huff,
     "www.Npr.org": npr,
     "www.TheHill.com": hill
-  };
+  }
+
+  export const outlets = [
+    {
+        id: 'rte',
+        name: 'RTE',
+        path: 'rte',
+        icon: rte,
+    },
+    {
+        id: 'gript',
+        name: 'Gript',
+        path: 'gript',
+        icon: gript,
+    },
+    {
+        id: 'sky',
+        name: 'Sky',
+        path: 'sky',
+        icon: sky,
+    },
+    {
+        id: 'gbnews',
+        name: 'GB News',
+        icon: gbn,
+    },
+    {
+        id: 'spiked',
+        name: 'Spiked',
+        icon: spiked,
+    },
+    {
+        id: 'guardian',
+        name: 'Guardian',
+        icon: guard,
+    },
+    {
+        id: 'dailysceptic',
+        name: 'Daily Sceptic',
+        icon: sceptic,
+    },
+    {
+        id: 'dailymail',
+        name: 'Daily Mail',
+        icon: dmail,
+    },
+    {
+        id: 'blaze',
+        name: 'The Blaze',
+        icon: blaze,
+    },
+    {
+        id: 'npr',
+        name: 'NPR',
+        icon: npr,
+    },
+    {
+        id: 'timcast',
+        name: 'Timcast',
+        icon: tim,
+    },
+    {
+        id: 'cbs',
+        name: 'CBS',
+        icon: cbs,
+    },
+    {
+        id: 'dailycaller',
+        name: 'Daily Caller',
+        icon: call,
+    },
+    {
+        id: 'abc',
+        name: 'ABC',
+        icon: abc,
+    },
+    {
+        id: 'breitbart',
+        name: 'Breitbart',
+        icon: breit,
+    },
+    {
+        id: 'thehill',
+        name: 'The Hill',
+        icon: hill,
+    },
+    {
+        id: 'gatewaypundit',
+        name: 'Gateway Pundit',
+        icon: gwp,
+    },
+    {
+        id: 'dailybeast',
+        name: 'Daily Beast',
+        icon: beast,
+    },
+    {
+        id: 'revolver',
+        name: 'Revolver',
+        icon: rev,
+    },
+    {
+        id: 'vox',
+        name: 'Vox',
+        icon: vox,
+    },
+    {
+        id: 'trendingpolitics',
+        name: 'Trending Politics',
+        icon: trend,
+    },
+    {
+        id: 'politico',
+        name: 'Politico',
+        icon: pol,
+    },
+    {
+        id: 'zerohedge',
+        name: 'Zerohedge',
+        icon: zero,
+    },
+    {
+        id: 'huffingtonpost',
+        name: 'Huffington Post',
+        icon: huff,
+    },
+    {
+        id: 'bongino',
+        name: 'Bongino Report',
+        icon: bong,
+    },
+    {
+        id: 'yahoonews',
+        name: 'Yahoo News',
+        icon: yah,
+    },
+    {
+        id: 'americanthinker',
+        name: 'American Thinker',
+        icon: think,
+    },
+    {
+        id: 'euronews',
+        name: 'Euronews',
+        icon: euro,
+    },
+    {
+        id: 'infowars',
+        name: 'Infowars',
+        icon: info,
+    },
+    {
+        id: 'globalnews',
+        name: 'Global News',
+        icon: glo,
+    },
+    {
+        id: 'postmillennial',
+        name: 'Post Millennial',
+        icon: pmill,
+    },
+];
 

@@ -247,7 +247,7 @@ import MuiAlert from '@mui/material/Alert';
     <Card variant="outlined" sx={{mt: '1em', ml: '1em'}} style={theme.layer}>
         <Grid container direction="column">
       <Card sx={theme.card}>
-        <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link} >
+        <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link1} >
           <StyledCardMedia
             image={img ? img : fall}
             title={title}
@@ -259,7 +259,7 @@ import MuiAlert from '@mui/material/Alert';
               <Grid item>
                 <Grid container>
                   <Grid item>
-                  <ExternalLink onClick={() => articleClick()} href={article.link}>
+                  <ExternalLink onClick={() => articleClick()} href={article.link1}>
                     <Avatar src={icon} sx={theme.avatar}/>
                   </ExternalLink>
                   </Grid>
@@ -273,7 +273,7 @@ import MuiAlert from '@mui/material/Alert';
                 </Grid>
               </Grid>
               <Grid item sx={{mt:'1em'}}>
-              <ExternalLink onClick={() => articleClick()} href={article.link}>
+              <ExternalLink onClick={() => articleClick()} href={article.link1}>
               <Typography variant="body2" align="left" sx={{color: theme.colors.card,fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px','&:hover': {cursor: 'pointer',color: theme.colors.primary} }}>
                 {title}
               </Typography>
@@ -362,7 +362,7 @@ import MuiAlert from '@mui/material/Alert';
       ) : 
       <>
             <Card sx={theme.card}>
-        <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link} >
+        <ExternalLink style={theme.cardmedia} onClick={() => articleClick()} href={article.link1} >
           <StyledCardMedia
             image={img ? img : fall}
             title={title}
@@ -374,7 +374,7 @@ import MuiAlert from '@mui/material/Alert';
               <Grid item>
                 <Grid container>
                   <Grid item>
-                  <ExternalLink onClick={() => articleClick()} href={article.link}>
+                  <ExternalLink onClick={() => articleClick()} href={article.link1}>
                     <Avatar src={icon} sx={theme.avatar}/>
                   </ExternalLink>
                   </Grid>
@@ -388,7 +388,7 @@ import MuiAlert from '@mui/material/Alert';
                 </Grid>
               </Grid>
               <Grid item sx={{mt:'1em', mr: '5em'}}>
-              <ExternalLink onClick={() => articleClick()} href={article.link}>
+              <ExternalLink onClick={() => articleClick()} href={article.link1}>
               <Typography variant="body2" align="left" sx={{color: theme.colors.card,fontFamily: '"Open Sans", sans-serif', fontWeight: 'bold', fontSize: '15px','&:hover': {cursor: 'pointer',color: theme.colors.primary} }}>
                 {'No Results'}
               </Typography>

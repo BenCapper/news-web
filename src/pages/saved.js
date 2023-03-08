@@ -7,8 +7,8 @@ import { AuthContext } from "../contexts/authContext";
 import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
-import RightProsidebar from '../components/RightProsidebar';
 import { scrollTop } from '../util';
+import Drag from '../components/Drag';
 
 function Saved({ setTheme }) {
   const theme = useContext(ThemeContext);
@@ -71,7 +71,7 @@ function Saved({ setTheme }) {
       </div>
     </div>
     <div className="right-sidebar">
-      <RightProsidebar/>
+      <Drag/>
     </div>
   </div>
 </>
