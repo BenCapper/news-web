@@ -34,19 +34,18 @@ const Drag = () => {
         <DragDropContext  onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="outlets">
         {(provided) => (
-        <ul className="outlets" {...provided.droppableProps} ref={provided.innerRef}>
+        <div className="outlets" {...provided.droppableProps} ref={provided.innerRef}>
           {outs.map(({id, name, icon}, index) => {
             return (
                 <Draggable key={id} draggableId={id} index={index}>
                 {(provided) => (
-                <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                    <MenuItem icon={<img className="image" alt={name} src={icon} />} active={window.location.pathname === `/${id}`} component={<Link to={`/${id}`} />}> {name} </MenuItem>
-                </div>
+
+                    <MenuItem ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} icon={<img className="image" alt={name} src={icon} />} active={window.location.pathname === `/${id}`} component={<Link to={`/${id}`} />}> {name} </MenuItem>
                 )}
                 </Draggable>
             )}
             )}  
-        </ul>
+        </div>
         )}
         </Droppable>
         </DragDropContext>
