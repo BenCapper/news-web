@@ -43,11 +43,12 @@ const Drag = () => {
     
         setOuts(items);
         //Set Local Storage
-        window.localStorage.setItem('outlets', JSON.stringify(items));
+        
         if (context.user !== ''){
             const db = getDatabase();
             set(ref(db, 'user-outlets/' + context.user.uid), items);
           }
+        else window.localStorage.setItem('outlets', JSON.stringify(items));
       }
 
     return (
