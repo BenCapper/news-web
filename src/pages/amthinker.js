@@ -9,6 +9,8 @@ import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import RightProsidebar from '../components/RightProsidebar';
 import { scrollTop } from '../util';
+import { Draggable } from 'react-beautiful-dnd';
+import Drag from '../components/Drag';
 
 function AmThinker({setTheme}) {
   const theme = useContext(ThemeContext);
@@ -56,7 +58,7 @@ function AmThinker({setTheme}) {
       </div>
     </div>
     <div className="right-sidebar">
-      <RightProsidebar/>
+      <Drag/>
     </div>
   </div>
 </>

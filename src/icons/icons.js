@@ -118,16 +118,19 @@ export const icons = {
     {
         id: 'rte',
         name: 'RTE',
+        path: 'rte',
         icon: rte,
     },
     {
         id: 'gript',
         name: 'Gript',
+        path: 'gript',
         icon: gript,
     },
     {
         id: 'sky',
         name: 'Sky',
+        path: 'sky',
         icon: sky,
     },
     {
@@ -246,17 +249,17 @@ export const icons = {
         icon: yah,
     },
     {
-        id: 'amthink',
+        id: 'americanthinker',
         name: 'American Thinker',
         icon: think,
     },
     {
-        id: 'euro',
+        id: 'euronews',
         name: 'Euronews',
         icon: euro,
     },
     {
-        id: 'info',
+        id: 'infowars',
         name: 'Infowars',
         icon: info,
     },

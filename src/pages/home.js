@@ -9,7 +9,8 @@ import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import { scrollTop } from '../util';
-import Draggable from '../components/Draggable';
+import Draggable from '../components/Drag';
+import Drag from '../components/Drag';
 
 
 function Home({setTheme}) {
@@ -58,7 +59,7 @@ function Home({setTheme}) {
       </div>
     </div>
     <div className="right-sidebar">
-      <Draggable loadTitle={"Home"}/>
+      <Drag />
     </div>
   </div>
 </>
