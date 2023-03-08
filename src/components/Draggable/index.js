@@ -7,20 +7,31 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import "./rightSidebar.css"
 import { outlets } from "../../icons/icons";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set,onValue } from "firebase/database";
+import { AuthContext } from "../../contexts/authContext";
+import { db } from "../../firebase-config";
+import Loader from "../Loader";
 
 
 const Drag = () => {
+    const context = useContext(AuthContext);
     const theme = useTheme();
     const themes = useContext(ThemeContext);
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     let list = JSON.parse(window.localStorage.getItem('outlets'));
     const [outs, setOuts] = useState(list ? list : outlets);
 
-    // useEffect(() => {
-    //     list = window.localStorage.getItem('outlets');
-    //     console.log(list);
-    // });
+    useEffect(() => {
+        if (context.user !== ''){
+          onValue(ref(db, 'user-outlets/' + context.user.uid), (snapshot) => {
+            const found = (snapshot.val() && snapshot.val());
+            if (found !== list){
+                setOuts(found)
+            }
+          }, {
+            onlyOnce: true
+          })}
+        });
 
 
     function handleOnDragEnd(result) {
@@ -33,7 +44,10 @@ const Drag = () => {
         setOuts(items);
         //Set Local Storage
         window.localStorage.setItem('outlets', JSON.stringify(items));
-        console.log(items)
+        if (context.user !== ''){
+            const db = getDatabase();
+            set(ref(db, 'user-outlets/' + context.user.uid), items);
+          }
       }
 
     return (

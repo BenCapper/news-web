@@ -58,7 +58,7 @@ function Home({setTheme}) {
       </div>
     </div>
     <div className="right-sidebar">
-      <Draggable/>
+      <Draggable loadTitle={"Home"}/>
     </div>
   </div>
 </>
