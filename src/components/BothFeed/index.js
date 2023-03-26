@@ -66,6 +66,12 @@ function Feed ( { title }  ) {
   if (articles.length == 0){
     setArticles(firstSegment);
   }
+  if (articles.length == 0 && newList.length == 0){
+    let empty = [{title: "No Results", date: formatDate(d), outlet:''}]
+    setArticles(empty);
+    setEmptyValue(true);
+  }
+  if (articles.length == 0 && newList.length > 0) setEmptyValue(false);
 
   
   const handleFilterChange = (prop) => (event) => {
