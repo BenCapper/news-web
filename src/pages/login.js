@@ -3,9 +3,11 @@ import LoginForm from "../components/LoginForm";
 import ThemeContext from "../contexts/themeContext";
 import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
+import { useIcon } from '../util';
 
 const Login = ({setTheme}) => {
   const theme = useContext(ThemeContext);
+  useIcon();
 
 
   useEffect(() => {

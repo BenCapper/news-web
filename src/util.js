@@ -1,3 +1,5 @@
+import icon from '../src/assets/360rounded.png'
+
 export function deFormatTitle(title) {
     return title.replace("(dot)", ".")
     .replace("(pc)", "%")
@@ -93,3 +95,13 @@ export function scrollTop(){
     behavior: "smooth"
   })
 }
+
+export function useIcon(){
+  const link =
+  document.querySelector("link[rel*='icon']") ||
+  document.createElement('link');
+  link.type = 'image/x-icon';
+  link.rel = 'shortcut icon';
+  link.href = icon;
+  document.getElementsByTagName('head')[0].appendChild(link);
+};
