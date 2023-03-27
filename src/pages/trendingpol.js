@@ -17,7 +17,7 @@ function TrendingPol({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Trending Politics - 360 News";
+    document.title = "Trending Politics | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

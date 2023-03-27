@@ -17,7 +17,7 @@ function Gwp({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "The Gateway Pundit - 360 News";
+    document.title = "The Gateway Pundit | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

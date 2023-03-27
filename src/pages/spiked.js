@@ -17,7 +17,7 @@ function Spiked({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Spiked-Online - 360 News";
+    document.title = "Spiked-Online | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

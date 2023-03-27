@@ -17,7 +17,7 @@ function Blaze({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "The Blaze - 360 News";
+    document.title = "The Blaze | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

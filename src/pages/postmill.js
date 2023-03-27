@@ -17,7 +17,7 @@ function PostMill({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "The Post Millennial - 360 News";
+    document.title = "The Post Millennial | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

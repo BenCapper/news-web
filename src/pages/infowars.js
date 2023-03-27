@@ -17,7 +17,7 @@ function Info({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Infowars - 360 News";
+    document.title = "Infowars | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

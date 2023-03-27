@@ -17,7 +17,7 @@ function AmThinker({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "American Thinker - 360 News";
+    document.title = "American Thinker | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

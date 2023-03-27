@@ -17,7 +17,7 @@ function Vox({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Vox - 360 News";
+    document.title = "Vox | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

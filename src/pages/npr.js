@@ -17,7 +17,7 @@ function Npr({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "NPR - 360 News";
+    document.title = "NPR | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

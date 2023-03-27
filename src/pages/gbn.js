@@ -17,7 +17,7 @@ function Gbn({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "GB News - 360 News";
+    document.title = "GB News | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

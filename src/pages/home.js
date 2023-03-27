@@ -19,7 +19,7 @@ function Home({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Home - 360 News";
+    document.title = "Home | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

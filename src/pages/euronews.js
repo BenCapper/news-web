@@ -17,7 +17,7 @@ function Euronews({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Euronews - 360 News";
+    document.title = "Euronews | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

@@ -17,7 +17,7 @@ function Revolver({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Revolver - 360 News";
+    document.title = "Revolver | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

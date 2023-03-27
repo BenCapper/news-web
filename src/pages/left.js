@@ -17,7 +17,7 @@ function Left({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Leans Left - 360 News";
+    document.title = "Leans Left | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

@@ -17,7 +17,7 @@ function Both({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "See Both Sides - 360 News";
+    document.title = "See Both Sides | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

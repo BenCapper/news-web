@@ -17,7 +17,7 @@ function Caller({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "The Daily Caller - 360 News";
+    document.title = "The Daily Caller | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

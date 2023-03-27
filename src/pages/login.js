@@ -11,7 +11,7 @@ const Login = ({setTheme}) => {
 
 
   useEffect(() => {
-    document.title = "Login - 360 News";
+    document.title = "Login | 360 News";
     const localTheme = window.localStorage.getItem('theme');
     if (localTheme === 'dark') {
       setTheme(darktheme);

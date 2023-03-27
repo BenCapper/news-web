@@ -17,7 +17,7 @@ function Bongino({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Bongino Report - 360 News";
+    document.title = "Bongino Report | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

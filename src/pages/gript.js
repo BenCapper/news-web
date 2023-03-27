@@ -17,7 +17,7 @@ function Gript({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Gript - 360 News";
+    document.title = "Gript | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

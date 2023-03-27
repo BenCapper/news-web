@@ -17,7 +17,7 @@ function Politico({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Politico - 360 News";
+    document.title = "Politico | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

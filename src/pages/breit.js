@@ -17,7 +17,7 @@ function Breitbart({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Breitbart - 360 News";
+    document.title = "Breitbart | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

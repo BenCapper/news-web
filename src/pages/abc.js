@@ -17,7 +17,7 @@ function Abc({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "ABC - 360 News";
+    document.title = "ABC | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

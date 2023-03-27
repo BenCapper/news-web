@@ -17,7 +17,7 @@ function Sky({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Sky - 360 News";
+    document.title = "Sky | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

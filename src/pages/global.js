@@ -18,7 +18,7 @@ function GlobalNews({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Global News - 360 News";
+    document.title = "Global News | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

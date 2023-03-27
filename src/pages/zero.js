@@ -17,7 +17,7 @@ function Zero({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Zerohedge - 360 News";
+    document.title = "Zerohedge | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

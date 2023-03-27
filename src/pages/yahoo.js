@@ -17,7 +17,7 @@ function Yahoo({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "Yahoo - 360 News";
+    document.title = "Yahoo | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

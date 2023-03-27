@@ -20,7 +20,7 @@ function History({setTheme}) {
   useIcon();
 
   useEffect(() => {
-    document.title = "View History - 360 News";
+    document.title = "View History | 360 News";
     scrollTop();
     if (context.user !== ''){
       // Get theme from DB
