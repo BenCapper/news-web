@@ -16,6 +16,7 @@ function Revolver({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "Revolver - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

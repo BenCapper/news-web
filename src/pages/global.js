@@ -16,6 +16,7 @@ function GlobalNews({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "Global News - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

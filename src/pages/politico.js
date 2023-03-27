@@ -16,6 +16,7 @@ function Politico({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "Politico - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

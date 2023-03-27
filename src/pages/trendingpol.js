@@ -16,6 +16,7 @@ function TrendingPol({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "Trending Politics - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

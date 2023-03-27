@@ -16,6 +16,7 @@ function Huff({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "Huffington Post - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

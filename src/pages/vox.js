@@ -16,6 +16,7 @@ function Vox({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "Vox - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

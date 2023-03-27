@@ -16,6 +16,7 @@ function Gwp({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "The Gateway Pundit - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

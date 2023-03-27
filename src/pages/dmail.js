@@ -16,6 +16,7 @@ function Dmail({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "Daily Mail - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

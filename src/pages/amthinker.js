@@ -16,6 +16,7 @@ function AmThinker({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "American Thinker - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

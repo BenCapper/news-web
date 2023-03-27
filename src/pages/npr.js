@@ -16,6 +16,7 @@ function Npr({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "NPR - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

@@ -10,6 +10,7 @@ import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import { scrollTop } from '../util';
 import Drag from '../components/Drag';
+import { useDocumentTitle } from '../util';
 
 
 function Home({setTheme}) {
@@ -18,6 +19,7 @@ function Home({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "Home - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

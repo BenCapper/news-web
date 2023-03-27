@@ -16,6 +16,7 @@ function Sceptic({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "The Daily Sceptic - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

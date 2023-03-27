@@ -18,6 +18,7 @@ function Saved({ setTheme }) {
   let arts = [];
 
   useEffect(() => {
+    document.title = "Saved Articles - 360 News";
     scrollTop();
     if (context.user !== ''){
       // Get theme from DB

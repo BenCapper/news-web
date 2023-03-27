@@ -16,6 +16,7 @@ function Timcast({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "Timcast - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

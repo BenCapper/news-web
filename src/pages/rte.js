@@ -16,6 +16,7 @@ function Rte({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "RTE - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

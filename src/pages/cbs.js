@@ -16,6 +16,7 @@ function Cbs({setTheme}) {
   const db = getDatabase();
 
   useEffect(() => {
+    document.title = "CBS - 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;
