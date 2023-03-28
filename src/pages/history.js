@@ -7,7 +7,7 @@ import { AuthContext } from "../contexts/authContext";
 import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
-import { scrollTop } from '../util';
+import { scrollTop, useIcon } from '../util';
 import Drag from '../components/Drag';
 
 
@@ -17,8 +17,10 @@ function History({setTheme}) {
   const db = getDatabase();
   const [articles, setArticles] = useState([]);
   let arts = [];
+  useIcon();
 
   useEffect(() => {
+    document.title = "View History | 360 News";
     scrollTop();
     if (context.user !== ''){
       // Get theme from DB

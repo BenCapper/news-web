@@ -8,7 +8,7 @@ import { AuthContext } from "../contexts/authContext";
 import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
-import { scrollTop } from '../util';
+import { scrollTop, useFavicon, useIcon } from '../util';
 import Drag from '../components/Drag';
 
 
@@ -16,8 +16,10 @@ function Home({setTheme}) {
   const theme = useContext(ThemeContext);
   const context = useContext(AuthContext);
   const db = getDatabase();
+  useIcon();
 
   useEffect(() => {
+    document.title = "Home | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;

@@ -7,15 +7,17 @@ import { AuthContext } from "../contexts/authContext";
 import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
-import { scrollTop } from '../util';
+import { scrollTop, useIcon } from '../util';
 import Drag from '../components/Drag';
 
 function PostMill({setTheme}) {
   const theme = useContext(ThemeContext);
   const context = useContext(AuthContext);
   const db = getDatabase();
+  useIcon();
 
   useEffect(() => {
+    document.title = "The Post Millennial | 360 News";
     scrollTop();
     if (context.user !== ''){
       const userId = context.user.uid;
