@@ -1,4 +1,4 @@
-import React, {useContext,useEffect, useState} from 'react';
+import React, {useContext,useEffect} from 'react';
 import ProSidebar from '../components/ProSidebar';
 import "../App.css";
 import OutletFeed from '../components/OutletFeed';
@@ -53,7 +53,7 @@ function Bongino({setTheme}) {
       <ProSidebar setTheme={setTheme}/>
     </div>
     <div className='feed-container'>
-      <div className='feed'>
+      <div className='feed' >
       <OutletFeed title={"Bongino Report"} keyword={"www.BonginoReport.com"}/>
       </div>
     </div>

@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
-import { Icon, styled } from "@mui/material";
+import { styled } from "@mui/material";
 import { deFormatTitle, formatDate } from '../../util';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
@@ -19,7 +19,6 @@ import "./art.css";
 import { fall } from "../../icons/icons";
 import logo from '../../assets/360.png'
 import { getDatabase, ref, set } from "firebase/database";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
 import Snackbar from '@mui/material/Snackbar';
@@ -57,13 +56,12 @@ import MuiAlert from '@mui/material/Alert';
   export default function Art({article, on}) {
     const context = useContext(AuthContext);
     const [title, setTitle] = useState(article.title);
-    const [outlet, setOutlet] = useState(article.outlet);
+    const [outlet] = useState(article.outlet);
     const [img, setImg] = useState(article.storage_link);
     const [date, setDate] = useState(article.date);
     const [color, setColor] = useState('white');
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
-    const navigate = useNavigate();
     const theme = useContext(ThemeContext);
     const [open, setOpen] = React.useState(false);
     const [openSave, setOpenSave] = React.useState(false);

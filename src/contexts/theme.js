@@ -167,6 +167,7 @@ const theme = {
     height: '30px',
     marginRight: '10px',
   },
+  bodyBackgroundColor: '#000000',
 };
   
 export default theme;

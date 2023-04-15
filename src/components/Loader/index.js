@@ -1,7 +1,7 @@
 import '../Feed/feed.css'
 import { LinearProgress } from "@mui/material";
 import ThemeContext from "../../contexts/themeContext";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 
 const Loader = ({title}) => {
   const theme = useContext(ThemeContext);

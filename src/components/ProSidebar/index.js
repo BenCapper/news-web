@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
 import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
@@ -22,6 +23,7 @@ import { db } from "../../firebase-config";
 
 
 const ProSidebar = ({setTheme}) => {
+    const { collapseSidebar } = useProSidebar();
     const context = useContext(AuthContext);
     const theme = useTheme();
     const themes = useContext(ThemeContext);
@@ -72,8 +74,9 @@ const ProSidebar = ({setTheme}) => {
         
         <Sidebar width="80px" backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: themes.colors.white }}>
         <Menu menuItemStyles={themes.menuItemStyles}>
-
-          <MenuItem disabled></MenuItem>
+          <MenuItem disabled style={{paddingBottom: '3em'}}></MenuItem>
+          <MenuItem icon={<MenuOutlinedIcon />} onClick={() => collapseSidebar()} style={{marginBottom: '.95em'}}></MenuItem>
+          
           <MenuItem active={window.location.pathname === "/"} title={"Home"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
           <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} onClick={() => openSaved()}>Saved</MenuItem>
           <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory()}>History</MenuItem>
@@ -92,8 +95,10 @@ const ProSidebar = ({setTheme}) => {
         <Sidebar backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: themes.colors.white }}>
         <Menu menuItemStyles={themes.menuItemStyles}>
 
-        <MenuItem disabled><img src={header} style={{paddingTop: '1em'}} height={60}/></MenuItem>
-          <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
+          <MenuItem disabled><img alt="360 News" src={header} style={{paddingTop: '1em'}} height={60}/></MenuItem>
+          <MenuItem icon={<MenuOutlinedIcon />} onClick={() => collapseSidebar()}>Menu</MenuItem>
+          <MenuItem disabled style={{marginBottom: '-2em'}}></MenuItem>
+          <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />} style={{marginTop: '-1em'}}> Home </MenuItem>
           <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />}  onClick={() => openSaved()}>Saved</MenuItem>
           <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory()}> History </MenuItem>
           <MenuItem disabled></MenuItem>

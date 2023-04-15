@@ -15,10 +15,10 @@ function Saved({ setTheme }) {
   const context = useContext(AuthContext);
   const db = getDatabase();
   const [articles, setArticles] = useState([]);
-  let arts = [];
   useIcon();
 
   useEffect(() => {
+    let arts = [];
     document.title = "Saved Articles | 360 News";
     scrollTop();
     if (context.user !== ''){
@@ -68,7 +68,7 @@ function Saved({ setTheme }) {
       <ProSidebar setTheme={setTheme}/>
     </div>
     <div className='feed-container'>
-      <div className='feed'>
+      <div className='feed' style={{paddingLeft: '1em'}}>
       <AltFeed title={"Saved"} articles={articles} affix={"likes"} setArticles={setArticles}/>
       </div>
     </div>

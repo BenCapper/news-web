@@ -1,6 +1,5 @@
 import React, {useContext,useEffect} from 'react';
 import ProSidebar from '../components/ProSidebar';
-import RightProsidebar from '../components/RightProsidebar';
 import "../App.css";
 import Feed from '../components/Feed';
 import ThemeContext from "../contexts/themeContext";
@@ -8,7 +7,7 @@ import { AuthContext } from "../contexts/authContext";
 import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
-import { scrollTop, useFavicon, useIcon } from '../util';
+import { scrollTop, useIcon } from '../util';
 import Drag from '../components/Drag';
 
 
@@ -17,6 +16,11 @@ function Home({setTheme}) {
   const context = useContext(AuthContext);
   const db = getDatabase();
   useIcon();
+
+  useEffect(() => {
+    // Set the body background color CSS variable
+    document.documentElement.style.setProperty('--body-background-color', theme.bodyBackgroundColor);
+  }, [theme]);
 
   useEffect(() => {
     document.title = "Home | 360 News";
@@ -55,11 +59,11 @@ function Home({setTheme}) {
       <ProSidebar setTheme={setTheme}/>
     </div>
     <div className='feed-container'>
-      <div className='feed'>
+      <div className='feed' style={{paddingLeft: '.6em'}}>
       <Feed title={"Home"}/>
       </div>
     </div>
-    <div className="right-sidebar">
+    <div className="right-sidebar" style={{backgroundColor:theme.colors.white}}>
       <Drag/>
     </div>
   </div>

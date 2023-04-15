@@ -1,23 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link } from 'react-router-dom';
 import ThemeContext from "../../contexts/themeContext";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import "./rightSidebar.css"
 import { outlets } from "../../icons/icons";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { getDatabase, ref, set,onValue } from "firebase/database";
 import { AuthContext } from "../../contexts/authContext";
 import { db } from "../../firebase-config";
-import Loader from "../Loader";
 
 
 const Drag = () => {
     const context = useContext(AuthContext);
-    const theme = useTheme();
     const themes = useContext(ThemeContext);
-    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     let list = JSON.parse(window.localStorage.getItem('outlets'));
     const [outs, setOuts] = useState(list ? list : outlets);
 
@@ -65,7 +60,9 @@ const Drag = () => {
             return (
                 <Draggable key={id} draggableId={id} index={index}>
                 {(provided) => (
-                    <MenuItem ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} icon={<img className="image" alt={name} src={icon} />} active={window.location.pathname === `/${id}`} component={<Link to={`/${id}`} />}> {name} </MenuItem>
+                    <MenuItem ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} 
+                    icon={<img className="image" alt={name} src={icon} />} active={window.location.pathname === `/${id}`} 
+                    component={<Link to={`/${id}`} />}> {name} </MenuItem>
                 )}
                 </Draggable>
             )}

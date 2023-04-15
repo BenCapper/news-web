@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
-import { Box, Icon, Paper, styled } from "@mui/material";
+import { styled } from "@mui/material";
 import { deFormatTitle, formatDate, getDate } from '../../util';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
@@ -19,7 +19,6 @@ import "./art.css";
 import { fall } from "../../icons/icons";
 import logo from '../../assets/360.png'
 import { getDatabase, ref, set } from "firebase/database";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
 import Snackbar from '@mui/material/Snackbar';
@@ -58,10 +57,10 @@ import MuiAlert from '@mui/material/Alert';
     const context = useContext(AuthContext);
     const [title, setTitle] = useState(article.title1);
     const [title2, setTitle2] = useState(article.title2);
-    const [outlet, setOutlet] = useState(article.outlet1);
-    const [outlet2, setOutlet2] = useState(article.outlet2);
+    const [outlet] = useState(article.outlet1);
+    const [outlet2] = useState(article.outlet2);
     const [img, setImg] = useState(article.storage_link1);
-    const [img2, setImg2] = useState(article.storage_link2);
+    const [img2] = useState(article.storage_link2);
     const [date, setDate] = useState(article.date1);
     const [date2, setDate2] = useState(article.date2);
     const [color, setColor] = useState('white');
@@ -70,13 +69,14 @@ import MuiAlert from '@mui/material/Alert';
     const [region2, setRegion2] = useState('');
     const [icon, setIcon] = useState('')
     const [icon2, setIcon2] = useState('')
-    const navigate = useNavigate();
     const theme = useContext(ThemeContext);
     const [open, setOpen] = React.useState(false);
     const [openSave, setOpenSave] = React.useState(false);
     const [openSaveConfirm, setOpenSaveConfirm] = React.useState(false);
     let today = getDate(0)
     today = formatDate(today)
+    
+    
 
     useEffect(() => {
 
@@ -127,7 +127,7 @@ import MuiAlert from '@mui/material/Alert';
         setIcon(logo);
         setRegion(iei);
       }
-      },[article.title, article.date, article.outlet, title, outlet, img]); 
+      },[article.title, title, outlet, img, outlet2, title2]); 
     
     const shareClick = () => {
       navigator.clipboard.writeText(article.link1);

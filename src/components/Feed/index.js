@@ -62,7 +62,7 @@ function Feed ( { title }  ) {
   splitArr = splitArray(newList);
   firstSegment = splitArr[pageNumber];
 
-  if (articles.length == 0){
+  if (articles.length === 0){
     setArticles(firstSegment);
   }
 
