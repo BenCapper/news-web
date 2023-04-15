@@ -1,6 +1,8 @@
 import { menuClasses } from 'react-pro-sidebar';
 import { inputLabelClasses } from "@mui/material/InputLabel";
 
+
+
 const darktheme = {
     colors: {
       primary: "#E8C034",
@@ -175,6 +177,7 @@ const darktheme = {
     height: '30px',
     marginRight: '10px',
   },
+  bodyBackgroundColor: '#14171A',
 };
   
 export default darktheme;

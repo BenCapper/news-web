@@ -18,6 +18,11 @@ function Home({setTheme}) {
   useIcon();
 
   useEffect(() => {
+    // Set the body background color CSS variable
+    document.documentElement.style.setProperty('--body-background-color', theme.bodyBackgroundColor);
+  }, [theme]);
+
+  useEffect(() => {
     document.title = "Home | 360 News";
     scrollTop();
     if (context.user !== ''){
@@ -58,7 +63,7 @@ function Home({setTheme}) {
       <Feed title={"Home"}/>
       </div>
     </div>
-    <div className="right-sidebar">
+    <div className="right-sidebar" style={{backgroundColor:theme.colors.white}}>
       <Drag/>
     </div>
   </div>
