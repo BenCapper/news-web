@@ -68,7 +68,7 @@ function Saved({ setTheme }) {
       <ProSidebar setTheme={setTheme}/>
     </div>
     <div className='feed-container'>
-      <div className='feed'>
+      <div className='feed' style={{paddingLeft: '1em'}}>
       <AltFeed title={"Saved"} articles={articles} affix={"likes"} setArticles={setArticles}/>
       </div>
     </div>
