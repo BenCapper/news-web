@@ -1,6 +1,5 @@
 import React, {useContext,useEffect} from 'react';
 import ProSidebar from '../components/ProSidebar';
-import RightProsidebar from '../components/RightProsidebar';
 import "../App.css";
 import Feed from '../components/Feed';
 import ThemeContext from "../contexts/themeContext";
@@ -8,7 +7,7 @@ import { AuthContext } from "../contexts/authContext";
 import darktheme from '../contexts/darktheme';
 import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
-import { scrollTop, useFavicon, useIcon } from '../util';
+import { scrollTop, useIcon } from '../util';
 import Drag from '../components/Drag';
 
 

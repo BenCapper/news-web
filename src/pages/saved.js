@@ -15,10 +15,10 @@ function Saved({ setTheme }) {
   const context = useContext(AuthContext);
   const db = getDatabase();
   const [articles, setArticles] = useState([]);
-  let arts = [];
   useIcon();
 
   useEffect(() => {
+    let arts = [];
     document.title = "Saved Articles | 360 News";
     scrollTop();
     if (context.user !== ''){

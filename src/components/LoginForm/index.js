@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -12,11 +12,9 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import GoogleButton from 'react-google-button'
 
 const LoginForm = () => {
-  const auth = getAuth();
   const context = useContext(AuthContext);
   const theme = useContext(ThemeContext);
   const [values, setValues] = React.useState({

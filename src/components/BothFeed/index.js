@@ -6,7 +6,6 @@ import { useDatabaseValue } from "@react-query-firebase/database";
 import { compare, filterByTitleBoth, getDate, splitArray } from "../../util";
 import { Button, ButtonGroup, Grid, LinearProgress, TextField } from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { filterByTitle } from "../../util";
 import { getArraySegment } from "../../util";
 import Loader from "../Loader";
 import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
@@ -18,7 +17,6 @@ import ThemeContext from "../../contexts/themeContext";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { formatDate } from '../../util';
-import { right, left } from "../../icons/collections";
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -63,15 +61,15 @@ function Feed ( { title }  ) {
   splitArr = splitArray(newList);
   firstSegment = splitArr[pageNumber];
 
-  if (articles.length == 0){
+  if (articles.length === 0){
     setArticles(firstSegment);
   }
-  if (articles.length == 0 && newList.length == 0){
+  if (articles.length === 0 && newList.length === 0){
     let empty = [{title: "No Results", date: formatDate(d), outlet:''}]
     setArticles(empty);
     setEmptyValue(true);
   }
-  if (articles.length == 0 && newList.length > 0) setEmptyValue(false);
+  if (articles.length === 0 && newList.length > 0) setEmptyValue(false);
 
   
   const handleFilterChange = (prop) => (event) => {

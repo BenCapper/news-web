@@ -18,7 +18,6 @@ import ThemeContext from "../../contexts/themeContext";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { formatDate } from '../../util';
-import { right, left } from "../../icons/collections";
 import EmptyArt from "../EmptyArt";
 
 
@@ -63,7 +62,7 @@ function OutletFeed ( { title, keyword }  ) {
     }
     newList.sort(compare).reverse();
   }
-  if (newList.length == 0){
+  if (newList.length === 0){
     return (
         <>
         <div className="header" style={theme.header}>
@@ -111,7 +110,7 @@ function OutletFeed ( { title, keyword }  ) {
   splitArr = splitArray(newList);
   firstSegment = splitArr[pageNumber];
 
-  if (articles.length == 0){
+  if (articles.length === 0){
     setArticles(firstSegment);
   }
 

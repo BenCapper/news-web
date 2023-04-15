@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link } from 'react-router-dom';
 import ThemeContext from "../../contexts/themeContext";
 import { useTheme } from "@mui/material/styles";

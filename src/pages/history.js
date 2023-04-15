@@ -16,10 +16,10 @@ function History({setTheme}) {
   const context = useContext(AuthContext);
   const db = getDatabase();
   const [articles, setArticles] = useState([]);
-  let arts = [];
   useIcon();
 
   useEffect(() => {
+    let arts = [];
     document.title = "View History | 360 News";
     scrollTop();
     if (context.user !== ''){

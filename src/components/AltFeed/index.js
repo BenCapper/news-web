@@ -1,14 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./altFeed.css";
 import { db } from "../../firebase-config";
-import { getDatabase, ref, remove, set } from "firebase/database";
-import { useDatabaseValue } from "@react-query-firebase/database";
-import { compare, getDate, splitArray, sortByDate } from "../../util";
-import { Button, ButtonGroup, Grid, LinearProgress, TextField } from "@mui/material";
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { ref, set } from "firebase/database";
+import { getDate, sortByDate } from "../../util";
+import { Button, ButtonGroup, Grid, TextField } from "@mui/material";
 import { filterByTitle } from "../../util";
-import { getArraySegment } from "../../util";
-import Loader from "../Loader";
 import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
@@ -20,7 +16,7 @@ import { AuthContext } from "../../contexts/authContext";
 
 
 function AltFeed ( { title, articles, affix, setArticles}  ) {
-  const [count, setCount] = useState(0);
+  const [count] = useState(0);
   const context = useContext(AuthContext);
   const d = getDate(count);
   const theme = useContext(ThemeContext);
@@ -45,7 +41,7 @@ function AltFeed ( { title, articles, affix, setArticles}  ) {
     if (articles.length > 0){
       setState(refresh + 1)
     }
-    if (articles.length == 0){
+    if (articles.length === 0){
       setState(refresh + 1)
     }
   };

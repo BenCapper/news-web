@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
@@ -92,7 +92,7 @@ const ProSidebar = ({setTheme}) => {
         <Sidebar backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: themes.colors.white }}>
         <Menu menuItemStyles={themes.menuItemStyles}>
 
-        <MenuItem disabled><img src={header} style={{paddingTop: '1em'}} height={60}/></MenuItem>
+        <MenuItem disabled><img alt="360 News" src={header} style={{paddingTop: '1em'}} height={60}/></MenuItem>
           <MenuItem active={window.location.pathname === "/"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
           <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />}  onClick={() => openSaved()}>Saved</MenuItem>
           <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory()}> History </MenuItem>

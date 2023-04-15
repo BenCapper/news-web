@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
-import { Icon, styled } from "@mui/material";
+import { styled } from "@mui/material";
 import { deFormatTitle, formatDate } from '../../util';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -16,15 +15,12 @@ import { iei, gbi, usi, cai, eui } from "../../icons/icons";
 import { icons } from "../../icons/icons";
 import { ExternalLink } from "react-external-link";
 import "./art.css";
-import { fall } from "../../icons/icons";
 import logo from '../../assets/360.png'
 import { getDatabase, ref, set } from "firebase/database";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
   
   
   const StyledShareIcon = styled(ShareOutlinedIcon)`
@@ -46,15 +42,13 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
   export default function Art({article, forceRerender}) {
     const context = useContext(AuthContext);
     const [title, setTitle] = useState(article.title);
-    const [outlet, setOutlet] = useState(article.outlet);
+    const [outlet] = useState(article.outlet);
     const [img, setImg] = useState(article.storage_link);
     const [date, setDate] = useState(article.date);
     const [color, setColor] = useState('white');
     const [region, setRegion] = useState('');
     const [icon, setIcon] = useState('')
-    const navigate = useNavigate();
     const theme = useContext(ThemeContext);
-    const db = getDatabase();
     const [empty, setEmpty] = useState(false);
     const [open, setOpen] = React.useState(false);
     const [openRemove, setOpenRemove] = React.useState(false);
@@ -140,7 +134,7 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
     return (
       <>
       <Card sx={theme.card}>
-        <CardContent>
+        <CardContent sx={{borderTop: `1px solid rgb(${color},.5)`}}>
             <Grid container direction="column">
               <Grid item>
                 <Grid container>
@@ -148,7 +142,7 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
                   <ExternalLink onClick={() => articleClick()} href={article.link}>
                     <Avatar src={icon} sx={theme.avatar}/>
                   </ExternalLink>
-                  </Grid>
+                  </Grid >
                   <Grid item>
                     <div sx={{ display: 'flex', alignItems: 'center'}}>
                         <Typography variant="body2" align="center" sx={{ fontStyle: 'italic', ml: '1em', mt: '.5em' }}>
@@ -181,7 +175,7 @@ import { useDatabaseRemoveMutation } from "@react-query-firebase/database";
                 <Grid item sx={{cursor: 'pointer', marginLeft: '1em' }}>
                   {empty ? null : <StyledShareIcon fontSize="medium" onClick={() => shareClick()}/>}
                 </Grid>
-                <Grid item sx={{cursor: 'pointer', marginLeft: '1em' }}>
+                <Grid item sx={{cursor: 'pointer', marginLeft: '1em'}}>
                   {empty ? null : <StyledDeleteIcon fontSize="medium" onClick={() => deleteClick()}/>}
                 </Grid>
             </Grid>
