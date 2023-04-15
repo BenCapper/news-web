@@ -59,7 +59,7 @@ function Home({setTheme}) {
       <ProSidebar setTheme={setTheme}/>
     </div>
     <div className='feed-container'>
-      <div className='feed'>
+      <div className='feed' style={{paddingLeft: '.6em'}}>
       <Feed title={"Home"}/>
       </div>
     </div>

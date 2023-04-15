@@ -74,8 +74,8 @@ const ProSidebar = ({setTheme}) => {
         
         <Sidebar width="80px" backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: themes.colors.white }}>
         <Menu menuItemStyles={themes.menuItemStyles}>
-
-          <MenuItem icon={<MenuOutlinedIcon />} onClick={() => collapseSidebar()}></MenuItem>
+          <MenuItem disabled style={{paddingBottom: '3em'}}></MenuItem>
+          <MenuItem icon={<MenuOutlinedIcon />} onClick={() => collapseSidebar()} style={{marginBottom: '.95em'}}></MenuItem>
           
           <MenuItem active={window.location.pathname === "/"} title={"Home"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
           <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} onClick={() => openSaved()}>Saved</MenuItem>

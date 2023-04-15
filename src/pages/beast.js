@@ -53,7 +53,7 @@ function Beast({setTheme}) {
       <ProSidebar setTheme={setTheme}/>
     </div>
     <div className='feed-container'>
-      <div className='feed'>
+      <div className='feed' style={{paddingLeft: '.6em'}}>
       <OutletFeed title={"The Daily Beast"} keyword={"www.TheDailyBeast.com"}/>
       </div>
     </div>

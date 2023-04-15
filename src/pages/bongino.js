@@ -53,7 +53,7 @@ function Bongino({setTheme}) {
       <ProSidebar setTheme={setTheme}/>
     </div>
     <div className='feed-container'>
-      <div className='feed'>
+      <div className='feed' style={{paddingLeft: '.6em'}}>
       <OutletFeed title={"Bongino Report"} keyword={"www.BonginoReport.com"}/>
       </div>
     </div>
