@@ -53,7 +53,7 @@ function Blaze({setTheme}) {
       <ProSidebar setTheme={setTheme}/>
     </div>
     <div className='feed-container'>
-      <div className='feed' style={{paddingLeft: '.6em'}}>
+      <div className='feed' >
       <OutletFeed title={"The Blaze"} keyword={"www.TheBlaze.com"}/>
       </div>
     </div>

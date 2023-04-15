@@ -53,7 +53,7 @@ function Abc({setTheme}) {
       <ProSidebar setTheme={setTheme}/>
     </div>
     <div className='feed-container'>
-      <div className='feed' style={{paddingLeft: '.6em'}}>
+      <div className='feed' >
       <OutletFeed title={"ABC News"} keyword={"AbcNews.go.com"}/>
       </div>
     </div>
