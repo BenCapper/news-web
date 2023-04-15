@@ -13,7 +13,7 @@ import NoImgArt from "../NoImgArt";
 import ThemeContext from "../../contexts/themeContext";
 import { formatDate } from '../../util';
 import { AuthContext } from "../../contexts/authContext";
-
+import EmptyArt from "../EmptyArt";
 
 function AltFeed ( { title, articles, affix, setArticles}  ) {
   const [count] = useState(0);
@@ -113,18 +113,21 @@ function AltFeed ( { title, articles, affix, setArticles}  ) {
   </div>
       </div>
 
-    <div className="infinite" style={theme.infinite}>
-        <Grid container spacing={1} sx={{justifyContent: 'center', width: '100%'}}>
-      {(filtered.length > 0 ? filtered : articles).map((article) => (
-          <NoImgArt
-            key={Math.floor(Math.random() * 990000000000)}
-            article={article}
-            forceRerender={forceRerender}
-          />
-        ))}
-        </Grid>
-
-      </div>
+      <div className="infinite" style={theme.infinite}>
+  <Grid container spacing={1} sx={{ justifyContent: 'center', width: '100%' }}>
+    {articles.length > 0 ? (
+      (filtered.length > 0 ? filtered : articles).map((article) => (
+        <NoImgArt
+          key={Math.floor(Math.random() * 990000000000)}
+          article={article}
+          forceRerender={forceRerender}
+        />
+      ))
+    ) : (
+      <EmptyArt />
+    )}
+  </Grid>
+</div>
     </>
   );
 }
