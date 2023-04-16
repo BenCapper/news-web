@@ -19,7 +19,7 @@ import { ExternalLink } from "react-external-link";
 import phone from '../../assets/phone.png'
 import blackphone from '../../assets/blackphone.png'
 import Grid from '@mui/material/Grid'
-
+import {BrowserView, MobileView} from 'react-device-detect';
 
 const LoginForm = () => {
   const context = useContext(AuthContext);
@@ -67,6 +67,7 @@ const LoginForm = () => {
   return (
     <>
       <br />
+      <BrowserView>
       <Grid container>
         <Grid item xs={12} sm={4}>
           <Box sx={theme.styles.root}>
@@ -148,6 +149,68 @@ const LoginForm = () => {
         </Grid>
     </Grid>
     <br />
+      </BrowserView>
+      <MobileView>
+          <Box sx={theme.styles.root} style={{paddingLeft: '.8em'}}>
+            <FormControl variant="outlined">
+              <Typography sx={theme.styles.title} color={theme.colors.primary} component="h2" variant="h3">
+                <img src={header} alt="Play Store" style={{ width: '18ch', height: 'auto' }} />
+              </Typography>
+            </FormControl>
+            <br />
+            <FormControl sx={{ m: 1, width: '25ch', color: theme.colors.primary }} variant="outlined">
+              <TextField
+                id="outlined"
+                label="Email"
+                autoFocus={true}
+                onChange={handleChange('email')}
+                sx={theme.styles.textField}
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+              <InputLabel sx={{ color: theme.colors.primary, '&:hover': { color: theme.colors.primary }, '&.Mui-focused': { color: theme.colors.primary } }} htmlFor="outlined-adornment-password">Password</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={values.showPassword ? 'text' : 'password'}
+                onChange={handleChange('password')}
+                sx={theme.styles.outlinedInput}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                      color={theme.colors.primary}
+                    >
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+            <Typography sx={theme.styles.err}>
+              {context.fbCode}
+            </Typography>
+            <FormControl sx={{ m: 1, mt: 5, width: '25ch' }} variant="outlined">
+              <Button variant="contained" sx={{ backgroundColor: theme.colors.primary, '&:hover': { backgroundColor: '#f5c542' } }} onClick={reg}>Create Account</Button>
+            </FormControl>
+            <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+              <Button variant="contained" sx={{ backgroundColor: theme.colors.primary, '&:hover': { backgroundColor: '#f5c542' } }} onClick={log}>Login</Button>
+            </FormControl>
+            <FormControl sx={{ m: 1, width: '25ch', paddingLeft: '.6em' }} variant="outlined">
+              <GoogleButton style={{ width: '24ch' }} onClick={() => logGoogle()}></GoogleButton>
+            </FormControl>
+            <br />
+            <br />
+
+            <br />
+          </Box>
+    <br />
+
+      </MobileView>
+      
   </>
 );
 };
