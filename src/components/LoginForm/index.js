@@ -12,7 +12,10 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { AuthContext } from "../../contexts/authContext";
 import ThemeContext from "../../contexts/themeContext";
-import GoogleButton from 'react-google-button'
+import GoogleButton from 'react-google-button';
+import header from '../../assets/header.png'
+import playstore2 from '../../assets/playstore2.png'
+import { ExternalLink } from "react-external-link";
 
 const LoginForm = () => {
   const context = useContext(AuthContext);
@@ -56,13 +59,14 @@ const LoginForm = () => {
     context.loginGoogle();
   }
 
+
   return (
     <>
     <br></br>
     <Box sx={theme.styles.root}>
-    <FormControl sx={{ m: 5, mt: 5, mb: 5, width: '25ch' }} variant="outlined">
+    <FormControl variant="outlined">
     <Typography sx={theme.styles.title} color={theme.colors.primary} component="h2" variant="h3">
-        Login
+    <img src={header} alt="Play Store" style={{ width: '18ch', height: 'auto' }} />
       </Typography>
     </FormControl>
     <br/>
@@ -100,7 +104,7 @@ const LoginForm = () => {
         label="Password"
       />
     </FormControl>
-      <Typography sx={theme.styles.err}>
+    <Typography sx={theme.styles.err}>
         {context.fbCode}
       </Typography>
     <FormControl sx={{ m: 1, mt: 5, width: '25ch' }} variant="outlined">
@@ -113,6 +117,12 @@ const LoginForm = () => {
       <GoogleButton style={{width: '24ch'}} onClick={() => logGoogle()}></GoogleButton>
     </FormControl>
     <br></br>
+    <br></br>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <ExternalLink href={'https://play.google.com/store/apps/details?id=org.ben.news'}>
+      <img src={playstore2} alt="Play Store" style={{ width: '18ch', height: 'auto' }} />
+    </ExternalLink>
+    </div>
       <br></br>
 
     </Box>
