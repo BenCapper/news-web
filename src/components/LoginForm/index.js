@@ -70,7 +70,7 @@ const LoginForm = () => {
       <Grid container>
         <Grid item xs={12} sm={4}>
           <Box sx={theme.styles.root}>
-          <img src={phone} alt="Phone" style={{ width: '40%', height: 'auto', display: 'block', paddingTop: '10.8em' }} />
+          <img src={phone} alt="Phone" style={{ width: '150px', height: '320px', display: 'block', paddingTop: '10.8em' }} />
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '1em' }}>
               <ExternalLink href={'https://play.google.com/store/apps/details?id=org.ben.news'}>
                 <img src={playstore2} alt="Play Store" style={{ width: '14ch', height: 'auto' }} />
@@ -138,7 +138,7 @@ const LoginForm = () => {
         </Grid>
         <Grid item xs={12} sm={4}>
         <Box sx={theme.styles.root}>
-          <img src={blackphone} alt="Phone" style={{ width: '40%', height: 'auto', display: 'block', paddingTop: '10.8em' }} />
+          <img src={blackphone} alt="Phone" style={{ width: '150px', height: '320px', display: 'block', paddingTop: '10.8em' }} />
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '1em' }}>
               <ExternalLink href={'https://play.google.com/store/apps/details?id=org.ben.news'}>
                 <img src={playstore2} alt="Play Store" style={{ width: '14ch', height: 'auto' }} />
