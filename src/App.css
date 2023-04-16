@@ -34,6 +34,7 @@ code {
   top: 0;
   right: 0;
   height: 100vh;
+  margin-left: 1em;
 }
 
 .feed-container {
@@ -43,7 +44,7 @@ code {
 }
 
 .feed {
-  padding-left: .6em;
+
 }
 
 

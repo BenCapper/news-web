@@ -195,6 +195,7 @@ function Feed ( { title }  ) {
       </div>
 
     <div className="infinite" style={theme.infinite}>
+      <div style={{paddingLeft: '.6em'}}>
     <InfiniteScroll
       dataLength={pageNumber + 1} //This is important field to render the next data
       next={() => next()}
@@ -217,7 +218,7 @@ function Feed ( { title }  ) {
         ))}
         </Grid>
       </InfiniteScroll>
-
+      </div>
       </div>
       <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="error" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>
