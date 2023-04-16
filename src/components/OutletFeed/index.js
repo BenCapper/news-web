@@ -37,6 +37,8 @@ function OutletFeed ( { title, keyword }  ) {
   const [open, setOpen] = React.useState(false);
   const [openBack, setOpenBack] = React.useState(false);
   const [emptyValue, setEmptyValue] = useState(false);
+  const yesterday = formatDate(getDate(count - 1));
+  const tomorrow = formatDate(getDate(count + 1));
 
   const newList = [];
   let splitArr = [];
@@ -84,16 +86,16 @@ function OutletFeed ( { title, keyword }  ) {
       />
       
       <ButtonGroup size="small" color='warning' sx={theme.buttonGroup.sx}>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title={yesterday}>
           <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title={tomorrow}>
           <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title="Shuffle articles">
           <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title="Scroll to Top">
           <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
       </Button>
       </ButtonGroup>
@@ -223,16 +225,16 @@ function OutletFeed ( { title, keyword }  ) {
       />
       
       <ButtonGroup size="small" color='warning' sx={theme.buttonGroup.sx}>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title={yesterday}>
           <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title={tomorrow}>
           <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title="Shuffle Articles">
           <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title="Scroll to Top">
           <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
       </Button>
       </ButtonGroup>

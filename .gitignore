@@ -24,3 +24,6 @@ yarn-error.log*
 src/firebase-config.js
 
 todo.txt
+
+src/useAdSense.js
+public/ads.txt

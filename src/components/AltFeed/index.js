@@ -102,10 +102,10 @@ function AltFeed ( { title, articles, affix, setArticles}  ) {
         <Button disabled={true} sx={theme.disabledButton}>
           <KeyboardArrowRightOutlinedIcon/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title="Shuffle Articles">
           <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title="Scroll to Top">
           <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
       </Button>
       </ButtonGroup>
