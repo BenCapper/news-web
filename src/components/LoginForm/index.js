@@ -20,10 +20,14 @@ import phone from '../../assets/phone.png'
 import blackphone from '../../assets/blackphone.png'
 import Grid from '@mui/material/Grid'
 import {BrowserView, MobileView} from 'react-device-detect';
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const LoginForm = () => {
+  const themes = useTheme();
   const context = useContext(AuthContext);
   const theme = useContext(ThemeContext);
+  const isMobile = useMediaQuery(themes.breakpoints.down("md"));
   const [values, setValues] = React.useState({
       email: '',
       password: '',
@@ -68,7 +72,8 @@ const LoginForm = () => {
     <>
       <br />
       <BrowserView>
-      <Grid container>
+      <Grid container justifyContent={isMobile ? 'center' : 'flex-start'}>
+      {isMobile ? null : (
         <Grid item xs={12} sm={4}>
           <Box sx={theme.styles.root}>
           <img src={phone} alt="Phone" style={{ width: '150px', height: '320px', display: 'block', paddingTop: '10.8em' }} />
@@ -79,6 +84,7 @@ const LoginForm = () => {
             </div>
           </Box>
         </Grid>
+        )}
         <Grid item xs={12} sm={4}>
           <Box sx={theme.styles.root}>
             <FormControl variant="outlined">
@@ -137,6 +143,7 @@ const LoginForm = () => {
             <br />
           </Box>
         </Grid>
+        {isMobile ? null : (
         <Grid item xs={12} sm={4}>
         <Box sx={theme.styles.root}>
           <img src={blackphone} alt="Phone" style={{ width: '150px', height: '320px', display: 'block', paddingTop: '10.8em' }} />
@@ -147,6 +154,7 @@ const LoginForm = () => {
             </div>
           </Box>
         </Grid>
+        )}
     </Grid>
     <br />
       </BrowserView>
