@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
@@ -20,15 +20,21 @@ import darktheme from '../../contexts/darktheme';
 import lighttheme from '../../contexts/theme';
 import { set,ref, } from "firebase/database";
 import { db } from "../../firebase-config";
+import {BrowserView, MobileView, isMobile} from 'react-device-detect';
 
 
 const ProSidebar = ({setTheme}) => {
-    const { collapseSidebar } = useProSidebar();
+    const { collapseSidebar, collapsed } = useProSidebar();
     const context = useContext(AuthContext);
     const theme = useTheme();
     const themes = useContext(ThemeContext);
-    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const mobile = useMediaQuery(theme.breakpoints.down("md"));
     const navigate = useNavigate();
+
+    useEffect(() => {
+      if(isMobile && !collapsed) collapseSidebar();
+      setViewport(isMobile);
+    });
 
     const handleTheme = () => {
       if (themes === lighttheme){
@@ -67,9 +73,20 @@ const ProSidebar = ({setTheme}) => {
       navigate("/login");
     }
 
+    const setViewport = (isMobile) => {
+      const viewportTag = document.querySelector('meta[name="viewport"]');
+      if (isMobile) {
+        viewportTag.setAttribute(
+          'content',
+          'width=device-width, initial-scale=.72, maximum-scale=.72, user-scalable=yes'
+        );
+      }
+    };
+
     return (
         <>
-        {isMobile ? (
+        <BrowserView>
+        {mobile ? (
             <>
         
         <Sidebar width="80px" backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: themes.colors.white }}>
@@ -112,6 +129,31 @@ const ProSidebar = ({setTheme}) => {
       </Sidebar>
         </>
     )}
+    </BrowserView>
+    <MobileView>
+    <>
+        
+        <Sidebar width="80px" backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: themes.colors.white }}>
+        <Menu menuItemStyles={themes.menuItemStyles}>
+          <MenuItem disabled style={{paddingBottom: '3em'}}></MenuItem>
+          <MenuItem disabled style={{marginBottom: '.95em'}}></MenuItem>
+          
+          <MenuItem active={window.location.pathname === "/"} title={"Home"} icon={<HomeOutlinedIcon />} component={<Link to="/" />}> Home </MenuItem>
+          <MenuItem active={window.location.pathname === "/saved"} icon={<BookmarkBorderOutlinedIcon />} onClick={() => openSaved()}>Saved</MenuItem>
+          <MenuItem active={window.location.pathname === "/history"} icon={<HistoryOutlinedIcon />} onClick={() => openHistory()}>History</MenuItem>
+          <MenuItem disabled></MenuItem>
+          <MenuItem active={window.location.pathname === "/left"} icon={<KeyboardDoubleArrowLeftOutlinedIcon />} component={<Link to="/left" />}>Leans Left </MenuItem>
+          <MenuItem active={window.location.pathname === "/right"} icon={<KeyboardDoubleArrowRightOutlinedIcon />} component={<Link to="/right" />}>Leans Right </MenuItem>
+          <MenuItem active={window.location.pathname === "/bothsides"} icon={<CompareArrowsOutlinedIcon />} component={<Link to="/bothsides" />}> See Both Sides </MenuItem>
+          <MenuItem disabled></MenuItem>
+          <MenuItem icon={<DarkModeOutlinedIcon />} onClick={handleTheme}>Theme</MenuItem>
+          <MenuItem icon={<LogoutOutlinedIcon />} onClick={context.user === "" ? openLogin : context.signout} > {context.user === "" ? "Login" : "Logout"}</MenuItem>
+        </Menu>
+      </Sidebar>
+      </>
+
+
+    </MobileView>
     </>
     );
 }

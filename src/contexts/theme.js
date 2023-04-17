@@ -105,7 +105,7 @@ const theme = {
               fontWeight: 600,
             },
             [`&.${menuClasses.disabled}`]: {
-              color: '#f1c735',
+              color: '#e8c034',
             },
             '&:hover': {
               backgroundColor: '#FFFFFF',
