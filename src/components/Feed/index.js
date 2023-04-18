@@ -36,7 +36,8 @@ function Feed ( { title }  ) {
   const [open, setOpen] = React.useState(false);
   const [openBack, setOpenBack] = useState(false);
   const [emptyValue, setEmptyValue] = useState(false);
-
+  const yesterday = formatDate(getDate(count - 1));
+  const tomorrow = formatDate(getDate(count + 1));
   const newList = [];
   let splitArr = [];
   let firstSegment = [];
@@ -176,16 +177,16 @@ function Feed ( { title }  ) {
       />
       
       <ButtonGroup size="small" color='warning' sx={theme.buttonGroup.sx}>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title={yesterday}>
           <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title={tomorrow}>
           <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title="Shuffle Articles">
           <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title="Scroll to Top">
           <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
       </Button>
       </ButtonGroup>
@@ -194,6 +195,7 @@ function Feed ( { title }  ) {
       </div>
 
     <div className="infinite" style={theme.infinite}>
+      <div style={{paddingLeft: '.6em'}}>
     <InfiniteScroll
       dataLength={pageNumber + 1} //This is important field to render the next data
       next={() => next()}
@@ -216,7 +218,7 @@ function Feed ( { title }  ) {
         ))}
         </Grid>
       </InfiniteScroll>
-
+      </div>
       </div>
       <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="error" style={{backgroundColor: theme.colors.snackbg, color: theme.colors.snack}} sx={{ width: '100%' }}>

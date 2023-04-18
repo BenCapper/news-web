@@ -9,6 +9,7 @@ import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import { scrollTop, useIcon } from '../util';
 import Drag from '../components/Drag';
+import useAdSense from '../useAdSense';
 
 
 function Home({setTheme}) {
@@ -16,6 +17,7 @@ function Home({setTheme}) {
   const context = useContext(AuthContext);
   const db = getDatabase();
   useIcon();
+  useAdSense();
 
   useEffect(() => {
     // Set the body background color CSS variable
@@ -52,6 +54,7 @@ function Home({setTheme}) {
     }
   });
 
+
   return (
     <>
     <div className="container" style={{backgroundColor:theme.colors.white}}>
@@ -59,7 +62,7 @@ function Home({setTheme}) {
       <ProSidebar setTheme={setTheme}/>
     </div>
     <div className='feed-container'>
-      <div className='feed' style={{paddingLeft: '.6em'}}>
+      <div className='feed'>
       <Feed title={"Home"}/>
       </div>
     </div>

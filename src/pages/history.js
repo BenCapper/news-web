@@ -9,13 +9,16 @@ import lighttheme from '../contexts/theme';
 import { getDatabase, ref, onValue } from "firebase/database";
 import { scrollTop, useIcon } from '../util';
 import Drag from '../components/Drag';
-
+import { formatDate } from '../util';
+import { getDate } from '../util';
 
 function History({setTheme}) {
+  const d = getDate(0);
   const theme = useContext(ThemeContext);
   const context = useContext(AuthContext);
   const db = getDatabase();
   const [articles, setArticles] = useState([]);
+  let empty = [{title: "No Results", date: formatDate(d), outlet:''}]
   useIcon();
 
   useEffect(() => {

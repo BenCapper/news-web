@@ -3,7 +3,7 @@ import "./feed.css";
 import { db } from "../../firebase-config";
 import { ref } from "firebase/database";
 import { useDatabaseValue } from "@react-query-firebase/database";
-import { compare, filterByTitleBoth, getDate, splitArray } from "../../util";
+import { compare, filterByTitleBoth, getDate, splitArray, formatDate } from "../../util";
 import { Button, ButtonGroup, Grid, LinearProgress, TextField } from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getArraySegment } from "../../util";
@@ -16,7 +16,6 @@ import BothArt from "../BothArt";
 import ThemeContext from "../../contexts/themeContext";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import { formatDate } from '../../util';
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -26,6 +25,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 function Feed ( { title }  ) {
   const [count, setCount] = useState(0);
   const d = getDate(count);
+  const yesterday = formatDate(getDate(count - 1));
+  const tomorrow = formatDate(getDate(count + 1));
   const dbRef = ref(db, `doubles/${d}`);
   const arts = useDatabaseValue([`doubles/${d}`], dbRef);
   const theme = useContext(ThemeContext);
@@ -182,16 +183,16 @@ function Feed ( { title }  ) {
       />
       
       <ButtonGroup size="small" color='warning' sx={theme.buttonGroup.sx}>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title={yesterday}>
           <KeyboardArrowLeftOutlinedIcon onClick={() => back()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title={tomorrow}>
           <KeyboardArrowRightOutlinedIcon onClick={() => forward()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title="Shuffle Articles">
           <ShuffleOutlinedIcon onClick={() => shuffleArticles()}/>
         </Button>
-        <Button sx={{color: theme.bgIcon.icon}}>
+        <Button sx={{color: theme.bgIcon.icon}} title="Scroll to Top">
           <KeyboardArrowUpOutlinedIcon onClick={() => scrollTop()}/>
       </Button>
       </ButtonGroup>

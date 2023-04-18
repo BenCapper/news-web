@@ -6,15 +6,18 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import "./rightSidebar.css"
 import { icon } from "../../icons/icons";
+import {BrowserView, MobileView} from 'react-device-detect';
 
 
 const RightProsidebar = () => {
     const theme = useTheme();
     const themes = useContext(ThemeContext);
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
         <>
+        <BrowserView>
         {isMobile ? (
             <>
         <Sidebar width="80px" backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: '0px'}}>
@@ -96,6 +99,50 @@ const RightProsidebar = () => {
       </Sidebar>
         </>
     )}
+    </BrowserView>
+    <MobileView>
+
+    <>
+        <Sidebar width="80px" backgroundColor={themes.colors.white} style={{ height: "100vh", backgroundColor: themes.colors.white, position: "sticky", top: 0, borderRight: '0px'}}>
+        <Menu menuItemStyles={themes.menuItemStyles}>
+
+          <MenuItem disabled></MenuItem>
+          <MenuItem icon={<img className="image" alt="Gript" src={icon['gript']} />} component={<Link to="/gript" />}>  </MenuItem>
+          <MenuItem icon={<img className="image" alt="Rte" src={icon['rte']} />} component={<Link to="/rte" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Spiked-Online" src={icon['spiked']} />} component={<Link to="/spiked" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="GB News" src={icon['gbn']} />} component={<Link to="/gbnews" />}> </MenuItem>
+          <MenuItem icon={<img className="image" alt="Sky News" src={icon['sky']} />} component={<Link to="/sky" />}> </MenuItem>
+          <MenuItem icon={<img className="image" alt="The Guardian" src={icon['guard']} />} component={<Link to="/guardian" />}>  </MenuItem>
+          <MenuItem icon={<img className="image" alt="The Daily Mail" src={icon['dmail']} />} component={<Link to="/dailymail" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Daily Sceptic" src={icon['sceptic']} component={<Link to="/dailysceptic" />}/>}></MenuItem>
+          <MenuItem icon={<img className="image" alt="The Blaze" src={icon['blaze']} component={<Link to="/blaze" />} />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Timcast" src={icon['tim']} component={<Link to="/timcast" />}/>}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Breitbart" src={icon['breit']} />} component={<Link to="/breitbart" />}>  </MenuItem>
+          <MenuItem icon={<img className="image" alt="Infowars" src={icon['info']} />} component={<Link to="/infowars" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Zerohedge" src={icon['zero']} />} component={<Link to="/zerohedge" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Revolver News" src={icon['rev']} />} component={<Link to="/revolver" />}> </MenuItem>
+          <MenuItem icon={<img className="image" alt="Bongino Report" src={icon['bong']} />} component={<Link to="/bongino" />}> </MenuItem>
+          <MenuItem icon={<img className="image" alt="Trending Politics" src={icon['trend']} />} component={<Link to="/trendingpolitics" />}>  </MenuItem>
+          <MenuItem icon={<img className="image" alt="The Daily Caller" src={icon['call']} />} component={<Link to="/dailycaller" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="American Thinker" src={icon['think']} />} component={<Link to="/americanthinker" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="The Gateway Pundit" src={icon['gwp']} />} component={<Link to="/gatewaypundit" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="The Post Millennial" src={icon['pmill']} component={<Link to="/postmillennial" />} />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Euronews" src={icon['euro']} />} component={<Link to="/euronews" />}>  </MenuItem>
+          <MenuItem icon={<img className="image" alt="ABC" src={icon['abc']} />} component={<Link to="/abc" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="CBS" src={icon['cbs']} />} component={<Link to="/cbs" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="NPR" src={icon['npr']} />} component={<Link to="/npr" />}> </MenuItem>
+          <MenuItem icon={<img className="image" alt="Vox" src={icon['vox']} />} component={<Link to="/vox" />}> </MenuItem>
+          <MenuItem icon={<img className="image" alt="Politico" src={icon['pol']} />} component={<Link to="/politico" />}>  </MenuItem>
+          <MenuItem icon={<img className="image" alt="The Hill" src={icon['hill']} />} component={<Link to="/thehill" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Yahoo News" src={icon['yah']} />} component={<Link to="/yahoonews" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="The Daily Beast" src={icon['beast']} />} component={<Link to="/dailybeast" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Huffington Post" src={icon['huff']} />} component={<Link to="/huffingtonpost" />}></MenuItem>
+          <MenuItem icon={<img className="image" alt="Global News" src={icon['glo']} />} component={<Link to="/globalnews" />}></MenuItem>
+        </Menu>
+      </Sidebar>
+      </>
+
+    </MobileView>
     </>
     );
 }
